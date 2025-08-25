@@ -5,8 +5,11 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface Section {
   id: string;
@@ -37,21 +40,26 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
 
   const currentSection = sections.find(s => s.id === activeSection) || sections[0];
 
-  const SidebarNav = () => (
-    <nav className="space-y-1">
+  const SidebarNav = ({ isMobile = false }: { isMobile?: boolean }) => (
+    <nav className="space-y-0.5">
       {sections.map((section) => (
         <Button
           key={section.id}
           variant="ghost"
-          onClick={() => handleSectionClick(section.id)}
+          onClick={() => {
+            handleSectionClick(section.id);
+            if (isMobile) {
+              // Add logic to close sheet if needed
+            }
+          }}
           className={cn(
-            'w-full justify-start text-left h-auto py-2 px-3 gap-2',
+            'w-full justify-start text-left h-auto py-1.5 px-2 gap-2 text-xs',
             activeSection === section.id
               ? 'bg-accent text-accent-foreground'
               : 'hover:bg-accent/50'
           )}
         >
-          {section.icon}
+          {section.icon && React.cloneElement(section.icon as React.ReactElement, { size: 16 })}
           <span className="truncate">{section.title}</span>
         </Button>
       ))}
@@ -62,32 +70,47 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <div className="flex-grow container mx-auto px-4 py-8 md:px-6 md:py-12">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground">{title}</h1>
-          <p className="text-sm text-muted-foreground mt-2">Last updated: {lastUpdated}</p>
+        <div className="mb-8 flex justify-between items-center">
+            <div>
+                 <h1 className="text-4xl font-bold tracking-tight text-foreground">{title}</h1>
+                 <p className="text-sm text-muted-foreground mt-2">Last updated: {lastUpdated}</p>
+            </div>
+            <div className="md:hidden">
+                 <Sheet>
+                    <SheetTrigger asChild>
+                        <Button variant="outline" size="icon">
+                            <Menu className="h-6 w-6" />
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left">
+                        <SheetHeader>
+                            <SheetTitle>Menu</SheetTitle>
+                        </SheetHeader>
+                        <ScrollArea className="h-[calc(100vh-4rem)]">
+                            <SidebarNav isMobile />
+                        </ScrollArea>
+                    </SheetContent>
+                </Sheet>
+            </div>
         </div>
 
         <div className="flex">
-          <aside className="w-1/4 pr-8">
+          <aside className="hidden md:block w-64 pr-8">
             <div className="sticky top-24">
               <SidebarNav />
             </div>
           </aside>
 
-          <main className="w-3/4">
+          <main className="w-full md:w-3/4">
             <Card>
-              <CardContent className="p-6 md:p-8">
-                {currentSection && (
-                  <section id={currentSection.id} className="scroll-mt-24">
-                    <h2 className="text-2xl font-semibold text-foreground mb-4 flex items-center gap-3">
-                      {currentSection.icon}
-                      {currentSection.title}
-                    </h2>
-                    <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
-                      <p>{currentSection.content}</p>
-                    </div>
-                  </section>
-                )}
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  {currentSection.icon}
+                  {currentSection.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
+                <p>{currentSection.content}</p>
               </CardContent>
             </Card>
           </main>
