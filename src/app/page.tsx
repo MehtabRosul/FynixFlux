@@ -13,6 +13,9 @@ export default function Home() {
           <CtaSection />
         </ParallaxProvider>
       </main>
+      <footer className="py-6 text-center text-sm text-muted-foreground">
+        ForgeFlow all copyrights are being preserved.
+      </footer>
     </div>
   );
 }
