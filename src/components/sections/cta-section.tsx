@@ -67,7 +67,7 @@ export function CtaSection() {
                     </p>
                     <div className="mt-8">
                     <Button size="lg" variant="secondary" asChild>
-                        <Link href="/dashboard">Start Forging for Free</Link>
+                        <Link href="/dashboard">Start Forging</Link>
                     </Button>
                     </div>
                 </div>
