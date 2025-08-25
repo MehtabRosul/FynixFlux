@@ -60,12 +60,12 @@ export default function TermsPage() {
         <>
           <p>You will not, and will not permit any third party to, use the Service to:</p>
           <ul className="list-disc pl-6 space-y-2 mt-2">
-            <li>a) engage in any activity that violates applicable laws, rules, or regulations;</li>
-            <li>b) upload or otherwise transmit content that infringes the rights of others, is defamatory, obscene, pornographic, harassing, abusive, or otherwise objectionable;</li>
-            <li>c) interfere with or disrupt the integrity, security, or performance of the Service or its underlying infrastructure, including attempting to probe, scan, or test the vulnerability of any system or network;</li>
-            <li>d) attempt to gain unauthorized access to accounts, systems, or networks;</li>
-            <li>e) reverse engineer, decompile, or disassemble the Service except to the extent permitted by applicable law; or</li>
-            <li>f) use the Service to develop, train, or deliver models intended to cause physical harm, endanger public safety, or violate human rights, where prohibited by law.</li>
+            <li>engage in any activity that violates applicable laws, rules, or regulations;</li>
+            <li>upload or otherwise transmit content that infringes the rights of others, is defamatory, obscene, pornographic, harassing, abusive, or otherwise objectionable;</li>
+            <li>interfere with or disrupt the integrity, security, or performance of the Service or its underlying infrastructure, including attempting to probe, scan, or test the vulnerability of any system or network;</li>
+            <li>attempt to gain unauthorized access to accounts, systems, or networks;</li>
+            <li>reverse engineer, decompile, or disassemble the Service except to the extent permitted by applicable law; or</li>
+            <li>use the Service to develop, train, or deliver models intended to cause physical harm, endanger public safety, or violate human rights, where prohibited by law.</li>
           </ul>
           <p className="mt-4">The Company reserves the right to investigate and take appropriate legal action against anyone who, in its sole discretion, violates this Acceptable Use policy. Violations may result in suspension or termination of access and may be reported to law enforcement authorities.</p>
         </>
@@ -158,7 +158,18 @@ export default function TermsPage() {
       id: "indemnification", 
       title: "11. Indemnification",
       summary: "If someone sues us because of how you used the Service or because of your content, you may need to defend and cover costs.",
-      content: "You will defend, indemnify, and hold harmless the Company and its officers, directors, employees and agents from and against any and all claims, liabilities, damages, losses and expenses (including reasonable attorneys’ fees and costs) arising from or in connection with: (a) your violation of these Terms; (b) your Content or Data; (c) your negligence or willful misconduct; or (d) your use of the Service in violation of applicable law. The Company will: (i) promptly notify you of any claim for which it seeks indemnity; (ii) give you sole control of the defense and settlement of the claim (provided that you do not settle a claim that admits liability or requires injunctive relief without the Company’s consent); and (iii) provide reasonable assistance, at your expense.",
+      content: (
+        <>
+        <p>You will defend, indemnify, and hold harmless the Company and its officers, directors, employees and agents from and against any and all claims, liabilities, damages, losses and expenses (including reasonable attorneys’ fees and costs) arising from or in connection with:</p>
+         <ul className="list-disc pl-6 space-y-2 mt-2">
+            <li>your violation of these Terms;</li>
+            <li>your Content or Data;</li>
+            <li>your negligence or willful misconduct; or</li>
+            <li>your use of the Service in violation of applicable law.</li>
+        </ul>
+        <p className="mt-4">The Company will: (i) promptly notify you of any claim for which it seeks indemnity; (ii) give you sole control of the defense and settlement of the claim (provided that you do not settle a claim that admits liability or requires injunctive relief without the Company’s consent); and (iii) provide reasonable assistance, at your expense.</p>
+        </>
+      ),
       icon: <Handshake size={20} />
     },
     { 
