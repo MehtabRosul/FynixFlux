@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -7,7 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -29,9 +30,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
-    // Set body class when the component mounts
     document.body.classList.add('legal-page');
-    // Remove body class when the component unmounts
     return () => {
       document.body.classList.remove('legal-page');
     };
@@ -39,7 +38,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
   
   const handleSectionClick = (id: string) => {
     setActiveSection(id);
-    setIsSheetOpen(false); // Close mobile sheet on selection
+    setIsSheetOpen(false);
   };
 
   const SidebarNav = () => (
@@ -84,7 +83,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
               <SheetContent side="left">
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
-                  <SheetDescription className="sr-only">
+                   <SheetDescription className="sr-only">
                     Navigation for legal page sections
                   </SheetDescription>
                 </SheetHeader>
@@ -106,8 +105,9 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
           <main className="w-full">
             {activeSectionContent && (
               <Card
+                key={activeSectionContent.id}
                 id={activeSectionContent.id}
-                className="scroll-mt-24"
+                className="scroll-mt-24 animate-in fade-in duration-300"
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-2xl">
