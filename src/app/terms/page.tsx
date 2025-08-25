@@ -59,14 +59,14 @@ export default function TermsPage() {
       content: (
         <>
           <p>You will not, and will not permit any third party to, use the Service to:</p>
-          <ul className="list-disc pl-6 space-y-2 mt-2">
+          <ol className="list-alpha pl-6 space-y-2 mt-2">
             <li>engage in any activity that violates applicable laws, rules, or regulations;</li>
             <li>upload or otherwise transmit content that infringes the rights of others, is defamatory, obscene, pornographic, harassing, abusive, or otherwise objectionable;</li>
             <li>interfere with or disrupt the integrity, security, or performance of the Service or its underlying infrastructure, including attempting to probe, scan, or test the vulnerability of any system or network;</li>
             <li>attempt to gain unauthorized access to accounts, systems, or networks;</li>
             <li>reverse engineer, decompile, or disassemble the Service except to the extent permitted by applicable law; or</li>
             <li>use the Service to develop, train, or deliver models intended to cause physical harm, endanger public safety, or violate human rights, where prohibited by law.</li>
-          </ul>
+          </ol>
           <p className="mt-4">The Company reserves the right to investigate and take appropriate legal action against anyone who, in its sole discretion, violates this Acceptable Use policy. Violations may result in suspension or termination of access and may be reported to law enforcement authorities.</p>
         </>
       ),
@@ -123,8 +123,14 @@ export default function TermsPage() {
         <>
             <p><strong>Definition.</strong> “Confidential Information” means non-public information disclosed by one party to the other in connection with the Service that a reasonable person would consider confidential, including technical, commercial, or business information.</p>
             <p><strong>Obligations.</strong> Each party agrees to keep the other party’s Confidential Information confidential, to use it solely for the purposes of performing obligations under these Terms, and to protect it with reasonable care.</p>
-            <p><strong>Exclusions.</strong> Confidential Information does not include information that (a) is or becomes generally known to the public through no fault of the receiving party; (b) is rightfully known by the receiving party prior to disclosure; (c) is independently developed without use of the disclosing party’s Confidential Information; or (d) is rightfully obtained from a third party without a duty of confidentiality.</p>
-            <p><strong>Compelled Disclosure.</strong> If a receiving party is compelled by law to disclose Confidential Information, it will provide reasonable prior notice to the disclosing party and cooperate to seek a protective order, where possible.</p>
+            <p><strong>Exclusions.</strong> Confidential Information does not include information that:</p>
+            <ol className="list-alpha pl-6 space-y-2 mt-2">
+                <li>is or becomes generally known to the public through no fault of the receiving party;</li>
+                <li>is rightfully known by the receiving party prior to disclosure;</li>
+                <li>is independently developed without use of the disclosing party’s Confidential Information; or</li>
+                <li>is rightfully obtained from a third party without a duty of confidentiality.</li>
+            </ol>
+            <p className="mt-4"><strong>Compelled Disclosure.</strong> If a receiving party is compelled by law to disclose Confidential Information, it will provide reasonable prior notice to the disclosing party and cooperate to seek a protective order, where possible.</p>
         </>
       ),
       icon: <ShieldCheck size={20} />
@@ -147,9 +153,13 @@ export default function TermsPage() {
       summary: "This explains the limits of our legal exposure. It caps certain damages and excludes others — read it carefully.",
       content: (
         <>
-            <p><strong>Cap on Liability.</strong> To the maximum extent permitted by law, the Company’s aggregate liability arising from or related to these Terms or your use of the Service will not exceed the greater of (a) direct damages up to an amount equal to three months’ average fees paid by You to the Company in the twelve months prior to the claim (if applicable), or (b) a reasonable alternative cap if no fees were paid. (Note: remove or adapt monetary cap if free service.)</p>
-            <p><strong>Exclusion of Certain Damages.</strong> In no event will the Company be liable for indirect, incidental, consequential, special, exemplary, or punitive damages, including but not limited to loss of profits, loss of data, or loss of business opportunity, even if the Company has been advised of the possibility of such damages.</p>
-            <p><strong>Carve-Outs.</strong> Nothing in this section limits liability for gross negligence, willful misconduct, or other liabilities that cannot be limited under applicable law.</p>
+            <p><strong>Cap on Liability.</strong> To the maximum extent permitted by law, the Company’s aggregate liability arising from or related to these Terms or your use of the Service will not exceed the greater of:</p>
+            <ol className="list-alpha pl-6 space-y-2 mt-2">
+                <li>direct damages up to an amount equal to three months’ average fees paid by You to the Company in the twelve months prior to the claim (if applicable), or</li>
+                <li>a reasonable alternative cap if no fees were paid. (Note: remove or adapt monetary cap if free service.)</li>
+            </ol>
+            <p className="mt-4"><strong>Exclusion of Certain Damages.</strong> In no event will the Company be liable for indirect, incidental, consequential, special, exemplary, or punitive damages, including but not limited to loss of profits, loss of data, or loss of business opportunity, even if the Company has been advised of the possibility of such damages.</p>
+            <p className="mt-4"><strong>Carve-Outs.</strong> Nothing in this section limits liability for gross negligence, willful misconduct, or other liabilities that cannot be limited under applicable law.</p>
         </>
       ),
       icon: <AlertTriangle size={20} />
@@ -161,12 +171,12 @@ export default function TermsPage() {
       content: (
         <>
         <p>You will defend, indemnify, and hold harmless the Company and its officers, directors, employees and agents from and against any and all claims, liabilities, damages, losses and expenses (including reasonable attorneys’ fees and costs) arising from or in connection with:</p>
-         <ul className="list-disc pl-6 space-y-2 mt-2">
+         <ol className="list-alpha pl-6 space-y-2 mt-2">
             <li>your violation of these Terms;</li>
             <li>your Content or Data;</li>
             <li>your negligence or willful misconduct; or</li>
             <li>your use of the Service in violation of applicable law.</li>
-        </ul>
+        </ol>
         <p className="mt-4">The Company will: (i) promptly notify you of any claim for which it seeks indemnity; (ii) give you sole control of the defense and settlement of the claim (provided that you do not settle a claim that admits liability or requires injunctive relief without the Company’s consent); and (iii) provide reasonable assistance, at your expense.</p>
         </>
       ),
