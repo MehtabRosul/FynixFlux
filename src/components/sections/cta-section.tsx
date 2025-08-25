@@ -5,7 +5,7 @@ export function CtaSection() {
   return (
     <section id="cta" className="py-12 md:py-24 lg:py-32 bg-transparent">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary to-accent p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:200%_200%]">
+        <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary via-accent to-secondary p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:400%_400%]">
           <div className="relative z-10 flex flex-col items-center text-center">
             <h2 className="text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl md:text-5xl font-headline">
               Ready to Forge Your Next Breakthrough?

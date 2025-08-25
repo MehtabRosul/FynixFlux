@@ -90,17 +90,17 @@ export default {
         },
         'gradient-xy': {
           '0%, 100%': {
-            'background-position': '0% 50%',
+            'background-position': '0% 0%',
           },
           '50%': {
-            'background-position': '100% 50%',
+            'background-position': '100% 100%',
           },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'gradient-xy': 'gradient-xy 10s ease infinite',
+        'gradient-xy': 'gradient-xy 15s ease infinite',
       },
     },
   },
