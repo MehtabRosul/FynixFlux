@@ -1,13 +1,14 @@
 
 'use client';
 
+import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -36,9 +37,11 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
 
   const handleSectionClick = (id: string) => {
     setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
-
-  const currentSection = sections.find(s => s.id === activeSection) || sections[0];
 
   const SidebarNav = ({ isMobile = false }: { isMobile?: boolean }) => (
     <nav className="space-y-0.5">
@@ -48,12 +51,9 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
           variant="ghost"
           onClick={() => {
             handleSectionClick(section.id);
-            if (isMobile) {
-              // Add logic to close sheet if needed
-            }
           }}
           className={cn(
-            'w-full justify-start text-left h-auto py-1.5 px-2 gap-2 text-xs',
+            'w-full justify-start text-left h-auto py-1 px-2 gap-2 text-xs',
             activeSection === section.id
               ? 'bg-accent text-accent-foreground'
               : 'hover:bg-accent/50'
@@ -85,6 +85,9 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
                     <SheetContent side="left">
                         <SheetHeader>
                             <SheetTitle>Menu</SheetTitle>
+                            <SheetDescription className="sr-only">
+                                Navigation for legal page sections
+                            </SheetDescription>
                         </SheetHeader>
                         <ScrollArea className="h-[calc(100vh-4rem)]">
                             <SidebarNav isMobile />
@@ -95,24 +98,26 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
         </div>
 
         <div className="flex">
-          <aside className="hidden md:block w-64 pr-8">
+          <aside className="hidden md:block w-56 pr-8">
             <div className="sticky top-24">
               <SidebarNav />
             </div>
           </aside>
 
-          <main className="w-full md:w-3/4">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  {currentSection.icon}
-                  {currentSection.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
-                <p>{currentSection.content}</p>
-              </CardContent>
-            </Card>
+          <main className="w-full md:w-3/4 space-y-8">
+             {sections.map((section) => (
+                <Card id={section.id} key={section.id} className="scroll-mt-24">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-3">
+                        {section.icon}
+                        {section.title}
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
+                        <p>{section.content}</p>
+                    </CardContent>
+                </Card>
+            ))}
           </main>
         </div>
       </div>
