@@ -116,7 +116,7 @@ const JourneySection = () => {
         { date: "2025", title: "Ongoing Improvements", description: "Roadmap items: hyperparameter UI, registry enhancements, model testing features.", image: "https://placehold.co/800x450.png", icon: <Wrench className="w-6 h-6 text-primary" /> },
     ];
      return (
-        <ParallaxSection className="py-16 md:py-24">
+        <ParallaxSection className="py-12 md:py-16">
             <div className="container mx-auto px-4 md:px-6">
                  <div className="text-center max-w-3xl mx-auto mb-12">
                      <h2 className="text-3xl font-bold tracking-tighter font-headline">Our Journey</h2>
