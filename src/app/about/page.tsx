@@ -168,14 +168,6 @@ const CreatorSection = () => {
                            Mehtab Rosul is an experienced machine learning engineer and MLOps practitioner focused on building tooling that removes friction between data and production. With a background in large-scale model deployment and developer tooling, Mehtab created ForgeFlow Pilot to give creators a single, safe, and flexible platform to iterate and ship models.
                         </p>
                         <p className="font-semibold text-foreground">Focus areas: model reproducibility • explainability • developer DX • production artifacts.</p>
-                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <Button asChild size="lg">
-                                <a href="mailto:mehtab@example.com">Contact Mehtab</a>
-                            </Button>
-                            <Button asChild size="lg" variant="outline">
-                                <Link href="/contact">Request a Demo</Link>
-                            </Button>
-                        </div>
                     </div>
                 </div>
             </div>
