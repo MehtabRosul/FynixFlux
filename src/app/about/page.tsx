@@ -108,60 +108,6 @@ const WhatWeBuildSection = () => {
 }
 
 
-const JourneySection = () => {
-    const JourneyBand = ({ children, bgClass }: { children: React.ReactNode, bgClass: string }) => (
-        <div className={`min-h-screen flex items-center justify-center text-center text-primary-foreground p-8 relative overflow-hidden ${bgClass}`}>
-            <div className="relative z-10 max-w-3xl animate-in fade-in-0 slide-in-from-bottom-8 duration-700">
-                {children}
-            </div>
-        </div>
-    );
-
-    return (
-        <section>
-            <JourneyBand bgClass="bg-gradient-to-br from-[#0F172A] to-[#1E293B]">
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
-                    A vision turned into reality — the creation of ForgeFlow Pilot.
-                </h2>
-                <p className="text-xl mt-4 text-muted-foreground">Mehtab Rosul — Founder & Creator</p>
-            </JourneyBand>
-            <JourneyBand bgClass="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/50 to-background">
-                 <div className="flex flex-col items-center gap-4">
-                    <Star className="w-12 h-12 text-amber-400" />
-                    <p className="text-2xl md:text-3xl font-semibold">
-                        It started with a simple idea — making AI workflows more human, visual, and intelligent.
-                    </p>
-                </div>
-            </JourneyBand>
-            <JourneyBand bgClass="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-teal-900/40 to-background">
-                <div className="flex flex-col items-center gap-4">
-                    <Server className="w-12 h-12 text-teal-400" />
-                    <p className="text-2xl md:text-3xl font-semibold">
-                        From sketches to prototypes, ForgeFlow Pilot was coded late nights, built from scratch with clarity in mind.
-                    </p>
-                </div>
-            </JourneyBand>
-            <JourneyBand bgClass="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 to-background">
-                 <div className="flex flex-col items-center gap-4">
-                    <BrainCircuit className="w-12 h-12 text-primary" />
-                    <p className="text-2xl md:text-3xl font-semibold">
-                        The breakthrough came with real-time dashboards and AI-driven insights — powerful tools made simple.
-                    </p>
-                </div>
-            </JourneyBand>
-             <JourneyBand bgClass="bg-gradient-to-t from-background via-background to-accent/20">
-                 <div className="flex flex-col items-center gap-4">
-                     <Rocket className="w-12 h-12 text-accent" />
-                     <p className="text-2xl md:text-3xl font-semibold">
-                        Today, ForgeFlow Pilot stands as a polished AI companion — crafted with care, innovation, and a relentless pursuit of perfection.
-                     </p>
-                </div>
-            </JourneyBand>
-        </section>
-    );
-};
-
-
 const CorePrinciplesSection = () => {
     const principles = [
       {
@@ -274,7 +220,6 @@ export default function AboutPage() {
             <HeroSection />
             <MissionSection />
             <WhatWeBuildSection />
-            <JourneySection />
             <CorePrinciplesSection />
             <CreatorSection />
             <CtaFooter />
@@ -284,5 +229,3 @@ export default function AboutPage() {
     </ParallaxProvider>
   );
 }
-
-    
