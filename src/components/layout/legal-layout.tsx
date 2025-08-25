@@ -1,11 +1,20 @@
 
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
+import { Check, ChevronRight } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { Menu } from 'lucide-react';
+
 
 interface Section {
   id: string;
@@ -21,33 +30,7 @@ interface LegalLayoutProps {
 
 export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) {
   const [activeSection, setActiveSection] = useState<string>(sections[0]?.id || '');
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-20% 0px -80% 0px', threshold: 0 }
-    );
-
-    const currentContentRef = contentRef.current;
-    if (currentContentRef) {
-      const sectionElements = currentContentRef.querySelectorAll('section');
-      sectionElements.forEach((section) => observer.observe(section));
-    }
-    
-    return () => {
-       if (currentContentRef) {
-        const sectionElements = currentContentRef.querySelectorAll('section');
-        sectionElements.forEach((section) => observer.unobserve(section));
-      }
-    };
-  }, [sections]);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     document.body.classList.add('legal-page');
@@ -55,57 +38,89 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
       document.body.classList.remove('legal-page');
     };
   }, []);
+  
+  const handleSectionClick = (id: string) => {
+    setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+     if (isSheetOpen) {
+      setIsSheetOpen(false);
+    }
+  };
+
+  const currentSection = sections.find(s => s.id === activeSection) || sections[0];
+
+  const SidebarNav = () => (
+     <nav className="space-y-1">
+        {sections.map((section) => (
+          <Button
+            key={section.id}
+            variant="ghost"
+            onClick={() => handleSectionClick(section.id)}
+            className={cn(
+              'w-full justify-start text-left h-auto py-2',
+              activeSection === section.id
+                ? 'bg-accent text-accent-foreground'
+                : 'hover:bg-accent/50'
+            )}
+          >
+            {section.title}
+          </Button>
+        ))}
+      </nav>
+  );
+
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <div className="container mx-auto flex-grow px-4 py-8 md:px-6 md:py-12">
+
+        <div className="mb-8 flex items-center justify-between">
+            <div>
+                 <h1 className="text-4xl font-bold tracking-tight text-foreground">{title}</h1>
+                 <p className="text-sm text-muted-foreground mt-2">Last updated: {lastUpdated}</p>
+            </div>
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                <SheetTrigger asChild>
+                    <Button variant="outline" size="icon" className="lg:hidden">
+                        <Menu className="h-6 w-6" />
+                        <span className="sr-only">Open Menu</span>
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-3/4 sm:w-1/2">
+                    <div className="p-4">
+                        <h3 className="text-lg font-semibold mb-4">{title}</h3>
+                        <SidebarNav />
+                    </div>
+                </SheetContent>
+            </Sheet>
+        </div>
+
+
         <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-12">
           <aside className="hidden lg:block lg:col-span-1">
-            <nav className="sticky top-24">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">{title}</h3>
-              <ul>
-                {sections.map((section) => (
-                  <li key={section.id} className="mb-2">
-                    <a
-                      href={`#${section.id}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
-                        setActiveSection(section.id);
-                      }}
-                      className={cn(
-                        'flex items-center text-sm transition-colors',
-                        activeSection === section.id
-                          ? 'text-primary font-semibold'
-                          : 'text-muted-foreground hover:text-foreground'
-                      )}
-                    >
-                      {activeSection === section.id && <Check className="h-4 w-4 mr-2 text-primary" />}
-                      {section.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <div className="sticky top-24">
+              <SidebarNav />
+            </div>
           </aside>
 
-          <main ref={contentRef} className="lg:col-span-3">
-            <div className="mb-8">
-              <p className="text-sm text-muted-foreground">Updated: {lastUpdated}</p>
-              <h1 className="text-4xl font-bold tracking-tight text-foreground mt-2">{title}</h1>
-            </div>
-
-            <div className="space-y-12">
-              {sections.map((section) => (
-                <section key={section.id} id={section.id} className="scroll-mt-24">
-                  <h2 className="text-2xl font-semibold text-foreground mb-4">{section.title}</h2>
-                  <div className="prose prose-invert max-w-none text-muted-foreground">
-                    <p>{section.content}</p>
-                  </div>
-                </section>
-              ))}
-            </div>
+          <main className="lg:col-span-3">
+             <Card>
+                <CardContent className="p-6 md:p-8">
+                     {sections.map((section) => (
+                        <section key={section.id} id={section.id} className="scroll-mt-24">
+                        <h2 className="text-2xl font-semibold text-foreground mb-4">{section.title}</h2>
+                        <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
+                            <p>{section.content}</p>
+                        </div>
+                        {section.id !== sections[sections.length - 1].id && <hr className="my-8 border-border" />}
+                        </section>
+                    ))}
+                </CardContent>
+             </Card>
           </main>
         </div>
       </div>
