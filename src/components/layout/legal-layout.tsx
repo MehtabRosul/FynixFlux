@@ -107,7 +107,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
               <Card
                 key={activeSectionContent.id}
                 id={activeSectionContent.id}
-                className="scroll-mt-24 animate-in fade-in duration-300"
+                className="scroll-mt-24 animate-in fade-in-50 zoom-in-95 slide-in-from-top-4 duration-500"
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-2xl">
