@@ -8,13 +8,13 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Eye, GitCommit, Heart, Zap, ShieldCheck, GitBranch, Telescope, Briefcase, Mail, Lightbulb, Rocket, AreaChart, Scaling, Wrench } from 'lucide-react';
+import { CheckCircle, Eye, GitCommit, Heart, Zap, ShieldCheck, GitBranch, Telescope, Briefcase, Mail, Lightbulb, Rocket, AreaChart, Scaling, Wrench, BrainCircuit, Server, Star } from 'lucide-react';
 import { ParallaxProvider, useParallax } from '@/components/providers/parallax-provider';
 
 // Parallax-aware Section Component
 const ParallaxSection = ({ children, className }: { children: React.ReactNode; className?: string }) => {
     return (
-        <section className={`relative py-20 md:py-32 overflow-hidden ${className}`}>
+        <section className={`relative py-20 md:py-24 overflow-hidden ${className}`}>
             {children}
         </section>
     );
@@ -107,44 +107,59 @@ const WhatWeBuildSection = () => {
     )
 }
 
+
 const JourneySection = () => {
-    const timelineEvents = [
-        { date: "2023 Q1", title: "Concept & Prototype", description: "Project founded; prototype of dataset upload and basic training flow.", image: "https://placehold.co/800x450.png", icon: <Lightbulb className="w-6 h-6 text-primary" /> },
-        { date: "2023 Q4", title: "Alpha Release", description: "Public alpha: UI, profiling, and simulated training runs.", image: "https://placehold.co/800x450.png", icon: <Rocket className="w-6 h-6 text-primary" /> },
-        { date: "2024 Q2", title: "Live Training & Exports", description: "Live metrics, artifact export formats added.", image: "https://placehold.co/800x450.png", icon: <AreaChart className="w-6 h-6 text-primary" /> },
-        { date: "2024 Q4", title: "Pilot Scale", description: "Scaling worker pool, monitoring & production-ready artifacts.", image: "https://placehold.co/800x450.png", icon: <Scaling className="w-6 h-6 text-primary" /> },
-        { date: "2025", title: "Ongoing Improvements", description: "Roadmap items: hyperparameter UI, registry enhancements, model testing features.", image: "https://placehold.co/800x450.png", icon: <Wrench className="w-6 h-6 text-primary" /> },
-    ];
-     return (
-        <ParallaxSection className="py-12 md:py-16">
-            <div className="container mx-auto px-4 md:px-6">
-                 <div className="text-center max-w-3xl mx-auto mb-12">
-                     <h2 className="text-3xl font-bold tracking-tighter font-headline">Our Journey</h2>
-                </div>
-                <div className="relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-border animate-in fade-in duration-500" aria-hidden="true" style={{ animationFillMode: 'backwards' }}></div>
-                    <div className="space-y-12">
-                        {timelineEvents.map((event, index) => (
-                             <div key={event.date} className="flex items-center justify-center relative">
-                                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8 order-2'} animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`, animationFillMode: 'backwards'}}>
-                                    <p className="font-bold text-primary">{event.date}</p>
-                                    <h3 className="text-xl font-semibold my-1">{event.title}</h3>
-                                    <p className="text-muted-foreground">{event.description}</p>
-                                </div>
-                                <div className="z-10 bg-background p-2 rounded-full border-2 border-primary animate-in zoom-in-50 duration-500" style={{ animationDelay: `${index * 200 + 50}ms`, animationFillMode: 'backwards' }}>
-                                    {event.icon}
-                                </div>
-                                <div className={`w-full lg:w-5/12 flex items-center justify-center p-4 animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-right-12' : 'slide-in-from-left-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`, animationFillMode: 'backwards' }}>
-                                   <Image src={event.image} alt={event.title} width={800} height={450} className="rounded-lg shadow-xl" data-ai-hint="abstract tech" />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+    const JourneyBand = ({ children, bgClass }: { children: React.ReactNode, bgClass: string }) => (
+        <div className={`min-h-[60vh] flex items-center justify-center text-center text-primary-foreground p-8 relative overflow-hidden ${bgClass}`}>
+            <div className="relative z-10 max-w-3xl animate-in fade-in-0 slide-in-from-bottom-8 duration-700">
+                {children}
             </div>
-        </ParallaxSection>
-    )
-}
+        </div>
+    );
+
+    return (
+        <section>
+            <JourneyBand bgClass="bg-gradient-to-br from-[#0F172A] to-[#1E293B]">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
+                    A vision turned into reality — the creation of ForgeFlow Pilot.
+                </h2>
+                <p className="text-xl mt-4 text-muted-foreground">Mehtab Rosul — Founder & Creator</p>
+            </JourneyBand>
+            <JourneyBand bgClass="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/50 to-background">
+                 <div className="flex flex-col items-center gap-4">
+                    <Star className="w-12 h-12 text-amber-400" />
+                    <p className="text-2xl md:text-3xl font-semibold">
+                        It started with a simple idea — making AI workflows more human, visual, and intelligent.
+                    </p>
+                </div>
+            </JourneyBand>
+            <JourneyBand bgClass="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-teal-900/40 to-background">
+                <div className="flex flex-col items-center gap-4">
+                    <Server className="w-12 h-12 text-teal-400" />
+                    <p className="text-2xl md:text-3xl font-semibold">
+                        From sketches to prototypes, ForgeFlow Pilot was coded late nights, built from scratch with clarity in mind.
+                    </p>
+                </div>
+            </JourneyBand>
+            <JourneyBand bgClass="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/30 to-background">
+                 <div className="flex flex-col items-center gap-4">
+                    <BrainCircuit className="w-12 h-12 text-primary" />
+                    <p className="text-2xl md:text-3xl font-semibold">
+                        The breakthrough came with real-time dashboards and AI-driven insights — powerful tools made simple.
+                    </p>
+                </div>
+            </JourneyBand>
+             <JourneyBand bgClass="bg-gradient-to-t from-background via-background to-accent/20">
+                 <div className="flex flex-col items-center gap-4">
+                     <Rocket className="w-12 h-12 text-accent" />
+                     <p className="text-2xl md:text-3xl font-semibold">
+                        Today, ForgeFlow Pilot stands as a polished AI companion — crafted with care, innovation, and a relentless pursuit of perfection.
+                     </p>
+                </div>
+            </JourneyBand>
+        </section>
+    );
+};
 
 
 const CorePrinciplesSection = () => {
@@ -181,7 +196,7 @@ const CorePrinciplesSection = () => {
                         <Card 
                             key={principle.title} 
                             className="text-center p-6 transition-all duration-500 hover:shadow-primary/20 hover:-translate-y-2 animate-in fade-in-0 slide-in-from-bottom-8"
-                            style={{ animationDelay: `${index * 150}ms` }}
+                            style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'backwards' }}
                         >
                             <div className="flex justify-center mb-4">{principle.icon}</div>
                             <h3 className="text-xl font-semibold mb-2">{principle.title}</h3>
@@ -196,7 +211,7 @@ const CorePrinciplesSection = () => {
 
 const CreatorSection = () => {
     return (
-        <ParallaxSection className="bg-secondary/30">
+        <ParallaxSection>
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div className="flex flex-col items-center">
