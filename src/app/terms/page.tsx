@@ -2,6 +2,7 @@
 'use client';
 import { LegalLayout } from '@/components/layout/legal-layout';
 import { Book, CheckCircle, UserCheck, ShieldOff, Server, BrainCircuit, ShieldCheck, AlertTriangle, FileText, Globe, Handshake, Info, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 
 export default function TermsPage() {
@@ -194,13 +195,8 @@ export default function TermsPage() {
       summary: "If you have questions, want to request data export or deletion, or need to report abuse, contact us at this address.",
       content: (
         <>
-            <p>For any questions about these Terms, to report abuse, to request data export or deletion, or to contact the Company for legal matters, please contact:</p>
-            <p className="mt-4">
-                <strong>[Company name / Legal Department]</strong><br />
-                Email: legal@forgeflow.example (replace with actual contact)<br />
-                Address: [Company physical address]
-            </p>
-            <p className="mt-4">To report IP infringement (DMCA or similar), please use the contact method designated for such notices as set out in the Company’s Copyright Policy.</p>
+            <p>For any questions about these Terms, to report abuse, to request data export or deletion, or to contact the Company for legal matters, please visit our <Link href="/contact" className="font-semibold text-primary hover:underline">Contact Us page</Link>.</p>
+            <p className="mt-4">Our team will get back to you as soon as possible. For reports of IP infringement (like DMCA notices), please use the contact form for initial communication.</p>
         </>
       ),
       icon: <Mail size={20} />
