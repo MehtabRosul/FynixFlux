@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -133,10 +132,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
                 <Card
                   id={section.id}
                   key={section.id}
-                  className={cn(
-                    "scroll-mt-24 transition-all duration-300",
-                    activeSection === section.id ? "border-primary shadow-lg" : "border-border"
-                  )}
+                  className="scroll-mt-24 transition-all duration-300"
                 >
                     <CardHeader>
                         <CardTitle className="flex items-center gap-3 text-2xl">
