@@ -39,7 +39,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
           }
         });
       },
-      { rootMargin: "-50% 0px -50% 0px" } // Highlights when section is in the middle of the screen
+      { rootMargin: "-40% 0px -60% 0px" } // Highlights when section is closer to the middle
     );
 
     const currentObserver = observer.current;
@@ -77,7 +77,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
           variant="ghost"
           onClick={() => handleSectionClick(section.id)}
           className={cn(
-            'w-full justify-start text-left h-auto py-2 px-3 gap-3 text-xs', // Reduced text size
+            'w-full justify-start text-left h-auto py-1.5 px-2 gap-2 text-xs',
             activeSection === section.id
               ? 'bg-primary text-primary-foreground'
               : 'hover:bg-accent/50'
@@ -107,7 +107,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
                         </Button>
                     </SheetTrigger>
                     <SheetContent side="left">
-                        <SheetHeader>
+                         <SheetHeader>
                             <SheetTitle>Menu</SheetTitle>
                             <SheetDescription className="sr-only">
                                 Navigation for legal page sections
@@ -122,7 +122,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
         </div>
 
         <div className="flex gap-12">
-          <aside className="hidden md:block w-64 flex-shrink-0">
+          <aside className="hidden md:block w-52 flex-shrink-0">
             <div className="sticky top-24">
               <SidebarNav />
             </div>
