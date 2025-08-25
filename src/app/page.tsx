@@ -1,5 +1,4 @@
 import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
 import { HeroSection } from '@/components/sections/hero-section';
 import { CtaSection } from '@/components/sections/cta-section';
 import { ParallaxProvider } from '@/components/providers/parallax-provider';
@@ -14,7 +13,6 @@ export default function Home() {
           <CtaSection />
         </ParallaxProvider>
       </main>
-      <Footer />
     </div>
   );
 }
