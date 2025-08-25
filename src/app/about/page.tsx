@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Eye, GitCommit, Heart, Zap, ShieldCheck, GitBranch, Telescope, Briefcase, Mail } from 'lucide-react';
+import { CheckCircle, Eye, GitCommit, Heart, Zap, ShieldCheck, GitBranch, Telescope, Briefcase, Mail, Lightbulb, Rocket, AreaChart, Scaling, Wrench } from 'lucide-react';
 import { ParallaxProvider, useParallax } from '@/components/providers/parallax-provider';
 
 // Parallax-aware Section Component
@@ -156,11 +156,11 @@ const CorePrinciplesSection = () => {
 
 const JourneySection = () => {
     const timelineEvents = [
-        { date: "2023 Q1", title: "Concept & Prototype", description: "Project founded; prototype of dataset upload and basic training flow.", image: "https://placehold.co/800x450.png" },
-        { date: "2023 Q4", title: "Alpha Release", description: "Public alpha: UI, profiling, and simulated training runs.", image: "https://placehold.co/800x450.png" },
-        { date: "2024 Q2", title: "Live Training & Exports", description: "Live metrics, artifact export formats added.", image: "https://placehold.co/800x450.png" },
-        { date: "2024 Q4", title: "Pilot Scale", description: "Scaling worker pool, monitoring & production-ready artifacts.", image: "https://placehold.co/800x450.png" },
-        { date: "2025", title: "Ongoing Improvements", description: "Roadmap items: hyperparameter UI, registry enhancements, model testing features.", image: "https://placehold.co/800x450.png" },
+        { date: "2023 Q1", title: "Concept & Prototype", description: "Project founded; prototype of dataset upload and basic training flow.", image: "https://placehold.co/800x450.png", icon: <Lightbulb className="w-6 h-6 text-primary" /> },
+        { date: "2023 Q4", title: "Alpha Release", description: "Public alpha: UI, profiling, and simulated training runs.", image: "https://placehold.co/800x450.png", icon: <Rocket className="w-6 h-6 text-primary" /> },
+        { date: "2024 Q2", title: "Live Training & Exports", description: "Live metrics, artifact export formats added.", image: "https://placehold.co/800x450.png", icon: <AreaChart className="w-6 h-6 text-primary" /> },
+        { date: "2024 Q4", title: "Pilot Scale", description: "Scaling worker pool, monitoring & production-ready artifacts.", image: "https://placehold.co/800x450.png", icon: <Scaling className="w-6 h-6 text-primary" /> },
+        { date: "2025", title: "Ongoing Improvements", description: "Roadmap items: hyperparameter UI, registry enhancements, model testing features.", image: "https://placehold.co/800x450.png", icon: <Wrench className="w-6 h-6 text-primary" /> },
     ];
      return (
         <ParallaxSection>
@@ -172,16 +172,16 @@ const JourneySection = () => {
                     <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-border" aria-hidden="true"></div>
                     <div className="space-y-16">
                         {timelineEvents.map((event, index) => (
-                             <div key={event.date} className="flex items-center justify-center relative">
-                                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8 order-2'}`}>
+                             <div key={event.date} className="flex items-center justify-center relative animate-in fade-in-0" style={{ animationDelay: `${index * 200}ms`}}>
+                                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8 order-2'} animate-in fade-in-0 ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`}}>
                                     <p className="font-bold text-primary">{event.date}</p>
                                     <h3 className="text-xl font-semibold my-1">{event.title}</h3>
                                     <p className="text-muted-foreground">{event.description}</p>
                                 </div>
-                                <div className="z-10 bg-background p-2 rounded-full border-2 border-primary">
-                                    <Telescope className="w-6 h-6 text-primary" />
+                                <div className="z-10 bg-background p-2 rounded-full border-2 border-primary animate-in zoom-in-50" style={{ animationDelay: `${index * 200 + 50}ms`}}>
+                                    {event.icon}
                                 </div>
-                                <div className="w-full lg:w-5/12 flex items-center justify-center p-4">
+                                <div className={`w-full lg:w-5/12 flex items-center justify-center p-4 animate-in fade-in-0 ${index % 2 === 0 ? 'slide-in-from-right-12' : 'slide-in-from-left-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`}}>
                                    <Image src={event.image} alt={event.title} width={800} height={450} className="rounded-lg shadow-xl" data-ai-hint="abstract tech" />
                                 </div>
                             </div>
