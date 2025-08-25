@@ -137,8 +137,12 @@ const CorePrinciplesSection = () => {
                      <h2 className="text-3xl font-bold tracking-tighter font-headline">Core Principles</h2>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {principles.map((principle) => (
-                        <Card key={principle.title} className="text-center p-6 hover:shadow-primary/20 hover:-translate-y-1 transition-transform">
+                    {principles.map((principle, index) => (
+                        <Card 
+                            key={principle.title} 
+                            className="text-center p-6 transition-all duration-500 hover:shadow-primary/20 hover:-translate-y-2 animate-in fade-in-0 slide-in-from-bottom-8"
+                            style={{ animationDelay: `${index * 150}ms` }}
+                        >
                             <div className="flex justify-center mb-4">{principle.icon}</div>
                             <h3 className="text-xl font-semibold mb-2">{principle.title}</h3>
                             <p className="text-muted-foreground">{principle.description}</p>
@@ -264,5 +268,3 @@ export default function AboutPage() {
     </ParallaxProvider>
   );
 }
-
-    
