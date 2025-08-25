@@ -3,7 +3,22 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Mountain } from "lucide-react"
+
+const Logo = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-8 w-8 text-primary"
+    >
+      <path d="M12 2l7.5 7.5-7.5 7.5-7.5-7.5L12 2z" fill="hsl(var(--primary))" opacity="0.4"/>
+      <path d="M2 12l7.5 7.5L17 12l-7.5-7.5L2 12z" />
+    </svg>
+  );
 
 export default function LoginPage() {
   return (
@@ -11,7 +26,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
            <Link href="/" className="flex items-center gap-2 justify-center mb-4" prefetch={false}>
-            <Mountain className="h-6 w-6 text-primary" />
+            <Logo />
             <span className="text-xl font-semibold">ForgeFlow Pilot</span>
           </Link>
           <CardTitle>Welcome Back</CardTitle>

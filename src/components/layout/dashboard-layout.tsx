@@ -13,8 +13,24 @@ import {
   SidebarMenuButton,
   SidebarInset
 } from "@/components/ui/sidebar";
-import { Mountain, LayoutDashboard, Database, Library, Settings, CircleUser, LogOut } from "lucide-react";
+import { LayoutDashboard, Database, Library, Settings, CircleUser, LogOut } from "lucide-react";
 import { usePathname } from 'next/navigation';
+
+const Logo = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-7 w-7 text-primary"
+    >
+      <path d="M12 2l7.5 7.5-7.5 7.5-7.5-7.5L12 2z" fill="hsl(var(--primary))" opacity="0.4"/>
+      <path d="M2 12l7.5 7.5L17 12l-7.5-7.5L2 12z" />
+    </svg>
+  );
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -31,7 +47,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2 p-2">
-            <Mountain className="h-6 w-6 text-primary" />
+            <Logo />
             <span className="text-lg font-semibold group-data-[collapsible=icon]:hidden">ForgeFlow</span>
           </div>
         </SidebarHeader>

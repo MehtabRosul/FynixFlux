@@ -1,15 +1,30 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Mountain } from 'lucide-react';
+import { Menu } from 'lucide-react';
+
+const Logo = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-7 w-7 text-primary"
+    >
+      <path d="M12 2l7.5 7.5-7.5 7.5-7.5-7.5L12 2z" fill="hsl(var(--primary))" opacity="0.4"/>
+      <path d="M2 12l7.5 7.5L17 12l-7.5-7.5L2 12z" />
+    </svg>
+  );
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
-          <Mountain className="h-6 w-6 text-primary" />
-          <span className="text-lg font-semibold">ForgeFlow Pilot</span>
+          <Logo />
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <Link href="/features" className="hover:text-primary transition-colors" prefetch={false}>
@@ -43,8 +58,7 @@ export function Header() {
           <SheetContent side="right">
             <div className="grid gap-4 p-4">
               <Link href="/" className="flex items-center gap-2" prefetch={false}>
-                <Mountain className="h-6 w-6 text-primary" />
-                <span className="text-lg font-semibold">ForgeFlow Pilot</span>
+                <Logo />
               </Link>
               <nav className="grid gap-2 text-base font-medium">
                 <Link href="/features" className="hover:text-primary transition-colors" prefetch={false}>
