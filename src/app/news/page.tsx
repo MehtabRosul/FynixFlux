@@ -27,7 +27,7 @@ export default async function NewsPage() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <Rss className="w-12 h-12 text-primary" />
             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
-              MLOps News
+              News
             </h1>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               The latest news, articles, and updates from the world of Machine Learning Operations, updated daily.
