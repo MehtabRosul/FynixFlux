@@ -4,32 +4,21 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { Rss } from 'lucide-react';
+import { getNews } from '@/app/actions/news';
 
-const newsItems = [
-  {
-    id: 1,
-    title: "The Rise of Platform Engineering in MLOps",
-    date: "October 26, 2023",
-    source: "MLOps Community",
-    excerpt: "Platform engineering is becoming essential for scaling machine learning operations. Discover how centralized platforms are empowering ML teams to deploy faster and more reliably.",
-  },
-  {
-    id: 2,
-    title: "Generative AI and Its Impact on Model Monitoring",
-    date: "October 25, 2023",
-    source: "AI Infrastructure Alliance",
-    excerpt: "With the explosion of generative models, traditional monitoring techniques are no longer enough. Learn about the new challenges and solutions for monitoring LLMs in production.",
-  },
-  {
-    id: 3,
-    title: "FinOps for AI: Managing the Skyrocketing Costs of GPU-based Training",
-    date: "October 24, 2023",
-    source: "TechCrunch",
-    excerpt: "As model complexity grows, so do the costs. FinOps principles are now being adapted for AI workloads to provide visibility and control over cloud spending.",
-  }
-]
+interface Article {
+  source: {
+    name: string;
+  };
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: string;
+}
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const newsItems: Article[] = await getNews();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -45,24 +34,28 @@ export default function NewsPage() {
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {newsItems.map((item) => (
-              <Card key={item.id} className="flex flex-col hover:shadow-lg transition-shadow">
+            {newsItems.length > 0 ? (
+              newsItems.map((item, index) => (
+              <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle>
-                    <Link href="#" className="hover:text-primary transition-colors">
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                       {item.title}
-                    </Link>
+                    </a>
                   </CardTitle>
-                  <CardDescription>{item.date} - via {item.source}</CardDescription>
+                  <CardDescription>{new Date(item.publishedAt).toLocaleDateString()} - via {item.source.name}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{item.excerpt}</p>
-                   <Link href="#" className="text-primary font-semibold mt-4 inline-block hover:underline">
+                  <p className="text-muted-foreground">{item.description}</p>
+                   <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold mt-4 inline-block hover:underline">
                     Read More
-                  </Link>
+                  </a>
                 </CardContent>
               </Card>
-            ))}
+            ))
+            ) : (
+              <p className="text-muted-foreground col-span-full text-center">Could not fetch news at the moment. Please try again later.</p>
+            )}
           </div>
         </div>
       </main>
@@ -70,3 +63,4 @@ export default function NewsPage() {
     </div>
   );
 }
+
