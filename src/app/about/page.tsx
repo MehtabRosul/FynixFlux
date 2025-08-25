@@ -76,29 +76,6 @@ const MissionSection = () => {
     )
 }
 
-const WhatWeBuildSection = () => {
-    const features = [
-        { title: "Upload & Profile", description: "Upload CSV, Parquet, JSONL, XLSX. Instant schema profiling and data quality suggestions." },
-        { title: "Configurable Training", description: "Full control: choose algorithms, set hyperparameters, checkpoint, and resume." },
-        { title: "Live Insights & Exports", description: "Stream metrics, inspect logs, and export artifacts (wheel, ONNX, TFLite, TorchScript)." },
-    ];
-    return (
-        <ParallaxSection className="py-12 md:py-16">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="grid md:grid-cols-3 gap-8">
-                {features.map(feature => (
-                    <Card key={feature.title} className="p-6 text-center hover:shadow-primary/20 hover:-translate-y-1 transition-transform">
-                        <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                        <p className="text-muted-foreground">{feature.description}</p>
-                    </Card>
-                ))}
-                </div>
-            </div>
-        </ParallaxSection>
-    )
-}
-
-
 const CorePrinciplesSection = () => {
     const principles = [
       {
@@ -202,7 +179,6 @@ export default function AboutPage() {
           <main className="flex-grow">
             <HeroSection />
             <MissionSection />
-            <WhatWeBuildSection />
             <CorePrinciplesSection />
             <CreatorSection />
             <CtaFooter />
