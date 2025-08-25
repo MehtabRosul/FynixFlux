@@ -18,7 +18,6 @@ export function CtaSection() {
     if (!section) return;
 
     const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
     const viewportHeight = window.innerHeight;
 
     const startPin = sectionTop - viewportHeight;
@@ -47,7 +46,7 @@ export function CtaSection() {
   }, [scrollY]);
 
   return (
-    <section id="cta" ref={sectionRef} className="h-[150vh] bg-transparent">
+    <section id="cta" ref={sectionRef} className="relative h-[150vh] bg-transparent">
         <div className={cn("top-0 left-0 w-full h-screen flex items-center justify-center", isFixed ? 'fixed' : 'absolute bottom-0')}>
              <div 
                 className="container mx-auto px-4 md:px-6"
