@@ -169,19 +169,19 @@ const JourneySection = () => {
                      <h2 className="text-3xl font-bold tracking-tighter font-headline">Our Journey</h2>
                 </div>
                 <div className="relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-border" aria-hidden="true"></div>
+                    <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-border animate-in fade-in duration-500" aria-hidden="true"></div>
                     <div className="space-y-16">
                         {timelineEvents.map((event, index) => (
-                             <div key={event.date} className="flex items-center justify-center relative animate-in fade-in-0" style={{ animationDelay: `${index * 200}ms`}}>
-                                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8 order-2'} animate-in fade-in-0 ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`}}>
+                             <div key={event.date} className="flex items-center justify-center relative">
+                                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8 order-2'} animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`}}>
                                     <p className="font-bold text-primary">{event.date}</p>
                                     <h3 className="text-xl font-semibold my-1">{event.title}</h3>
                                     <p className="text-muted-foreground">{event.description}</p>
                                 </div>
-                                <div className="z-10 bg-background p-2 rounded-full border-2 border-primary animate-in zoom-in-50" style={{ animationDelay: `${index * 200 + 50}ms`}}>
+                                <div className="z-10 bg-background p-2 rounded-full border-2 border-primary animate-in zoom-in-50 duration-500" style={{ animationDelay: `${index * 200 + 50}ms`}}>
                                     {event.icon}
                                 </div>
-                                <div className={`w-full lg:w-5/12 flex items-center justify-center p-4 animate-in fade-in-0 ${index % 2 === 0 ? 'slide-in-from-right-12' : 'slide-in-from-left-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`}}>
+                                <div className={`w-full lg:w-5/12 flex items-center justify-center p-4 animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-right-12' : 'slide-in-from-left-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`}}>
                                    <Image src={event.image} alt={event.title} width={800} height={450} className="rounded-lg shadow-xl" data-ai-hint="abstract tech" />
                                 </div>
                             </div>
