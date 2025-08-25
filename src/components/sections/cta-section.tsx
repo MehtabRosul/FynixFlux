@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 export function CtaSection() {
   const { scrollY } = useParallax();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.8);
+  const [translateY, setTranslateY] = useState(100);
   const [opacity, setOpacity] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
 
@@ -21,36 +21,40 @@ export function CtaSection() {
     const sectionHeight = section.offsetHeight;
     const viewportHeight = window.innerHeight;
 
-    const startPin = sectionTop - viewportHeight / 4;
-    const endPin = sectionTop + sectionHeight;
+    const startPin = sectionTop - viewportHeight;
+    const endPin = sectionTop;
 
     if (scrollY >= startPin && scrollY <= endPin) {
-        setIsFixed(true);
-        const progress = (scrollY - startPin) / (sectionHeight);
-        const newScale = Math.min(1, 0.8 + progress * 0.2);
-        const newOpacity = Math.min(1, progress * 2);
-        setScale(newScale);
-        setOpacity(newOpacity);
+      setIsFixed(true);
+      const progress = (scrollY - startPin) / (endPin - startPin);
+      
+      const newTranslateY = 100 - (progress * 100);
+      setTranslateY(newTranslateY);
+
+      const newOpacity = progress;
+      setOpacity(newOpacity);
 
     } else if (scrollY < startPin) {
-        setIsFixed(false);
-        setScale(0.8);
-        setOpacity(0);
+      setIsFixed(false);
+      setTranslateY(100);
+      setOpacity(0);
     } else {
-        setIsFixed(false);
+      setIsFixed(true);
+      setTranslateY(0);
+      setOpacity(1);
     }
-
 
   }, [scrollY]);
 
   return (
     <section id="cta" ref={sectionRef} className="h-[150vh] bg-transparent">
-        <div className={cn("top-0 left-0 w-full h-screen flex items-center justify-center transition-all duration-300 ease-out", isFixed ? 'fixed' : 'absolute bottom-0')}>
+        <div className={cn("top-0 left-0 w-full h-screen flex items-center justify-center", isFixed ? 'fixed' : 'absolute bottom-0')}>
              <div 
                 className="container mx-auto px-4 md:px-6"
                 style={{
-                    transform: `scale(${scale})`,
+                    transform: `translateY(${translateY}vh)`,
                     opacity: opacity,
+                    willChange: 'transform, opacity'
                 }}
              >
                 <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary via-accent to-secondary p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:400%_400%]">
