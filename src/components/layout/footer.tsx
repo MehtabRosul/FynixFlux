@@ -15,7 +15,21 @@ export function Footer() {
            <Logo />
            <span className="text-lg font-semibold">ForgeFlow</span>
         </div>
-        <p className="text-sm text-muted-foreground">&copy; {year} ForgeFlow. All rights reserved.</p>
+        <div className="text-sm text-muted-foreground text-center">
+          <p>&copy; {year} ForgeFlow. All rights reserved.</p>
+          <p>
+            Created by{' '}
+            <a
+              href="https://www.rosulmehtab.tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
+              Mehtab Rosul
+            </a>
+            .
+          </p>
+        </div>
         <nav className="flex gap-4 sm:gap-6">
           <Link href="/terms" className="text-sm hover:underline" prefetch={false}>
             Terms of Service
