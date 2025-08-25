@@ -104,13 +104,6 @@ export default function PrivacyPage() {
       summary: "We may change this policy, and we’ll notify you of significant updates.",
       content: "We may update this Privacy Policy from time to time. We will notify you of any significant changes and update the 'last updated' date at the top of this policy.",
       icon: <Info size={20} />
-    },
-    {
-      id: "contact-complaints",
-      title: "15. Contact & Complaints",
-      summary: "You can contact us with any questions or complaints about our privacy practices.",
-      content: "If you have any questions or complaints about our privacy practices, please contact our Data Protection Officer at the email address on our contact page.",
-      icon: <Mail size={20} />
     }
   ];
 

@@ -209,18 +209,6 @@ export default function TermsPage() {
       summary: "We may update these Terms. We’ll give notice for material changes and record the version and date.",
       content: "The Company may modify these Terms at any time. When we make material changes, we will provide advance notice by posting a prominent notice on the Site or sending an in-app or email notice to Users and will update the “Last updated” date at the top of the Terms. Continued use of the Service after the effective date of any revised Terms constitutes acceptance of those changes. The Company will maintain a revision history accessible from the Terms page.",
       icon: <Info size={20} />
-    },
-    {
-      id: "contact",
-      title: "15. Contact Information",
-      summary: "If you have questions, want to request data export or deletion, or need to report abuse, contact us at this address.",
-      content: (
-        <>
-            <p>For any questions about these Terms, to report abuse, to request data export or deletion, or to contact the Company for legal matters, please visit our <Link href="/contact" className="font-semibold text-primary hover:underline">Contact Us page</Link>.</p>
-            <p className="mt-4">Our team will get back to you as soon as possible. For reports of IP infringement (like DMCA notices), please use the contact form for initial communication.</p>
-        </>
-      ),
-      icon: <Mail size={20} />
     }
   ];
 
