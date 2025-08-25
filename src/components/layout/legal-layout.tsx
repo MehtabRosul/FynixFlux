@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
-import { Check, ChevronRight } from 'lucide-react';
+import { Check, ChevronRight, Menu, FileText, Shield, User, Book, Hand, AlertTriangle, Globe, Archive, Server, Users, Bell, Mail } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,13 +16,13 @@ import {
   SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu } from 'lucide-react';
 
 
 interface Section {
   id: string;
   title: string;
   content: string;
+  icon?: React.ReactNode;
 }
 
 interface LegalLayoutProps {
@@ -44,11 +44,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
   
   const handleSectionClick = (id: string) => {
     setActiveSection(id);
-    const element = document.getElementById(id);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-     if (isSheetOpen) {
+    if (isSheetOpen) {
       setIsSheetOpen(false);
     }
   };
@@ -63,13 +59,14 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
             variant="ghost"
             onClick={() => handleSectionClick(section.id)}
             className={cn(
-              'w-full justify-start text-left h-auto py-2',
+              'w-full justify-start text-left h-auto py-2 px-3 gap-2',
               activeSection === section.id
                 ? 'bg-accent text-accent-foreground'
                 : 'hover:bg-accent/50'
             )}
           >
-            {section.title}
+            {section.icon}
+            <span className="truncate">{section.title}</span>
           </Button>
         ))}
       </nav>
@@ -118,15 +115,17 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
           <main className="lg:col-span-3">
              <Card>
                 <CardContent className="p-6 md:p-8">
-                     {sections.map((section) => (
-                        <section key={section.id} id={section.id} className="scroll-mt-24">
-                        <h2 className="text-2xl font-semibold text-foreground mb-4">{section.title}</h2>
-                        <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
-                            <p>{section.content}</p>
-                        </div>
-                        {section.id !== sections[sections.length - 1].id && <hr className="my-8 border-border" />}
+                     {currentSection && (
+                        <section id={currentSection.id} className="scroll-mt-24">
+                          <h2 className="text-2xl font-semibold text-foreground mb-4 flex items-center gap-3">
+                            {currentSection.icon}
+                            {currentSection.title}
+                          </h2>
+                          <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
+                              <p>{currentSection.content}</p>
+                          </div>
                         </section>
-                    ))}
+                    )}
                 </CardContent>
              </Card>
           </main>
