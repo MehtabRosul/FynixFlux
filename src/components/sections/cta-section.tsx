@@ -1,26 +1,75 @@
+"use client";
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useParallax } from '@/components/providers/parallax-provider';
+import React, { useRef, useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export function CtaSection() {
+  const { scrollY } = useParallax();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.8);
+  const [opacity, setOpacity] = useState(0);
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    const startPin = sectionTop - viewportHeight / 4;
+    const endPin = sectionTop + sectionHeight;
+
+    if (scrollY >= startPin && scrollY <= endPin) {
+        setIsFixed(true);
+        const progress = (scrollY - startPin) / (sectionHeight);
+        const newScale = Math.min(1, 0.8 + progress * 0.2);
+        const newOpacity = Math.min(1, progress * 2);
+        setScale(newScale);
+        setOpacity(newOpacity);
+
+    } else if (scrollY < startPin) {
+        setIsFixed(false);
+        setScale(0.8);
+        setOpacity(0);
+    } else {
+        setIsFixed(false);
+    }
+
+
+  }, [scrollY]);
+
   return (
-    <section id="cta" className="py-12 md:py-24 lg:py-32 bg-transparent">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary via-accent to-secondary p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:400%_400%]">
-          <div className="relative z-10 flex flex-col items-center text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl md:text-5xl font-headline">
-              Ready to Forge Your Next Breakthrough?
-            </h2>
-            <p className="mt-4 max-w-2xl text-lg text-primary-foreground/80">
-              Stop wrestling with infrastructure and start building better models. Join the waitlist and be the first to experience the future of MLOps.
-            </p>
-            <div className="mt-8">
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/dashboard">Start Forging for Free</Link>
-              </Button>
+    <section id="cta" ref={sectionRef} className="h-[150vh] bg-transparent">
+        <div className={cn("top-0 left-0 w-full h-screen flex items-center justify-center transition-all duration-300 ease-out", isFixed ? 'fixed' : 'absolute bottom-0')}>
+             <div 
+                className="container mx-auto px-4 md:px-6"
+                style={{
+                    transform: `scale(${scale})`,
+                    opacity: opacity,
+                }}
+             >
+                <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary via-accent to-secondary p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:400%_400%]">
+                <div className="relative z-10 flex flex-col items-center text-center">
+                    <h2 className="text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl md:text-5xl font-headline">
+                    Ready to Forge Your Next Breakthrough?
+                    </h2>
+                    <p className="mt-4 max-w-2xl text-lg text-primary-foreground/80">
+                    Stop wrestling with infrastructure and start building better models. Join the waitlist and be the first to experience the future of MLOps.
+                    </p>
+                    <div className="mt-8">
+                    <Button size="lg" variant="secondary" asChild>
+                        <Link href="/dashboard">Start Forging for Free</Link>
+                    </Button>
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
   );
 }
