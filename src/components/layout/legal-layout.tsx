@@ -115,7 +115,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
                     {activeSectionContent.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
+                <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed py-8">
                   <p>{activeSectionContent.content}</p>
                 </CardContent>
               </Card>
