@@ -12,14 +12,17 @@ export function Header() {
           <span className="text-lg font-semibold">ForgeFlow Pilot</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link href="#features" className="hover:text-primary transition-colors" prefetch={false}>
+          <Link href="/features" className="hover:text-primary transition-colors" prefetch={false}>
             Features
           </Link>
-          <Link href="#how-it-works" className="hover:text-primary transition-colors" prefetch={false}>
+          <Link href="/how-it-works" className="hover:text-primary transition-colors" prefetch={false}>
             How It Works
           </Link>
-          <Link href="#pricing" className="hover:text-primary transition-colors" prefetch={false}>
+          <Link href="/pricing" className="hover:text-primary transition-colors" prefetch={false}>
             Pricing
+          </Link>
+           <Link href="/about" className="hover:text-primary transition-colors" prefetch={false}>
+            About Us
           </Link>
         </nav>
         <div className="hidden md:flex items-center gap-4">
@@ -44,14 +47,17 @@ export function Header() {
                 <span className="text-lg font-semibold">ForgeFlow Pilot</span>
               </Link>
               <nav className="grid gap-2 text-base font-medium">
-                <Link href="#features" className="hover:text-primary transition-colors" prefetch={false}>
+                <Link href="/features" className="hover:text-primary transition-colors" prefetch={false}>
                   Features
                 </Link>
-                <Link href="#how-it-works" className="hover:text-primary transition-colors" prefetch={false}>
+                <Link href="/how-it-works" className="hover:text-primary transition-colors" prefetch={false}>
                   How It Works
                 </Link>
-                <Link href="#pricing" className="hover:text-primary transition-colors" prefetch={false}>
+                <Link href="/pricing" className="hover:text-primary transition-colors" prefetch={false}>
                   Pricing
+                </Link>
+                 <Link href="/about" className="hover:text-primary transition-colors" prefetch={false}>
+                  About Us
                 </Link>
               </nav>
               <div className="flex flex-col gap-2">

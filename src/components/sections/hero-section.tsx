@@ -49,7 +49,7 @@ export function HeroSection() {
             <Link href="/dashboard">Launch Your First Project</Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link href="#features">Explore Features</Link>
+            <Link href="/features">Explore Features</Link>
           </Button>
         </div>
       </div>
