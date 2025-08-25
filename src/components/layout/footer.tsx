@@ -29,10 +29,10 @@ export function Footer() {
             </p>
           </div>
           <div className="flex gap-4">
-            <Link href="/terms" className="hover:underline" prefetch={false}>
+            <Link href="/terms" className="hover:text-primary transition-colors">
               Terms of Service
             </Link>
-            <Link href="/privacy" className="hover:underline" prefetch={false}>
+            <Link href="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy
             </Link>
           </div>
