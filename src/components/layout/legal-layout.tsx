@@ -11,6 +11,9 @@ import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Menu } from 'lucide-react';
@@ -90,9 +93,14 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
                         <span className="sr-only">Open Menu</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-3/4 sm:w-1/2">
+                <SheetContent side="left" className="w-3/4 sm:w-1/2 p-0">
+                    <SheetHeader className="p-4 border-b">
+                      <SheetTitle>{title}</SheetTitle>
+                      <SheetDescription className="sr-only">
+                        Navigate through the sections of the {title} document.
+                      </SheetDescription>
+                    </SheetHeader>
                     <div className="p-4">
-                        <h3 className="text-lg font-semibold mb-4">{title}</h3>
                         <SidebarNav />
                     </div>
                 </SheetContent>
