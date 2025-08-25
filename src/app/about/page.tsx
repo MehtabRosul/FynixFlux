@@ -107,6 +107,46 @@ const WhatWeBuildSection = () => {
     )
 }
 
+const JourneySection = () => {
+    const timelineEvents = [
+        { date: "2023 Q1", title: "Concept & Prototype", description: "Project founded; prototype of dataset upload and basic training flow.", image: "https://placehold.co/800x450.png", icon: <Lightbulb className="w-6 h-6 text-primary" /> },
+        { date: "2023 Q4", title: "Alpha Release", description: "Public alpha: UI, profiling, and simulated training runs.", image: "https://placehold.co/800x450.png", icon: <Rocket className="w-6 h-6 text-primary" /> },
+        { date: "2024 Q2", title: "Live Training & Exports", description: "Live metrics, artifact export formats added.", image: "https://placehold.co/800x450.png", icon: <AreaChart className="w-6 h-6 text-primary" /> },
+        { date: "2024 Q4", title: "Pilot Scale", description: "Scaling worker pool, monitoring & production-ready artifacts.", image: "https://placehold.co/800x450.png", icon: <Scaling className="w-6 h-6 text-primary" /> },
+        { date: "2025", title: "Ongoing Improvements", description: "Roadmap items: hyperparameter UI, registry enhancements, model testing features.", image: "https://placehold.co/800x450.png", icon: <Wrench className="w-6 h-6 text-primary" /> },
+    ];
+     return (
+        <ParallaxSection className="py-16 md:py-24">
+            <div className="container mx-auto px-4 md:px-6">
+                 <div className="text-center max-w-3xl mx-auto mb-12">
+                     <h2 className="text-3xl font-bold tracking-tighter font-headline">Our Journey</h2>
+                </div>
+                <div className="relative">
+                    <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-border animate-in fade-in duration-500" aria-hidden="true" style={{ animationFillMode: 'backwards' }}></div>
+                    <div className="space-y-12">
+                        {timelineEvents.map((event, index) => (
+                             <div key={event.date} className="flex items-center justify-center relative">
+                                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8 order-2'} animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`, animationFillMode: 'backwards'}}>
+                                    <p className="font-bold text-primary">{event.date}</p>
+                                    <h3 className="text-xl font-semibold my-1">{event.title}</h3>
+                                    <p className="text-muted-foreground">{event.description}</p>
+                                </div>
+                                <div className="z-10 bg-background p-2 rounded-full border-2 border-primary animate-in zoom-in-50 duration-500" style={{ animationDelay: `${index * 200 + 50}ms`, animationFillMode: 'backwards' }}>
+                                    {event.icon}
+                                </div>
+                                <div className={`w-full lg:w-5/12 flex items-center justify-center p-4 animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-right-12' : 'slide-in-from-left-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`, animationFillMode: 'backwards' }}>
+                                   <Image src={event.image} alt={event.title} width={800} height={450} className="rounded-lg shadow-xl" data-ai-hint="abstract tech" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </ParallaxSection>
+    )
+}
+
+
 const CorePrinciplesSection = () => {
     const principles = [
       {
@@ -148,45 +188,6 @@ const CorePrinciplesSection = () => {
                             <p className="text-muted-foreground">{principle.description}</p>
                         </Card>
                     ))}
-                </div>
-            </div>
-        </ParallaxSection>
-    )
-}
-
-const JourneySection = () => {
-    const timelineEvents = [
-        { date: "2023 Q1", title: "Concept & Prototype", description: "Project founded; prototype of dataset upload and basic training flow.", image: "https://placehold.co/800x450.png", icon: <Lightbulb className="w-6 h-6 text-primary" /> },
-        { date: "2023 Q4", title: "Alpha Release", description: "Public alpha: UI, profiling, and simulated training runs.", image: "https://placehold.co/800x450.png", icon: <Rocket className="w-6 h-6 text-primary" /> },
-        { date: "2024 Q2", title: "Live Training & Exports", description: "Live metrics, artifact export formats added.", image: "https://placehold.co/800x450.png", icon: <AreaChart className="w-6 h-6 text-primary" /> },
-        { date: "2024 Q4", title: "Pilot Scale", description: "Scaling worker pool, monitoring & production-ready artifacts.", image: "https://placehold.co/800x450.png", icon: <Scaling className="w-6 h-6 text-primary" /> },
-        { date: "2025", title: "Ongoing Improvements", description: "Roadmap items: hyperparameter UI, registry enhancements, model testing features.", image: "https://placehold.co/800x450.png", icon: <Wrench className="w-6 h-6 text-primary" /> },
-    ];
-     return (
-        <ParallaxSection>
-            <div className="container mx-auto px-4 md:px-6">
-                 <div className="text-center max-w-3xl mx-auto mb-16">
-                     <h2 className="text-3xl font-bold tracking-tighter font-headline">Our Journey</h2>
-                </div>
-                <div className="relative">
-                    <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-border animate-in fade-in duration-500" aria-hidden="true" style={{ animationFillMode: 'backwards' }}></div>
-                    <div className="space-y-16">
-                        {timelineEvents.map((event, index) => (
-                             <div key={event.date} className="flex items-center justify-center relative">
-                                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8 order-2'} animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-left-12' : 'slide-in-from-right-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`, animationFillMode: 'backwards'}}>
-                                    <p className="font-bold text-primary">{event.date}</p>
-                                    <h3 className="text-xl font-semibold my-1">{event.title}</h3>
-                                    <p className="text-muted-foreground">{event.description}</p>
-                                </div>
-                                <div className="z-10 bg-background p-2 rounded-full border-2 border-primary animate-in zoom-in-50 duration-500" style={{ animationDelay: `${index * 200 + 50}ms`, animationFillMode: 'backwards' }}>
-                                    {event.icon}
-                                </div>
-                                <div className={`w-full lg:w-5/12 flex items-center justify-center p-4 animate-in fade-in-0 duration-700 ${index % 2 === 0 ? 'slide-in-from-right-12' : 'slide-in-from-left-12' }`} style={{ animationDelay: `${index * 200 + 100}ms`, animationFillMode: 'backwards' }}>
-                                   <Image src={event.image} alt={event.title} width={800} height={450} className="rounded-lg shadow-xl" data-ai-hint="abstract tech" />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </div>
         </ParallaxSection>
@@ -258,8 +259,8 @@ export default function AboutPage() {
             <HeroSection />
             <MissionSection />
             <WhatWeBuildSection />
-            <CorePrinciplesSection />
             <JourneySection />
+            <CorePrinciplesSection />
             <CreatorSection />
             <CtaFooter />
           </main>
