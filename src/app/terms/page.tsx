@@ -227,7 +227,7 @@ export default function TermsPage() {
   return (
      <LegalLayout
       title="Terms of Service"
-      lastUpdated="2023-10-27"
+      lastUpdated="August 2025"
       sections={sections}
     />
   );
