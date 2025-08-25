@@ -1,7 +1,7 @@
 
 'use client';
 import { LegalLayout } from '@/components/layout/legal-layout';
-import { Book, CheckCircle, User, Database, Globe, Archive, Shield, Cookie, UserX, UserCheck, Bell, Info, Mail } from 'lucide-react';
+import { Book, CheckCircle, User, Database, Globe, Archive, Shield, Cookie, UserX, UserCheck, Bell, Info, Mail, Users, Server } from 'lucide-react';
 
 
 export default function PrivacyPage() {

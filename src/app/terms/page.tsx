@@ -1,7 +1,7 @@
 
 'use client';
 import { LegalLayout } from '@/components/layout/legal-layout';
-import { Book, CheckCircle, UserCheck, ShieldOff, Server, BrainCircuit, ShieldCheck, AlertTriangle, FileText, Globe, Link, Handshake, Info } from 'lucide-react';
+import { Book, CheckCircle, UserCheck, ShieldOff, Server, BrainCircuit, ShieldCheck, AlertTriangle, FileText, Globe, Link as LinkIcon, Handshake, Info, Mail } from 'lucide-react';
 
 
 export default function TermsPage() {
@@ -95,7 +95,7 @@ export default function TermsPage() {
       id: "third-party-services",
       title: "15. Third-Party Services & Links",
       content: "Our Service may integrate with third-party services. We are not responsible for the practices of these third parties, and their own terms and policies will govern their use.",
-      icon: <Link size={20} />
+      icon: <LinkIcon size={20} />
     },
     { 
       id: "governing-law", 
