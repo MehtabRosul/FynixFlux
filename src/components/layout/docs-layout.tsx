@@ -77,9 +77,7 @@ export function DocsLayout({ children, sections }: DocsLayoutProps) {
             </div>
           </aside>
           <main className="w-full">
-            <ScrollArea className="h-[calc(100vh-8rem)]">
-              {children}
-            </ScrollArea>
+            {children}
           </main>
         </div>
       </div>
