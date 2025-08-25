@@ -92,7 +92,7 @@ const WhatWeBuildSection = () => {
         { title: "Live Insights & Exports", description: "Stream metrics, inspect logs, and export artifacts (wheel, ONNX, TFLite, TorchScript)." },
     ];
     return (
-        <ParallaxSection>
+        <ParallaxSection className="py-12 md:py-16">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid md:grid-cols-3 gap-8">
                 {features.map(feature => (
@@ -110,7 +110,7 @@ const WhatWeBuildSection = () => {
 
 const JourneySection = () => {
     const JourneyBand = ({ children, bgClass }: { children: React.ReactNode, bgClass: string }) => (
-        <div className={`min-h-[60vh] flex items-center justify-center text-center text-primary-foreground p-8 relative overflow-hidden ${bgClass}`}>
+        <div className={`min-h-screen flex items-center justify-center text-center text-primary-foreground p-8 relative overflow-hidden ${bgClass}`}>
             <div className="relative z-10 max-w-3xl animate-in fade-in-0 slide-in-from-bottom-8 duration-700">
                 {children}
             </div>
@@ -284,3 +284,5 @@ export default function AboutPage() {
     </ParallaxProvider>
   );
 }
+
+    
