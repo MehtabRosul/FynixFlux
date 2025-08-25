@@ -33,9 +33,6 @@ export function Header() {
           <Link href="/how-it-works" className="hover:text-primary transition-colors" prefetch={false}>
             How It Works
           </Link>
-          <Link href="/pricing" className="hover:text-primary transition-colors" prefetch={false}>
-            Pricing
-          </Link>
            <Link href="/about" className="hover:text-primary transition-colors" prefetch={false}>
             About Us
           </Link>
@@ -66,9 +63,6 @@ export function Header() {
                 </Link>
                 <Link href="/how-it-works" className="hover:text-primary transition-colors" prefetch={false}>
                   How It Works
-                </Link>
-                <Link href="/pricing" className="hover:text-primary transition-colors" prefetch={false}>
-                  Pricing
                 </Link>
                  <Link href="/about" className="hover:text-primary transition-colors" prefetch={false}>
                   About Us
