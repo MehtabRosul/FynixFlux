@@ -43,7 +43,7 @@ export default function GetInTouchPage() {
                     <Linkedin className="w-6 h-6 text-primary" />
                     <div>
                       <h3 className="font-semibold text-foreground">Connect on LinkedIn</h3>
-                      <p className="text-sm text-muted-foreground">View my profile</p>
+                      <p className="text-sm text-muted-foreground">Connect with me</p>
                     </div>
                   </div>
                   <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:translate-x-1 transition-transform" />
