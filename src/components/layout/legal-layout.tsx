@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -28,46 +28,44 @@ interface LegalLayoutProps {
 export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) {
   const [activeSection, setActiveSection] = useState<string>(sections[0]?.id || '');
   const contentRef = useRef<HTMLDivElement>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    document.body.classList.add('legal-page');
-    const mainContent = document.querySelector('main');
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-50% 0px -50% 0px" } // Highlights when section is in the middle of the screen
+    );
 
-    const handleScroll = () => {
-        let currentSectionId = activeSection;
-        for (const section of sections) {
-            const element = document.getElementById(section.id);
-            if (element) {
-                const rect = element.getBoundingClientRect();
-                if (rect.top <= 120 && rect.bottom >= 120) {
-                    currentSectionId = section.id;
-                    break;
-                }
-            }
-        }
-        setActiveSection(currentSectionId);
-    };
+    const currentObserver = observer.current;
 
-    if (mainContent) {
-        mainContent.addEventListener('scroll', handleScroll);
-    }
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      document.body.classList.remove('legal-page');
-      if (mainContent) {
-        mainContent.removeEventListener('scroll', handleScroll);
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        currentObserver.observe(element);
       }
-      window.removeEventListener('scroll', handleScroll);
+    });
+
+    return () => {
+       sections.forEach((section) => {
+        const element = document.getElementById(section.id);
+        if (element) {
+          currentObserver.unobserve(element);
+        }
+      });
     };
-  }, [sections, activeSection]);
+  }, [sections]);
 
   const handleSectionClick = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -79,13 +77,13 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
           variant="ghost"
           onClick={() => handleSectionClick(section.id)}
           className={cn(
-            'w-full justify-start text-left h-auto py-2 px-3 gap-3 text-sm',
+            'w-full justify-start text-left h-auto py-2 px-3 gap-3 text-xs', // Reduced text size
             activeSection === section.id
               ? 'bg-primary text-primary-foreground'
               : 'hover:bg-accent/50'
           )}
         >
-          {section.icon && React.cloneElement(section.icon as React.ReactElement, { size: 20 })}
+          {section.icon && React.cloneElement(section.icon as React.ReactElement, { size: 16 })}
           <span className="truncate">{section.title}</span>
         </Button>
       ))}
@@ -124,7 +122,7 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
         </div>
 
         <div className="flex gap-12">
-          <aside className="hidden md:block w-72 flex-shrink-0">
+          <aside className="hidden md:block w-64 flex-shrink-0">
             <div className="sticky top-24">
               <SidebarNav />
             </div>
