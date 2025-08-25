@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { UploadCloud, DatabaseZap, LayoutDashboard, Bot, Download, TestTube2, Library } from "lucide-react";
+import { UploadCloud, DatabaseZap, LayoutDashboard, Bot, Download, TestTube2, Library, ShieldCheck } from "lucide-react";
 
 const features = [
   {
@@ -37,6 +37,11 @@ const features = [
     title: "Central Model Registry",
     description: "Manage your entire model lifecycle with versioning, promotion workflows, and production tagging.",
   },
+  {
+    icon: <ShieldCheck className="w-8 h-8 text-primary" />,
+    title: "Secure & Scalable Infrastructure",
+    description: "Built on a robust and secure foundation, ensuring your data is protected and operations can scale.",
+  }
 ];
 
 
@@ -53,9 +58,9 @@ export function FeaturesSection() {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-12">
+        <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12">
           {features.map((feature, index) => (
-            <Card key={index} className="flex flex-col items-start p-6 hover:shadow-lg transition-shadow">
+            <Card key={index} className="flex flex-col items-start p-6 transition-all duration-300 hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-2">
               <div className="p-3 rounded-full bg-primary/10 mb-4">{feature.icon}</div>
               <CardHeader className="p-0">
                 <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
