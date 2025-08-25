@@ -2,13 +2,13 @@
 'use client';
 
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -27,39 +27,57 @@ interface LegalLayoutProps {
 
 export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) {
   const [activeSection, setActiveSection] = useState<string>(sections[0]?.id || '');
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.classList.add('legal-page');
+    const mainContent = document.querySelector('main');
+
+    const handleScroll = () => {
+        let currentSectionId = activeSection;
+        for (const section of sections) {
+            const element = document.getElementById(section.id);
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top <= 120 && rect.bottom >= 120) {
+                    currentSectionId = section.id;
+                    break;
+                }
+            }
+        }
+        setActiveSection(currentSectionId);
+    };
+
+    window.addEventListener('scroll', handleScroll);
     return () => {
       document.body.classList.remove('legal-page');
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [sections, activeSection]);
 
   const handleSectionClick = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   const SidebarNav = ({ isMobile = false }: { isMobile?: boolean }) => (
-    <nav className="space-y-0.5">
+    <nav className="space-y-1 p-2">
       {sections.map((section) => (
         <Button
           key={section.id}
           variant="ghost"
-          onClick={() => {
-            handleSectionClick(section.id);
-          }}
+          onClick={() => handleSectionClick(section.id)}
           className={cn(
-            'w-full justify-start text-left h-auto py-1 px-2 gap-2 text-xs',
+            'w-full justify-start text-left h-auto py-2 px-3 gap-3 text-sm',
             activeSection === section.id
-              ? 'bg-accent text-accent-foreground'
+              ? 'bg-primary text-primary-foreground'
               : 'hover:bg-accent/50'
           )}
         >
-          {section.icon && React.cloneElement(section.icon as React.ReactElement, { size: 16 })}
+          {section.icon && React.cloneElement(section.icon as React.ReactElement, { size: 20 })}
           <span className="truncate">{section.title}</span>
         </Button>
       ))}
@@ -97,18 +115,25 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
             </div>
         </div>
 
-        <div className="flex">
-          <aside className="hidden md:block w-56 pr-8">
+        <div className="flex gap-12">
+          <aside className="hidden md:block w-72 flex-shrink-0">
             <div className="sticky top-24">
               <SidebarNav />
             </div>
           </aside>
 
-          <main className="w-full md:w-3/4 space-y-8">
+          <main ref={contentRef} className="w-full space-y-8">
              {sections.map((section) => (
-                <Card id={section.id} key={section.id} className="scroll-mt-24">
+                <Card
+                  id={section.id}
+                  key={section.id}
+                  className={cn(
+                    "scroll-mt-24 transition-all duration-300",
+                    activeSection === section.id ? "border-primary shadow-lg" : "border-border"
+                  )}
+                >
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-3">
+                        <CardTitle className="flex items-center gap-3 text-2xl">
                         {section.icon}
                         {section.title}
                         </CardTitle>
