@@ -82,10 +82,32 @@
     @apply bg-background text-foreground;
   }
   
-  body {
+  body:not(.legal-page) {
     background: radial-gradient(ellipse at bottom, hsl(var(--background)) 0%, #030617 100%);
   }
 
+  .legal-page {
+    --background: 240 5% 96%; /* Light Gray #F9FAFB */
+    --foreground: 240 10% 4%; /* Near Black #0A0A0A */
+    --card: 240 0% 100%; /* White */
+    --card-foreground: 240 10% 4%;
+    --popover: 240 0% 100%;
+    --popover-foreground: 240 10% 4%;
+    --primary: 244 85% 66%; /* Indigo #4F46E5 */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 10% 4%;
+    --muted: 240 5% 90%; /* Muted Grayish */
+    --muted-foreground: 240 4% 46%; /* Muted Grayish Blue #6B7280 */
+    --accent: 175 79% 40%; /* Teal #14B8A6 */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%; /* Red #EF4444 */
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 244 85% 66%;
+  }
+  
   .prose-headings\:font-headline h1, .prose-headings\:font-headline h2, .prose-headings\:font-headline h3, .prose-headings\:font-headline h4, .prose-headings\:font-headline h5, .prose-headings\:font-headline h6 {
     font-family: 'Inter', sans-serif;
   }
