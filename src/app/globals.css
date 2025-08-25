@@ -85,4 +85,8 @@
   body {
     background: radial-gradient(ellipse at bottom, hsl(var(--background)) 0%, #030617 100%);
   }
+
+  .prose-headings\:font-headline h1, .prose-headings\:font-headline h2, .prose-headings\:font-headline h3, .prose-headings\:font-headline h4, .prose-headings\:font-headline h5, .prose-headings\:font-headline h6 {
+    font-family: 'Inter', sans-serif;
+  }
 }
