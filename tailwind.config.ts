@@ -96,11 +96,17 @@ export default {
             'background-position': '100% 100%',
           },
         },
+        'text-gradient': {
+          'to': {
+            'background-position': '200% center',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'gradient-xy': 'gradient-xy 15s ease infinite',
+        'text-gradient': 'text-gradient 3s linear infinite',
       },
     },
   },
