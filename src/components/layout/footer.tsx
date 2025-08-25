@@ -16,7 +16,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <Logo />
              <p className="text-center md:text-left">
-              &copy; {year} ForgeFlow. Created by{' '}
+              &copy; {year} ForgeFlow. build by expertise by{' '}
               <a
                 href="https://www.rosulmehtab.tech/"
                 target="_blank"
