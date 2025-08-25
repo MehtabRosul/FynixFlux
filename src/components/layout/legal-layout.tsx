@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -48,9 +48,17 @@ export function LegalLayout({ title, lastUpdated, sections }: LegalLayoutProps) 
         setActiveSection(currentSectionId);
     };
 
+    if (mainContent) {
+        mainContent.addEventListener('scroll', handleScroll);
+    }
+    
     window.addEventListener('scroll', handleScroll);
+    
     return () => {
       document.body.classList.remove('legal-page');
+      if (mainContent) {
+        mainContent.removeEventListener('scroll', handleScroll);
+      }
       window.removeEventListener('scroll', handleScroll);
     };
   }, [sections, activeSection]);
