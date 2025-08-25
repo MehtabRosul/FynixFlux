@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import React from 'react';
@@ -37,7 +38,7 @@ const HeroSection = () => {
                 {/* Midground floating shapes can go here */}
             </div>
             <div className="relative z-20 container mx-auto px-4 md:px-6" style={{ transform: `translate3d(0, ${fgY}px, 0)`}}>
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid gap-12 items-center">
                     <div className="space-y-6 text-left">
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground font-headline">ForgeFlow Pilot</h1>
                         <p className="text-xl md:text-2xl text-muted-foreground">
@@ -55,16 +56,6 @@ const HeroSection = () => {
                             </Button>
                         </div>
                     </div>
-                     <div className="flex items-center justify-center">
-                         <Image
-                          src="https://placehold.co/1000x600.png"
-                          alt="ForgeFlow Pilot dashboard preview"
-                          data-ai-hint="dashboard preview"
-                          width={1000}
-                          height={600}
-                          className="rounded-lg shadow-2xl"
-                        />
-                      </div>
                 </div>
             </div>
         </ParallaxSection>
