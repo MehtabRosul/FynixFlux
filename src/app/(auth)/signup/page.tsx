@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link"
@@ -5,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, useController } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { signUpWithEmail } from '@/app/actions/auth';
@@ -35,14 +36,22 @@ type SignupFormValues = z.infer<typeof signupSchema>;
 export default function SignupPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { register, handleSubmit, formState: { errors, isSubmitting }, watch } = useForm<SignupFormValues>({
+  const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, control } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
-     defaultValues: {
+    mode: 'onChange', // Validate on change to enable button
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
       agreeToTerms: false
     }
   });
 
-  const agreeToTermsValue = watch("agreeToTerms");
+  const { field: agreeToTermsField } = useController({
+    name: 'agreeToTerms',
+    control,
+  });
 
   const onSubmit: SubmitHandler<SignupFormValues> = async (data) => {
     try {
@@ -96,7 +105,10 @@ export default function SignupPage() {
                <div className="flex items-start space-x-2 pt-2">
                  <Checkbox 
                     id="terms" 
-                    {...register('agreeToTerms')} 
+                    checked={agreeToTermsField.value}
+                    onCheckedChange={agreeToTermsField.onChange}
+                    onBlur={agreeToTermsField.onBlur}
+                    ref={agreeToTermsField.ref}
                  />
                  <div className="grid gap-1.5 leading-none">
                     <label
@@ -114,7 +126,7 @@ export default function SignupPage() {
                     )}
                  </div>
                </div>
-              <Button type="submit" className="w-full h-11 !mt-6" disabled={isSubmitting || !agreeToTermsValue}>
+              <Button type="submit" className="w-full h-11 !mt-6" disabled={!isValid || isSubmitting}>
                  {isSubmitting ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
