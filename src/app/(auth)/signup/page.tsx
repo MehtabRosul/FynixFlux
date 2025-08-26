@@ -56,7 +56,7 @@ export default function SignupPage() {
   const onSubmit: SubmitHandler<SignupFormValues> = async (data) => {
     try {
       await signUpWithEmail(data.email, data.password);
-      router.push('/');
+      // The redirection is now handled by AuthProvider
     } catch (error: any) {
        toast({
         title: "Sign-up Failed",

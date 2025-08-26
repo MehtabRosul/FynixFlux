@@ -36,11 +36,11 @@ export default function LoginPage() {
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     try {
       await signInWithEmail(data.email, data.password);
-      router.push('/');
+      // The redirection is now handled by AuthProvider
     } catch (error: any) {
        toast({
         title: "Login Failed",
-        description: error.message,
+        description: "Please check your email and password.",
         variant: "destructive",
       });
     }
