@@ -4,7 +4,7 @@
 import { useRef, useEffect } from 'react';
 import { useParallax } from '@/components/providers/parallax-provider';
 import { Card } from '@/components/ui/card';
-import { Code, Zap, Package, Grid } from 'lucide-react';
+import { Code, Zap, Package, Grid, BookOpen, Terminal, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const exportFormats = [
@@ -25,6 +25,24 @@ const exportFormats = [
     title: 'TFLite',
   },
 ];
+
+const devFeatures = [
+    {
+        icon: <Terminal className="w-8 h-8 text-primary" />,
+        title: "API-First Design",
+        description: "Programmatically control every aspect of your workflow with a clean and powerful REST API."
+    },
+    {
+        icon: <BookOpen className="w-8 h-8 text-primary" />,
+        title: "Extensive Documentation",
+        description: "Get started quickly with comprehensive guides, examples, and detailed API references."
+    },
+    {
+        icon: <Users className="w-8 h-8 text-primary" />,
+        title: "Community & Support",
+        description: "Join a growing community of builders and get help when you need it."
+    }
+]
 
 export function DeployableWorkSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -91,6 +109,23 @@ export function DeployableWorkSection() {
                         learning community.
                     </p>
                 </div>
+
+                 <div className="grid md:grid-cols-3 gap-8 pt-8">
+                    {devFeatures.map((feature, index) => (
+                        <Card 
+                            key={feature.title} 
+                            className="reveal-on-scroll opacity-0 p-6 transition-all duration-500 ease-in-out hover:shadow-primary/20 hover:-translate-y-2"
+                            style={{ transitionDelay: `${(index + 4) * 150}ms` }}
+                        >
+                            <div className="flex items-center gap-4 mb-4">
+                               {feature.icon}
+                               <h3 className="text-xl font-semibold">{feature.title}</h3>
+                            </div>
+                            <p className="text-muted-foreground">{feature.description}</p>
+                        </Card>
+                    ))}
+                </div>
+
             </div>
         </div>
     </section>
