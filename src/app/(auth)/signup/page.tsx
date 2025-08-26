@@ -57,7 +57,7 @@ export default function SignupPage() {
     try {
       await signUpWithEmail(data.email, data.password);
       toast({ title: "Account created successfully!" });
-      router.push('/dashboard');
+      router.push('/');
     } catch (error: any) {
        toast({
         title: "Sign-up Failed",
