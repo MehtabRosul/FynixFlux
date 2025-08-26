@@ -30,11 +30,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
+    if (loading) return; // Do nothing while loading
     // If the user is authenticated and is on a login/signup page, redirect to home.
     if (user && (pathname === '/login' || pathname === '/signup')) {
       router.push('/');
     }
-  }, [user, pathname, router]);
+  }, [user, pathname, router, loading]);
   
   const value = useMemo(() => ({ user, loading }), [user, loading]);
 
