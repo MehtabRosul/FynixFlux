@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/components/providers/auth-provider';
 
 const Logo = () => (
   <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -17,6 +18,8 @@ const Logo = () => (
 
 export function Header() {
   const pathname = usePathname();
+  const { user } = useAuth();
+
   const navLinks = [
     { href: "/features", label: "Features" },
     { href: "/how-it-works", label: "How It Works" },
@@ -51,11 +54,13 @@ export function Header() {
             </nav>
         </div>
 
-        <div className="hidden md:flex items-center gap-4 ml-6">
-          <Button asChild>
-            <Link href="/signup">Create an Account</Link>
-          </Button>
-        </div>
+        {!user && (
+          <div className="hidden md:flex items-center gap-4 ml-6">
+            <Button asChild>
+              <Link href="/signup">Create an Account</Link>
+            </Button>
+          </div>
+        )}
 
         {/* Mobile Nav */}
         <Sheet>
@@ -86,11 +91,13 @@ export function Header() {
                   </Link>
                 ))}
               </nav>
-              <div className="flex flex-col gap-2">
-                 <Button asChild>
-                  <Link href="/signup">Create an Account</Link>
-                </Button>
-              </div>
+              {!user && (
+                <div className="flex flex-col gap-2">
+                   <Button asChild>
+                    <Link href="/signup">Create an Account</Link>
+                  </Button>
+                </div>
+              )}
             </div>
           </SheetContent>
         </Sheet>
