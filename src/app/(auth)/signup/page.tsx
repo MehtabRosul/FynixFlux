@@ -63,7 +63,7 @@ export default function SignupPage() {
     try {
       await signInWithPopup(auth, authProvider);
       toast({ title: "Successfully signed in!" });
-      router.push('/dashboard');
+      router.push('/');
     } catch (error: any) {
       if (error.code !== 'auth/popup-closed-by-user') {
           toast({
