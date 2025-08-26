@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { Menu, CircleUser } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/components/providers/auth-provider';
 
@@ -54,13 +54,21 @@ export function Header() {
             </nav>
         </div>
 
-        {!user && (
-          <div className="hidden md:flex items-center gap-4 ml-6">
-            <Button asChild>
-              <Link href="/signup">Create an Account</Link>
-            </Button>
-          </div>
-        )}
+        <div className="hidden md:flex items-center gap-4 ml-6">
+            {user ? (
+                 <Button asChild variant="ghost" size="icon">
+                    <Link href="/dashboard">
+                        <CircleUser className="h-6 w-6" />
+                        <span className="sr-only">Dashboard</span>
+                    </Link>
+                </Button>
+            ) : (
+                 <Button asChild>
+                    <Link href="/signup">Create an Account</Link>
+                </Button>
+            )}
+        </div>
+
 
         {/* Mobile Nav */}
         <Sheet>
@@ -90,14 +98,17 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
+                 {user && (
+                    <Link href="/dashboard" className="text-foreground transition-colors hover:text-primary">Dashboard</Link>
+                 )}
               </nav>
-              {!user && (
-                <div className="flex flex-col gap-2">
-                   <Button asChild>
-                    <Link href="/signup">Create an Account</Link>
-                  </Button>
+               <div className="flex flex-col gap-2">
+                {!user && (
+                    <Button asChild>
+                        <Link href="/signup">Create an Account</Link>
+                    </Button>
+                )}
                 </div>
-              )}
             </div>
           </SheetContent>
         </Sheet>
