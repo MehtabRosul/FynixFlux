@@ -29,10 +29,14 @@ export async function getNews(): Promise<Article[]> {
     }
 
     const query = "MLOps OR \"Machine Learning Operations\" OR \"AI Infrastructure\"";
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&pageSize=9&language=en&apiKey=${apiKey}`;
+    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&pageSize=9&language=en`;
 
     try {
         const response = await fetch(url, {
+            headers: {
+                // The API key must be sent in the Authorization header for server-side requests
+                Authorization: `Bearer ${apiKey}`
+            },
             // Revalidate every day (24 * 60 * 60 = 86400 seconds)
             next: { revalidate: 86400 } 
         });
