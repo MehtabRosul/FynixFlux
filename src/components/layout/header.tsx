@@ -27,29 +27,37 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2" prefetch={false}>
+        <Link href="/" className="flex items-center gap-2 mr-6" prefetch={false}>
           <Logo />
+          <span className="font-bold text-lg">ForgeFlow</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.href} 
-              href={link.href} 
-              className={cn(
-                "transition-colors hover:text-primary",
-                pathname === link.href ? "text-primary" : "text-foreground"
-              )} 
-              prefetch={false}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="hidden md:flex items-center gap-4">
+        
+        {/* Desktop Nav */}
+        <div className="hidden md:flex flex-grow items-center justify-center">
+            <nav className="flex items-center gap-6 text-sm font-medium">
+            {navLinks.map((link) => (
+                <Link 
+                key={link.href} 
+                href={link.href} 
+                className={cn(
+                    "transition-colors hover:text-primary",
+                    pathname === link.href ? "text-primary" : "text-foreground"
+                )} 
+                prefetch={false}
+                >
+                {link.label}
+                </Link>
+            ))}
+            </nav>
+        </div>
+
+        <div className="hidden md:flex items-center gap-4 ml-6">
           <Button asChild>
             <Link href="/signup">Create an Account</Link>
           </Button>
         </div>
+
+        {/* Mobile Nav */}
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="md:hidden">
@@ -61,6 +69,7 @@ export function Header() {
             <div className="grid gap-4 p-4">
               <Link href="/" className="flex items-center gap-2" prefetch={false}>
                 <Logo />
+                 <span className="font-bold text-lg">ForgeFlow</span>
               </Link>
               <nav className="grid gap-2 text-base font-medium">
                 {navLinks.map((link) => (
