@@ -17,8 +17,6 @@ const AuthContext = createContext<AuthContextType>({ user: null, loading: true }
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -29,14 +27,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    if (loading) return; // Do nothing while loading
-    // If the user is authenticated and is on a login/signup page, redirect to home.
-    if (user && (pathname === '/login' || pathname === '/signup')) {
-      router.push('/');
-    }
-  }, [user, pathname, router, loading]);
-  
   const value = useMemo(() => ({ user, loading }), [user, loading]);
 
   if (loading) {
@@ -49,10 +39,30 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      <AuthRedirector>{children}</AuthRedirector>
     </AuthContext.Provider>
   );
 };
+
+// This new component will handle redirection logic to keep the provider clean.
+const AuthRedirector = ({ children }: { children: React.ReactNode }) => {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (loading) return; // Don't redirect while checking auth status
+
+    const isAuthPage = pathname === '/login' || pathname === '/signup';
+
+    if (user && isAuthPage) {
+      router.push('/');
+    }
+  }, [user, loading, pathname, router]);
+
+  return <>{children}</>;
+};
+
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
