@@ -33,7 +33,7 @@ export async function getNews(): Promise<Article[]> {
 
     try {
         const response = await fetch(url, {
-            // Revalidate every day
+            // Revalidate every day (24 * 60 * 60 = 86400 seconds)
             next: { revalidate: 86400 } 
         });
 
