@@ -63,9 +63,14 @@ export function Header() {
                     </Link>
                 </Button>
             ) : (
-                 <Button asChild>
-                    <Link href="/signup">Create an Account</Link>
-                </Button>
+                <>
+                    <Button asChild variant="ghost">
+                        <Link href="/login">Login</Link>
+                    </Button>
+                    <Button asChild>
+                        <Link href="/signup">Create an Account</Link>
+                    </Button>
+                </>
             )}
         </div>
 
@@ -103,11 +108,16 @@ export function Header() {
                  )}
               </nav>
                <div className="flex flex-col gap-2">
-                {!user && (
-                    <Button asChild>
-                        <Link href="/signup">Create an Account</Link>
-                    </Button>
-                )}
+                {!user ? (
+                    <>
+                         <Button asChild variant="outline">
+                            <Link href="/login">Login</Link>
+                        </Button>
+                        <Button asChild>
+                            <Link href="/signup">Create an Account</Link>
+                        </Button>
+                    </>
+                ) : null }
                 </div>
             </div>
           </SheetContent>
