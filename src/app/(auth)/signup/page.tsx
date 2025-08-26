@@ -1,9 +1,18 @@
+"use client";
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { signInWithGoogle, signInWithGithub, signUpWithEmail } from '@/app/actions/auth';
+import { useRouter } from 'next/navigation';
+import { useToast } from "@/hooks/use-toast";
+import React from "react";
 
 const Logo = () => (
   <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -31,7 +40,51 @@ const GithubIcon = () => (
     </svg>
 )
 
+const signupSchema = z.object({
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+});
+type SignupFormValues = z.infer<typeof signupSchema>;
+
+
 export default function SignupPage() {
+  const router = useRouter();
+  const { toast } = useToast();
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SignupFormValues>({
+    resolver: zodResolver(signupSchema),
+  });
+
+  const handleOAuth = async (provider: 'google' | 'github') => {
+    try {
+      const action = provider === 'google' ? signInWithGoogle : signInWithGithub;
+      await action();
+      toast({ title: "Successfully signed in!" });
+      router.push('/dashboard');
+    } catch (error: any) {
+      toast({
+        title: "Sign-in Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const onSubmit: SubmitHandler<SignupFormValues> = async (data) => {
+    try {
+      await signUpWithEmail(data.email, data.password);
+      toast({ title: "Account created successfully!" });
+      router.push('/dashboard');
+    } catch (error: any) {
+       toast({
+        title: "Sign-up Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-lg border-2 border-primary/20 shadow-lg shadow-primary/10">
@@ -46,11 +99,11 @@ export default function SignupPage() {
         <CardContent>
           <div className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Button variant="outline" className="w-full h-11">
+                <Button variant="outline" className="w-full h-11" onClick={() => handleOAuth('google')}>
                     <GoogleIcon />
                     <span className="ml-2">Sign up with Google</span>
                 </Button>
-                <Button variant="outline" className="w-full h-11">
+                <Button variant="outline" className="w-full h-11" onClick={() => handleOAuth('github')}>
                     <GithubIcon />
                     <span className="ml-2">Sign up with GitHub</span>
                 </Button>
@@ -60,27 +113,31 @@ export default function SignupPage() {
                 <span className="text-xs text-muted-foreground">OR CONTINUE WITH</span>
                 <Separator className="flex-1" />
             </div>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="first-name">First Name</Label>
-                        <Input id="first-name" placeholder="John" required />
+                        <Input id="first-name" placeholder="John" {...register('firstName')} />
+                         {errors.firstName && <p className="text-xs text-destructive">{errors.firstName.message}</p>}
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="last-name">Last Name</Label>
-                        <Input id="last-name" placeholder="Doe" required />
+                        <Input id="last-name" placeholder="Doe" {...register('lastName')} />
+                        {errors.lastName && <p className="text-xs text-destructive">{errors.lastName.message}</p>}
                     </div>
                 </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" placeholder="john.doe@example.com" required />
+                <Input id="email" type="email" placeholder="john.doe@example.com" {...register('email')} />
+                {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required placeholder="••••••••" />
+                <Input id="password" type="password" placeholder="••••••••" {...register('password')} />
+                {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
               </div>
-              <Button type="submit" className="w-full h-11 !mt-6">
-                Create Account
+              <Button type="submit" className="w-full h-11 !mt-6" disabled={isSubmitting}>
+                 {isSubmitting ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
           </div>
