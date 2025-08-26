@@ -117,7 +117,11 @@ export function Header() {
                             <Link href="/signup">Create an Account</Link>
                         </Button>
                     </>
-                ) : null }
+                ) : (
+                   <Button asChild>
+                      <Link href="/dashboard">Go to Dashboard</Link>
+                  </Button>
+                ) }
                 </div>
             </div>
           </SheetContent>
