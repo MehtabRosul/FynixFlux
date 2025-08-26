@@ -4,7 +4,7 @@
 import { useRef, useEffect } from 'react';
 import { useParallax } from '@/components/providers/parallax-provider';
 import { Card } from '@/components/ui/card';
-import { Code, Zap, Package, Grid, BookOpen, Terminal, Users } from 'lucide-react';
+import { Code, Zap, Package, Grid, FileText, Terminal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const exportFormats = [
@@ -33,14 +33,9 @@ const devFeatures = [
         description: "Programmatically control every aspect of your workflow with a clean and powerful REST API."
     },
     {
-        icon: <BookOpen className="w-8 h-8 text-primary" />,
+        icon: <FileText className="w-8 h-8 text-primary" />,
         title: "Extensive Documentation",
         description: "Get started quickly with comprehensive guides, examples, and detailed API references."
-    },
-    {
-        icon: <Users className="w-8 h-8 text-primary" />,
-        title: "Community & Support",
-        description: "Join a growing community of builders and get help when you need it."
     }
 ]
 
@@ -110,7 +105,7 @@ export function DeployableWorkSection() {
                     </p>
                 </div>
 
-                 <div className="grid md:grid-cols-3 gap-8 pt-8">
+                 <div className="grid md:grid-cols-2 gap-8 pt-8 max-w-4xl mx-auto">
                     {devFeatures.map((feature, index) => (
                         <Card 
                             key={feature.title} 
