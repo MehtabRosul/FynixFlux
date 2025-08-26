@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/header';
 import { HeroSection } from '@/components/sections/hero-section';
 import { CtaSection } from '@/components/sections/cta-section';
 import { ParallaxProvider } from '@/components/providers/parallax-provider';
+import { DeployableWorkSection } from '@/components/sections/deployable-work-section';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <main className="flex-grow">
         <ParallaxProvider>
           <HeroSection />
+          <DeployableWorkSection />
           <CtaSection />
         </ParallaxProvider>
       </main>
