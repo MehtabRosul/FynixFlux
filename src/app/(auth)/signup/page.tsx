@@ -12,6 +12,7 @@ import { signUpWithEmail } from '@/app/actions/auth';
 import { useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast";
 import React from "react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Logo = () => (
   <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -24,6 +25,9 @@ const signupSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
+  agreeToTerms: z.boolean().refine(val => val === true, {
+    message: "You must agree to the terms of service."
+  })
 });
 type SignupFormValues = z.infer<typeof signupSchema>;
 
@@ -31,9 +35,14 @@ type SignupFormValues = z.infer<typeof signupSchema>;
 export default function SignupPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SignupFormValues>({
+  const { register, handleSubmit, formState: { errors, isSubmitting }, watch } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
+     defaultValues: {
+      agreeToTerms: false
+    }
   });
+
+  const agreeToTermsValue = watch("agreeToTerms");
 
   const onSubmit: SubmitHandler<SignupFormValues> = async (data) => {
     try {
@@ -84,19 +93,31 @@ export default function SignupPage() {
                 <Input id="password" type="password" placeholder="••••••••" {...register('password')} />
                 {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
               </div>
-              <Button type="submit" className="w-full h-11 !mt-6" disabled={isSubmitting}>
+               <div className="flex items-start space-x-2 pt-2">
+                 <Checkbox 
+                    id="terms" 
+                    {...register('agreeToTerms')} 
+                 />
+                 <div className="grid gap-1.5 leading-none">
+                    <label
+                      htmlFor="terms"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      I agree to the{' '}
+                      <Link href="/terms" className="font-medium text-primary hover:underline">
+                        Terms of Service
+                      </Link>
+                      .
+                    </label>
+                    {errors.agreeToTerms && (
+                      <p className="text-xs text-destructive">{errors.agreeToTerms.message}</p>
+                    )}
+                 </div>
+               </div>
+              <Button type="submit" className="w-full h-11 !mt-6" disabled={isSubmitting || !agreeToTermsValue}>
                  {isSubmitting ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
-          <div className="mt-6 text-center text-sm">
-            <p className="text-muted-foreground">
-                By signing up, you agree to our{' '}
-                <Link href="/terms" className="font-medium text-primary hover:underline">
-                    Terms of Service
-                </Link>
-                .
-            </p>
-          </div>
         </CardContent>
       </Card>
     </div>
