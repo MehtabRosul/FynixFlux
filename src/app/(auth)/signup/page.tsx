@@ -9,10 +9,12 @@ import { Separator } from "@/components/ui/separator"
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { signInWithGoogle, signInWithGithub, signUpWithEmail } from '@/app/actions/auth';
+import { signUpWithEmail } from '@/app/actions/auth';
 import { useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast";
 import React from "react";
+import { auth } from "@/lib/firebase";
+import { signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 
 const Logo = () => (
   <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -57,17 +59,19 @@ export default function SignupPage() {
   });
 
   const handleOAuth = async (provider: 'google' | 'github') => {
+    const authProvider = provider === 'google' ? new GoogleAuthProvider() : new GithubAuthProvider();
     try {
-      const action = provider === 'google' ? signInWithGoogle : signInWithGithub;
-      await action();
+      await signInWithPopup(auth, authProvider);
       toast({ title: "Successfully signed in!" });
       router.push('/dashboard');
     } catch (error: any) {
-      toast({
-        title: "Sign-in Failed",
-        description: error.message,
-        variant: "destructive",
-      });
+      if (error.code !== 'auth/popup-closed-by-user') {
+          toast({
+            title: "Sign-in Failed",
+            description: error.message,
+            variant: "destructive",
+          });
+      }
     }
   };
 
