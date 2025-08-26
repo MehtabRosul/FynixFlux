@@ -13,10 +13,8 @@ import {
   SidebarMenuButton,
   SidebarInset
 } from "@/components/ui/sidebar";
-import { LayoutDashboard, Database, Library, Settings, CircleUser, LogOut } from "lucide-react";
+import { LayoutDashboard, Database, Library, Settings } from "lucide-react";
 import { usePathname } from 'next/navigation';
-import { signOut } from "@/app/actions/auth";
-import { useRouter } from "next/navigation";
 
 const Logo = () => (
   <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -26,12 +24,6 @@ const Logo = () => (
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await signOut();
-    router.push('/');
-  };
 
   const menuItems = [
     { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard /> },
@@ -64,22 +56,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
-           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip="Profile">
-                <Link href="/dashboard/profile">
-                  <CircleUser />
-                  <span>Profile</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleSignOut} tooltip="Logout">
-                    <LogOut />
-                    <span>Logout</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-           </SidebarMenu>
+           {/* Footer items can be added here */}
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>

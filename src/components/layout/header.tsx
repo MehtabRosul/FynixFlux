@@ -6,9 +6,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, CircleUser } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/components/providers/auth-provider';
 
 const Logo = () => (
   <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -18,7 +17,6 @@ const Logo = () => (
 
 export function Header() {
   const pathname = usePathname();
-  const { user } = useAuth();
 
   const navLinks = [
     { href: "/features", label: "Features" },
@@ -55,23 +53,9 @@ export function Header() {
         </div>
 
         <div className="hidden md:flex items-center gap-4 ml-6">
-            {user ? (
-                 <Button asChild variant="ghost" size="icon">
-                    <Link href="/dashboard">
-                        <CircleUser className="h-6 w-6" />
-                        <span className="sr-only">Dashboard</span>
-                    </Link>
-                </Button>
-            ) : (
-                <>
-                    <Button asChild variant="ghost">
-                        <Link href="/login">Login</Link>
-                    </Button>
-                    <Button asChild>
-                        <Link href="/signup">Create an Account</Link>
-                    </Button>
-                </>
-            )}
+           <Button asChild>
+                <Link href="/get-in-touch">Contact Us</Link>
+            </Button>
         </div>
 
 
@@ -103,25 +87,11 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                 {user && (
-                    <Link href="/dashboard" className="text-foreground transition-colors hover:text-primary">Dashboard</Link>
-                 )}
               </nav>
                <div className="flex flex-col gap-2">
-                {!user ? (
-                    <>
-                         <Button asChild variant="outline">
-                            <Link href="/login">Login</Link>
-                        </Button>
-                        <Button asChild>
-                            <Link href="/signup">Create an Account</Link>
-                        </Button>
-                    </>
-                ) : (
-                   <Button asChild>
-                      <Link href="/dashboard">Go to Dashboard</Link>
-                  </Button>
-                ) }
+                 <Button asChild>
+                    <Link href="/get-in-touch">Contact Us</Link>
+                </Button>
                 </div>
             </div>
           </SheetContent>
