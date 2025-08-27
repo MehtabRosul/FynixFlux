@@ -8,8 +8,8 @@ import { Footer } from '@/components/layout/footer';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Eye, GitCommit, Heart, Zap, ShieldCheck, GitBranch, Telescope, Briefcase, Mail, Lightbulb, Rocket, AreaChart, Scaling, Wrench, BrainCircuit, Server, Star } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { ShieldCheck, GitCommit, Eye, Zap } from 'lucide-react';
 import { ParallaxProvider, useParallax } from '@/components/providers/parallax-provider';
 
 // Parallax-aware Section Component
