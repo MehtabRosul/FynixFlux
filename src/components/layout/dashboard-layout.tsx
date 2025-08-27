@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link";
@@ -34,7 +35,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar collapsible="icon">
         <SidebarHeader>
           <div className="flex items-center gap-2 p-2">
             <Logo />
@@ -62,6 +63,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       <SidebarInset>
         <header className="sticky top-0 z-40 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
           <SidebarTrigger className="md:hidden" />
+          <SidebarTrigger className="hidden md:flex" />
         </header>
         <main className="flex-1 p-4 sm:px-6 sm:py-0">{children}</main>
       </SidebarInset>
