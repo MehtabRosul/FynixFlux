@@ -6,6 +6,7 @@ const problemCategorizationOptions = [
     { value: "regression", label: "Regression" },
     { value: "clustering", label: "Clustering" },
     { value: "reinforcement_learning", label: "Reinforcement Learning" },
+    { value: "time_series_forecasting", label: "Time Series Forecasting" },
 ];
 
 const modelSelectionOptions = [
@@ -14,6 +15,10 @@ const modelSelectionOptions = [
     { value: "random_forest", label: "Random Forest" },
     { value: "xgboost", label: "XGBoost" },
     { value: "lightgbm", label: "LightGBM" },
+    { value: "catboost", label: "CatBoost" },
+    { value: "tabnet", label: "TabNet" },
+    { value: "prophet", label: "Prophet" },
+    { value: "n_beats", label: "N-BEATS" },
     { value: "automl", label: "AutoML" },
 ];
 
@@ -21,6 +26,7 @@ const dataSplittingOptions = [
     { value: "train_test", label: "Train/Test Split" },
     { value: "train_val_test", label: "Train/Validation/Test Split" },
     { value: "stratified_k_fold", label: "Stratified K-Fold" },
+    { value: "repeated_k_fold", label: "Repeated K-Fold" },
     { value: "time_based", label: "Time-based Split" },
 ];
 
@@ -30,6 +36,7 @@ const hyperparameterTuningOptions = [
     { value: "random", label: "Random Search" },
     { value: "bayesian", label: "Bayesian Optimization" },
     { value: "population", label: "Population-based Tuning" },
+    { value: "hyperband", label: "Hyperband" },
 ];
 
 const evaluationMetricOptions = [
@@ -38,9 +45,11 @@ const evaluationMetricOptions = [
     { value: "recall", label: "Recall" },
     { value: "f1_score", label: "F1-Score" },
     { value: "auc_roc", label: "AUC-ROC" },
+    { value: "log_loss", label: "Log Loss" },
     { value: "mae", label: "Mean Absolute Error (MAE)" },
     { value: "mse", label: "Mean Squared Error (MSE)" },
     { value: "r_squared", label: "R-squared" },
+    { value: "rmsle", label: "Root Mean Squared Log Error (RMSLE)" },
 ];
 
 
