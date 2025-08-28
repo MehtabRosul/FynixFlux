@@ -7,6 +7,10 @@ const problemCategorizationOptions = [
     { value: "clustering", label: "Clustering" },
     { value: "time_series_forecasting", label: "Time Series Forecasting" },
     { value: "reinforcement_learning", label: "Reinforcement Learning" },
+    { value: "object_detection", label: "Object Detection" },
+    { value: "nlp", label: "Natural Language Processing (NLP)" },
+    { value: "anomaly_detection", label: "Anomaly Detection" },
+    { value: "recommendation_systems", label: "Recommendation Systems" },
 ];
 
 const modelSelectionOptions = [
@@ -28,6 +32,9 @@ const dataSplittingOptions = [
     { value: "stratified_k_fold", label: "Stratified K-Fold" },
     { value: "repeated_k_fold", label: "Repeated K-Fold" },
     { value: "time_based", label: "Time-based Split" },
+    { value: "group_k_fold", label: "Group K-Fold" },
+    { value: "leave_one_out", label: "Leave-One-Out Cross-Validation" },
+    { value: "time_series_rolling", label: "Time Series Split (Rolling Window)" },
 ];
 
 const hyperparameterTuningOptions = [
@@ -37,6 +44,9 @@ const hyperparameterTuningOptions = [
     { value: "bayesian", label: "Bayesian Optimization" },
     { value: "population", label: "Population-based Tuning" },
     { value: "hyperband", label: "Hyperband" },
+    { value: "cma_es", label: "CMA-ES" },
+    { value: "tpe", label: "TPE (Tree-structured Parzen Estimator)" },
+    { value: "asha", label: "ASHA" },
 ];
 
 const evaluationMetricOptions = [
