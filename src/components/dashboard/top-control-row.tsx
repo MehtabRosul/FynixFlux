@@ -2,48 +2,48 @@
 import { ControlCard } from "./control-card";
 
 const problemCategorizationOptions = [
-    { value: "Classification", label: "Classification" },
-    { value: "Regression", label: "Regression" },
-    { value: "Clustering", label: "Clustering" },
-    { value: "Reinforcement Learning", label: "Reinforcement Learning" },
+    { value: "classification", label: "Classification" },
+    { value: "regression", label: "Regression" },
+    { value: "clustering", label: "Clustering" },
+    { value: "reinforcement_learning", label: "Reinforcement Learning" },
 ];
 
 const modelSelectionOptions = [
-    { value: "Simple, interpretable models", label: "Simple, interpretable models" },
-    { value: "Complex, high-performance models", label: "Complex, high-performance models" },
-    { value: "Unsupervised algorithms", label: "Unsupervised algorithms" },
-    { value: "Ensemble methods", label: "Ensemble methods" },
+    { value: "simple", label: "Simple, interpretable models" },
+    { value: "complex", label: "Complex, high-performance models" },
+    { value: "unsupervised", label: "Unsupervised algorithms" },
+    { value: "ensemble", label: "Ensemble methods" },
 ];
 
 const dataSplittingOptions = [
-    { value: "Simple train-test split", label: "Simple train-test split" },
-    { value: "Train-validation-test split", label: "Train-validation-test split" },
-    { value: "Stratified split", label: "Stratified split" },
-    { value: "K-fold cross-validation", label: "K-fold cross-validation" },
+    { value: "train_test", label: "Simple train-test split" },
+    { value: "train_val_test", label: "Train-validation-test split" },
+    { value: "stratified", label: "Stratified split" },
+    { value: "k_fold", label: "K-fold cross-validation" },
 ];
 
 const hyperparameterTuningOptions = [
-    { value: "Manual search", label: "Manual search" },
-    { value: "Grid search", label: "Grid search" },
-    { value: "Random search", label: "Random search" },
-    { value: "Bayesian optimization", label: "Bayesian optimization" },
+    { value: "manual", label: "Manual search" },
+    { value: "grid", label: "Grid search" },
+    { value: "random", label: "Random search" },
+    { value: "bayesian", label: "Bayesian optimization" },
 ];
 
 const evaluationMetricOptions = [
-    { value: "Classification metrics", label: "Classification metrics" },
-    { value: "Regression metrics", label: "Regression metrics" },
-    { value: "AUC-ROC", label: "AUC-ROC" },
-    { value: "Business-aligned metrics", label: "Business-aligned metrics" },
+    { value: "classification", label: "Classification metrics" },
+    { value: "regression", label: "Regression metrics" },
+    { value: "auc_roc", label: "AUC-ROC" },
+    { value: "business_aligned", label: "Business-aligned metrics" },
 ];
 
 
 export function TopControlRow() {
     const controls = [
-        { label: "Problem Categorization", value: "Classification", options: problemCategorizationOptions },
-        { label: "Model Selection", value: "AutoML (Ensemble)", options: modelSelectionOptions },
-        { label: "Data Splitting", value: "Train/Val/Test", options: dataSplittingOptions },
-        { label: "Hyperparameter Tuning", value: "Bayesian Optimization", options: hyperparameterTuningOptions },
-        { label: "Evaluation Metric", value: "AUC-ROC", options: evaluationMetricOptions },
+        { label: "Problem Categorization", options: problemCategorizationOptions },
+        { label: "Model Selection", options: modelSelectionOptions },
+        { label: "Data Splitting", options: dataSplittingOptions },
+        { label: "Hyperparameter Tuning", options: hyperparameterTuningOptions },
+        { label: "Evaluation Metric", options: evaluationMetricOptions },
     ];
 
     return (
@@ -52,7 +52,6 @@ export function TopControlRow() {
                 <ControlCard 
                     key={control.label} 
                     label={control.label} 
-                    defaultValue={control.value}
                     options={control.options}
                 />
             ))}
