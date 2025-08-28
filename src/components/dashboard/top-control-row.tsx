@@ -5,11 +5,12 @@ const problemCategorizationOptions = [
     { value: "classification", label: "Classification" },
     { value: "regression", label: "Regression" },
     { value: "clustering", label: "Clustering" },
-    { value: "reinforcement_learning", label: "Reinforcement Learning" },
     { value: "time_series_forecasting", label: "Time Series Forecasting" },
+    { value: "reinforcement_learning", label: "Reinforcement Learning" },
 ];
 
 const modelSelectionOptions = [
+    { value: "automl", label: "AutoML" },
     { value: "logistic_regression", label: "Logistic Regression" },
     { value: "decision_tree", label: "Decision Tree" },
     { value: "random_forest", label: "Random Forest" },
@@ -19,7 +20,6 @@ const modelSelectionOptions = [
     { value: "tabnet", label: "TabNet" },
     { value: "prophet", label: "Prophet" },
     { value: "n_beats", label: "N-BEATS" },
-    { value: "automl", label: "AutoML" },
 ];
 
 const dataSplittingOptions = [
