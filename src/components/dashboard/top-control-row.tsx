@@ -9,31 +9,38 @@ const problemCategorizationOptions = [
 ];
 
 const modelSelectionOptions = [
-    { value: "simple", label: "Simple, interpretable models" },
-    { value: "complex", label: "Complex, high-performance models" },
-    { value: "unsupervised", label: "Unsupervised algorithms" },
-    { value: "ensemble", label: "Ensemble methods" },
+    { value: "logistic_regression", label: "Logistic Regression" },
+    { value: "decision_tree", label: "Decision Tree" },
+    { value: "random_forest", label: "Random Forest" },
+    { value: "xgboost", label: "XGBoost" },
+    { value: "lightgbm", label: "LightGBM" },
+    { value: "automl", label: "AutoML" },
 ];
 
 const dataSplittingOptions = [
-    { value: "train_test", label: "Simple train-test split" },
-    { value: "train_val_test", label: "Train-validation-test split" },
-    { value: "stratified", label: "Stratified split" },
-    { value: "k_fold", label: "K-fold cross-validation" },
+    { value: "train_test", label: "Train/Test Split" },
+    { value: "train_val_test", label: "Train/Validation/Test Split" },
+    { value: "stratified_k_fold", label: "Stratified K-Fold" },
+    { value: "time_based", label: "Time-based Split" },
 ];
 
 const hyperparameterTuningOptions = [
-    { value: "manual", label: "Manual search" },
-    { value: "grid", label: "Grid search" },
-    { value: "random", label: "Random search" },
-    { value: "bayesian", label: "Bayesian optimization" },
+    { value: "manual", label: "Manual Search" },
+    { value: "grid", label: "Grid Search" },
+    { value: "random", label: "Random Search" },
+    { value: "bayesian", label: "Bayesian Optimization" },
+    { value: "population", label: "Population-based Tuning" },
 ];
 
 const evaluationMetricOptions = [
-    { value: "classification", label: "Classification metrics" },
-    { value: "regression", label: "Regression metrics" },
+    { value: "accuracy", label: "Accuracy" },
+    { value: "precision", label: "Precision" },
+    { value: "recall", label: "Recall" },
+    { value: "f1_score", label: "F1-Score" },
     { value: "auc_roc", label: "AUC-ROC" },
-    { value: "business_aligned", label: "Business-aligned metrics" },
+    { value: "mae", label: "Mean Absolute Error (MAE)" },
+    { value: "mse", label: "Mean Squared Error (MSE)" },
+    { value: "r_squared", label: "R-squared" },
 ];
 
 
