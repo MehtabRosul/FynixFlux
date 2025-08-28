@@ -11,6 +11,7 @@ const problemCategorizationOptions = [
     { value: "nlp", label: "Natural Language Processing (NLP)" },
     { value: "anomaly_detection", label: "Anomaly Detection" },
     { value: "recommendation_systems", label: "Recommendation Systems" },
+    { value: "multilabel_classification", label: "Multi-Label Classification" },
 ];
 
 const modelSelectionOptions = [
@@ -24,6 +25,7 @@ const modelSelectionOptions = [
     { value: "tabnet", label: "TabNet" },
     { value: "prophet", label: "Prophet" },
     { value: "n_beats", label: "N-BEATS" },
+    { value: "svm", label: "Support Vector Machine (SVM)" },
 ];
 
 const dataSplittingOptions = [
@@ -35,6 +37,7 @@ const dataSplittingOptions = [
     { value: "group_k_fold", label: "Group K-Fold" },
     { value: "leave_one_out", label: "Leave-One-Out Cross-Validation" },
     { value: "time_series_rolling", label: "Time Series Split (Rolling Window)" },
+    { value: "nested_cross_validation", label: "Nested Cross-Validation" },
 ];
 
 const hyperparameterTuningOptions = [
@@ -51,15 +54,18 @@ const hyperparameterTuningOptions = [
 
 const evaluationMetricOptions = [
     { value: "accuracy", label: "Accuracy" },
+    { value: "balanced_accuracy", label: "Balanced Accuracy" },
     { value: "precision", label: "Precision" },
     { value: "recall", label: "Recall" },
     { value: "f1_score", label: "F1-Score" },
     { value: "auc_roc", label: "AUC-ROC" },
+    { value: "mcc", label: "Matthews Correlation Coefficient (MCC)" },
     { value: "log_loss", label: "Log Loss" },
     { value: "mae", label: "Mean Absolute Error (MAE)" },
     { value: "mse", label: "Mean Squared Error (MSE)" },
     { value: "r_squared", label: "R-squared" },
     { value: "rmsle", label: "Root Mean Squared Log Error (RMSLE)" },
+    { value: "smape", label: "Symmetric Mean Absolute Percentage Error (SMAPE)" },
 ];
 
 
