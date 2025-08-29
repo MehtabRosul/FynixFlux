@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import Link from "next/link";
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, LayoutDashboard, Database, Library, BrainCircuit } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Footer } from "@/components/layout/footer";
 
 const Logo = () => (
   <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -97,6 +99,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <main className="flex-1 overflow-y-auto p-4 md:p-8">
         {children}
       </main>
+      <Footer />
     </div>
   );
 }
