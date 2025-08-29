@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 
@@ -12,7 +13,7 @@ export function Footer() {
   return (
     <footer className="border-t bg-background">
       <div className="container mx-auto px-4 py-6 md:px-6">
-        <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
+        <div className="flex flex-col items-center justify-center gap-4 text-sm text-muted-foreground md:flex-row md:gap-6">
           <div className="flex items-center gap-2">
             <Logo />
              <p className="text-center md:text-left">
