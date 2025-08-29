@@ -47,9 +47,9 @@ export default async function NewsPage() {
                 return (
                   <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader>
-                      <CardTitle>
+                      <CardTitle className="text-lg h-14">
                         <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                          {item.title}
+                          {truncateText(item.title, 60)}
                         </a>
                       </CardTitle>
                       <CardDescription>{new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} - via {item.source.name}</CardDescription>
