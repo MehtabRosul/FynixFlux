@@ -1,18 +1,9 @@
 "use client"
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { Rocket } from "lucide-react";
-
-const chartData = [
-  { epoch: "1", val_loss: 0.55 },
-  { epoch: "2", val_loss: 0.48 },
-  { epoch: "3", val_loss: 0.42 },
-  { epoch: "4", val_loss: 0.40 },
-  { epoch: "5", val_loss: 0.39 },
-  { epoch: "6", val_loss: 0.38 },
-  { epoch: "7", val_loss: 0.38 },
-]
 
 const chartConfig = {
   val_loss: {
@@ -26,14 +17,64 @@ interface LiveMetricsChartProps {
 }
 
 export function LiveMetricsChart({ isTraining }: LiveMetricsChartProps) {
+  const [chartData, setChartData] = useState<{ epoch: string; val_loss: number | null }[]>([]);
+  const [currentEpoch, setCurrentEpoch] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (isTraining) {
+      // Reset previous data and start "streaming" new data
+      setChartData([]);
+      setCurrentEpoch(0);
+
+      // Simulate a real-time data feed, like from a WebSocket
+      intervalRef.current = setInterval(() => {
+        setCurrentEpoch(prevEpoch => {
+          const newEpoch = prevEpoch + 1;
+          if (newEpoch > 20) { // Let's say we have 20 epochs
+            if (intervalRef.current) {
+              clearInterval(intervalRef.current);
+            }
+            return prevEpoch;
+          }
+
+          // Simulate a decreasing loss value
+          const newLoss = 0.6 / Math.log(newEpoch + 2) + (Math.random() - 0.5) * 0.05;
+
+          setChartData(prevData => [
+            ...prevData,
+            { epoch: String(newEpoch), val_loss: parseFloat(newLoss.toFixed(4)) },
+          ]);
+          return newEpoch;
+        });
+      }, 1500); // New data point every 1.5 seconds
+
+    } else {
+        // If training is stopped or hasn't started, clear any running interval.
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+    }
+
+    // Cleanup on component unmount
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isTraining]);
+  
+  const isFinished = isTraining && currentEpoch >= 20;
+
   return (
-    <Card>
+    <Card className="min-h-[400px]">
       <CardHeader>
         <CardTitle>Live Training Metrics</CardTitle>
-        {isTraining && <CardDescription>Epoch 7/20 — val_auc = 0.842</CardDescription>}
+        {isTraining && !isFinished && <CardDescription>Epoch {currentEpoch}/20 — Training in progress...</CardDescription>}
+        {isFinished && <CardDescription>Training complete. Final validation loss: {chartData.at(-1)?.val_loss}</CardDescription>}
       </CardHeader>
       <CardContent>
-        {isTraining ? (
+        {isTraining || chartData.length > 0 ? (
           <ChartContainer config={chartConfig} className="h-80 w-full">
             <AreaChart
               data={chartData}
@@ -47,9 +88,9 @@ export function LiveMetricsChart({ isTraining }: LiveMetricsChartProps) {
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="hsla(var(--border) / 0.5)" />
               <XAxis dataKey="epoch" tickLine={false} axisLine={false} tickMargin={8} />
-              <YAxis tickLine={false} axisLine={false} tickMargin={8} domain={['dataMin - 0.05', 'dataMax + 0.05']} />
+              <YAxis tickLine={false} axisLine={false} tickMargin={8} domain={['dataMin - 0.05', 'dataMax + 0.05']} allowDataOverflow />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Area type="monotone" dataKey="val_loss" stroke="var(--color-val_loss)" strokeWidth={2} fillOpacity={1} fill="url(#colorLoss)" />
+              <Area type="monotone" dataKey="val_loss" stroke="var(--color-val_loss)" strokeWidth={2} fillOpacity={1} fill="url(#colorLoss)" isAnimationActive={false}/>
             </AreaChart>
           </ChartContainer>
         ) : (
