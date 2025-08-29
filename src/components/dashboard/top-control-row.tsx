@@ -1,4 +1,5 @@
 
+import type { TrainingConfig } from "@/app/dashboard/page";
 import { ControlCard } from "./control-card";
 
 const problemCategorizationOptions = [
@@ -68,23 +69,29 @@ const evaluationMetricOptions = [
     { value: "smape", label: "Symmetric Mean Absolute Percentage Error (SMAPE)" },
 ];
 
+interface TopControlRowProps {
+    config: TrainingConfig;
+    onConfigChange: (key: keyof TrainingConfig, value: string) => void;
+}
 
-export function TopControlRow() {
+export function TopControlRow({ config, onConfigChange }: TopControlRowProps) {
     const controls = [
-        { label: "Problem Categorization", options: problemCategorizationOptions },
-        { label: "Model Selection", options: modelSelectionOptions },
-        { label: "Data Splitting", options: dataSplittingOptions },
-        { label: "Hyperparameter Tuning", options: hyperparameterTuningOptions },
-        { label: "Evaluation Metric", options: evaluationMetricOptions },
+        { key: "problemCategorization", label: "Problem Categorization", options: problemCategorizationOptions },
+        { key: "modelSelection", label: "Model Selection", options: modelSelectionOptions },
+        { key: "dataSplitting", label: "Data Splitting", options: dataSplittingOptions },
+        { key: "hyperparameterTuning", label: "Hyperparameter Tuning", options: hyperparameterTuningOptions },
+        { key: "evaluationMetric", label: "Evaluation Metric", options: evaluationMetricOptions },
     ];
 
     return (
         <div className="flex flex-wrap gap-5">
             {controls.map(control => (
                 <ControlCard 
-                    key={control.label} 
+                    key={control.key} 
                     label={control.label} 
                     options={control.options}
+                    value={config[control.key as keyof TrainingConfig]}
+                    onValueChange={(value) => onConfigChange(control.key as keyof TrainingConfig, value)}
                 />
             ))}
         </div>
