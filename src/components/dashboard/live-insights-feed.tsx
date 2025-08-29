@@ -4,7 +4,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bot } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface LiveInsightsFeedProps {
@@ -85,10 +84,7 @@ export function LiveInsightsFeed({ isTraining }: LiveInsightsFeedProps) {
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <Bot className="h-6 w-6 text-primary" />
-          <CardTitle>Live Training Feed</CardTitle>
-        </div>
+        <CardTitle>Live Training Feed</CardTitle>
         <CardDescription>A real-time feed of events and observations from the training run.</CardDescription>
       </CardHeader>
       <CardContent>
