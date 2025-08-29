@@ -2,21 +2,31 @@
 'use client';
 
 import { Button } from "@/components/ui/button"
-import { Lightbulb } from "lucide-react"
+import { Bot } from "lucide-react"
 import Link from "next/link"
 
 export function InsightHubButton() {
     return (
-        <div className="fixed bottom-8 right-8 z-50">
+        <div className="fixed bottom-8 right-8 z-50 group">
             <Link href="/insight-hub" aria-label="Open Insight Hub">
-                <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                <div className="relative w-16 h-16">
+                    {/* Ripple Animation */}
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-primary/20 animate-ripple-effect opacity-75"></span>
+                    
+                    {/* Gradient Background */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-secondary transition-all duration-300 group-hover:from-accent group-hover:to-primary"></div>
+                    
+                    {/* Glassmorphism Effect */}
+                    <div className="absolute inset-0 rounded-full backdrop-blur-sm bg-white/10"></div>
+                    
+                    {/* Inner Shadow and Border */}
+                    <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/20 shadow-inner"></div>
+
                     <Button 
-                        className="relative rounded-full h-16 w-16 p-0 shadow-lg bg-background hover:bg-background/90"
+                        className="relative w-full h-full rounded-full bg-transparent shadow-lg hover:bg-transparent"
                         aria-label="Open Insight Hub"
                     >
-                         <span className="absolute inline-flex h-full w-full rounded-full bg-primary/20 animate-ripple-effect opacity-75"></span>
-                        <Lightbulb className="h-8 w-8 text-primary drop-shadow-[0_0_8px_rgba(var(--primary-rgb),0.5)]" />
+                        <Bot className="h-9 w-9 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] transition-all duration-300 group-hover:scale-110" />
                     </Button>
                 </div>
             </Link>
