@@ -33,26 +33,28 @@ const quickActions = [
 export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
   return (
     <>
-        {/* Floating Button */}
-        <div className="fixed bottom-8 right-6 z-50">
-             <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                         <Button
-                            onClick={() => onOpenChange(!isOpen)}
-                            className="rounded-full h-14 w-14 p-0 shadow-2xl shadow-primary/40 flex items-center justify-center gap-1"
-                            aria-label="Open Insight Hub"
-                        >
-                            <Sparkles className="h-5 w-5" />
-                            <BrainCircuit className="h-5 w-5" />
-                        </Button>
-                    </TooltipTrigger>
-                    <TooltipContent side="left" className="mr-2">
-                        <p>Insight Hub</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
-        </div>
+        {/* Floating Button - Hidden when panel is open */}
+        {!isOpen && (
+            <div className="fixed bottom-8 right-6 z-50">
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button
+                                onClick={() => onOpenChange(true)}
+                                className="rounded-full h-14 w-14 p-0 shadow-2xl shadow-primary/40 flex items-center justify-center gap-1"
+                                aria-label="Open Insight Hub"
+                            >
+                                <Sparkles className="h-5 w-5" />
+                                <BrainCircuit className="h-5 w-5" />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="left" className="mr-2">
+                            <p>Insight Hub</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            </div>
+        )}
 
         {/* Panel */}
         <aside
@@ -110,8 +112,8 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
                             <TabsTrigger value="assistant">Assistant</TabsTrigger>
                         </TabsList>
                     </div>
-                    <div className="flex-grow">
-                        <TabsContent value="data" className="p-4 pt-0">
+                    <div className="flex-grow overflow-y-auto">
+                        <TabsContent value="data" className="pt-0">
                             <DataHealthPanel />
                         </TabsContent>
                         <TabsContent value="training" className="p-4">
