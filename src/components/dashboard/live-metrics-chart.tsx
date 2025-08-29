@@ -29,7 +29,7 @@ export function LiveMetricsChart() {
         <CardDescription>Epoch 7/20 — val_auc = 0.842</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="h-64 w-full">
+        <ChartContainer config={chartConfig} className="h-56 w-full">
           <AreaChart
             data={chartData}
             margin={{ top: 5, right: 20, left: -10, bottom: -10 }}
