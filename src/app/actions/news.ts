@@ -25,19 +25,29 @@ export async function getNews(): Promise<Article[]> {
     const apiKey = process.env.NEWS_API_KEY;
     if (!apiKey) {
         console.error("News API key is missing.");
-        return [];
+        // Return a mock object for UI development if no key is present
+        return [
+          {
+            source: { id: 'the-verge', name: 'The Verge' },
+            author: 'Jay Peters',
+            title: 'Nvidia\'s stock is down — what went wrong?',
+            description: 'Nvidia posted record Q2 earnings but its stock still sank — here\'s why data-center revenue, China chip bans, and slowing AI growth rattled Wall Street despite a huge beat.',
+            url: 'https://www.theverge.com/2024/8/22/24183884/nvidia-stock-q2-2025-earnings',
+            urlToImage: 'https://placehold.co/600x400.png',
+            publishedAt: new Date().toISOString(),
+            content: 'Nvidia posted record Q2 earnings but its stock still sank — here\'s why data-center revenue, China chip bans, and slowing AI growth rattled Wall Street despite a huge beat.'
+          }
+        ];
     }
 
-    const query = "MLOps OR \"Machine Learning Operations\" OR \"AI Infrastructure\"";
+    const query = "\"MLOps\" OR (\"Machine Learning\" AND \"Operations\") OR (\"AI\" AND \"Infrastructure\") -pypi.org -github.com";
     const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&pageSize=9&language=en`;
 
     try {
         const response = await fetch(url, {
             headers: {
-                // The API key must be sent in the Authorization header for server-side requests
                 Authorization: `Bearer ${apiKey}`
             },
-            // Revalidate every day (24 * 60 * 60 = 86400 seconds)
             next: { revalidate: 86400 } 
         });
 
@@ -49,7 +59,6 @@ export async function getNews(): Promise<Article[]> {
 
         const data: NewsApiResponse = await response.json();
         
-        // Filter out articles with removed content or no title
         return data.articles.filter(article => article.title && article.title !== "[Removed]" && article.description);
 
     } catch (error) {

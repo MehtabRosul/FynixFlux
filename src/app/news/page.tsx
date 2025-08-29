@@ -43,7 +43,7 @@ export default async function NewsPage() {
                       {item.title}
                     </a>
                   </CardTitle>
-                  <CardDescription>{new Date(item.publishedAt).toLocaleDateString()} - via {item.source.name}</CardDescription>
+                  <CardDescription>{new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} - via {item.source.name}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">{item.description}</p>
