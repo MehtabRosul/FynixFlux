@@ -99,9 +99,9 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
             </div>
 
             {/* Main Content */}
-            <div className="flex-grow overflow-y-auto">
+            <div className="flex-grow">
                  <Tabs defaultValue="data" className="flex flex-col h-full">
-                    <TabsList className="m-2">
+                    <TabsList className="mx-2">
                         <TabsTrigger value="data">Data</TabsTrigger>
                         <TabsTrigger value="training">Training</TabsTrigger>
                         <TabsTrigger value="evaluation">Evaluation</TabsTrigger>
