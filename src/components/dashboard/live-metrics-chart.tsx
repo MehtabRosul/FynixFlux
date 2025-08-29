@@ -68,7 +68,7 @@ export function LiveMetricsChart({ isTraining }: LiveMetricsChartProps) {
   const isFinished = isTraining && currentEpoch >= 20;
 
   return (
-    <Card className="min-h-[465px]">
+    <Card className="min-h-[450px]">
       <CardHeader>
         <CardTitle>Live Training Metrics</CardTitle>
         {isTraining && !isFinished && <CardDescription>Epoch {currentEpoch}/20 — Training in progress...</CardDescription>}
