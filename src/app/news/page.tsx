@@ -12,6 +12,7 @@ interface Article {
   };
   title: string;
   description: string;
+  content: string; // Add content field
   url: string;
   publishedAt: string;
 }
@@ -19,7 +20,7 @@ interface Article {
 export default async function NewsPage() {
   const newsItems: Article[] = await getNews();
 
-  const truncateText = (text: string, maxLength: number) => {
+  const truncateText = (text: string | null, maxLength: number) => {
     if (!text) return '';
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
@@ -41,24 +42,28 @@ export default async function NewsPage() {
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {newsItems.length > 0 ? (
-              newsItems.map((item, index) => (
-              <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                      {item.title}
-                    </a>
-                  </CardTitle>
-                  <CardDescription>{new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} - via {item.source.name}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col flex-grow">
-                  <p className="text-muted-foreground flex-grow">{truncateText(item.description, 150)}</p>
-                   <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold mt-4 inline-block hover:underline">
-                    Read More
-                  </a>
-                </CardContent>
-              </Card>
-            ))
+              newsItems.map((item, index) => {
+                // Use content if description is short or missing, then truncate
+                const displayContent = item.description && item.description.length > 50 ? item.description : item.content;
+                return (
+                  <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <CardTitle>
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                          {item.title}
+                        </a>
+                      </CardTitle>
+                      <CardDescription>{new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} - via {item.source.name}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-col flex-grow">
+                      <p className="text-muted-foreground flex-grow">{truncateText(displayContent, 150)}</p>
+                       <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold mt-4 inline-block hover:underline">
+                        Read More
+                      </a>
+                    </CardContent>
+                  </Card>
+                );
+              })
             ) : (
               <p className="text-muted-foreground col-span-full text-center">Could not fetch news at the moment. Please try again later.</p>
             )}
