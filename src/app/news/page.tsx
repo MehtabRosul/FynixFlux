@@ -45,8 +45,8 @@ export default async function NewsPage() {
                   </CardTitle>
                   <CardDescription>{new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} - via {item.source.name}</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{item.description}</p>
+                <CardContent className="flex flex-col flex-grow">
+                  <p className="text-muted-foreground flex-grow">{item.description}</p>
                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold mt-4 inline-block hover:underline">
                     Read More
                   </a>
