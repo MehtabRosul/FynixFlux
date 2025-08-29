@@ -10,7 +10,7 @@ import { Menu, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Logo = () => (
-  <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
     {/* Your Logo Here */}
   </div>
 );
