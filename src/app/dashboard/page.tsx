@@ -9,7 +9,7 @@ import { ModelDetailsPanel } from '@/components/dashboard/model-details-panel';
 import { ModelTestPanel } from '@/components/dashboard/model-test-panel';
 import { TopControlRow } from '@/components/dashboard/top-control-row';
 import { TrainingControlsPanel } from '@/components/dashboard/training-controls-panel';
-import { AiInsights } from '@/components/dashboard/ai-insights';
+import { LiveInsightsFeed } from '@/components/dashboard/live-insights-feed';
 
 export interface TrainingConfig {
   problemCategorization: string | null;
@@ -50,7 +50,7 @@ export default function DashboardPage() {
         {/* Left Column */}
         <div className="lg:col-span-8 space-y-6">
           <LiveMetricsChart isTraining={isTraining} />
-          <AiInsights />
+          <LiveInsightsFeed isTraining={isTraining} />
         </div>
 
         {/* Right Column */}
