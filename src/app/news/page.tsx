@@ -19,6 +19,12 @@ interface Article {
 export default async function NewsPage() {
   const newsItems: Article[] = await getNews();
 
+  const truncateText = (text: string, maxLength: number) => {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -46,7 +52,7 @@ export default async function NewsPage() {
                   <CardDescription>{new Date(item.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} - via {item.source.name}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-grow">
-                  <p className="text-muted-foreground flex-grow">{item.description}</p>
+                  <p className="text-muted-foreground flex-grow">{truncateText(item.description, 150)}</p>
                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold mt-4 inline-block hover:underline">
                     Read More
                   </a>
