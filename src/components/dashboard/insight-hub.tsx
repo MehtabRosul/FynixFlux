@@ -111,7 +111,7 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
                         </TabsList>
                     </div>
                     <div className="flex-grow">
-                        <TabsContent value="data" className="p-4">
+                        <TabsContent value="data" className="p-4 pt-0">
                             <DataHealthPanel />
                         </TabsContent>
                         <TabsContent value="training" className="p-4">
