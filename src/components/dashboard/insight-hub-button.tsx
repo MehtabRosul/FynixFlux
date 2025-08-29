@@ -7,10 +7,15 @@ import Link from "next/link"
 
 export function InsightHubButton() {
     return (
-        <Button asChild className="fixed bottom-8 right-8 rounded-full h-16 w-16 p-0 shadow-lg animate-soothing-glow">
+        <div className="fixed bottom-8 right-8 z-50">
             <Link href="/insight-hub" aria-label="Open Insight Hub">
-                <Lightbulb className="h-8 w-8" />
+                <div className="relative">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-primary/75 animate-ripple-effect opacity-75"></span>
+                    <Button className="relative rounded-full h-16 w-16 p-0 shadow-lg">
+                        <Lightbulb className="h-8 w-8" />
+                    </Button>
+                </div>
             </Link>
-        </Button>
+        </div>
     )
 }
