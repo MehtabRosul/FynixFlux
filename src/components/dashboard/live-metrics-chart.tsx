@@ -2,7 +2,7 @@
 "use client"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { Area, AreaChart, CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 const chartData = [
   { epoch: "1", val_loss: 0.55 },
@@ -32,7 +32,7 @@ export function LiveMetricsChart() {
         <ChartContainer config={chartConfig} className="h-56 w-full">
           <AreaChart
             data={chartData}
-            margin={{ top: 5, right: 20, left: -10, bottom: -10 }}
+            margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
           >
             <defs>
               <linearGradient id="colorLoss" x1="0" y1="0" x2="0" y2="1">
