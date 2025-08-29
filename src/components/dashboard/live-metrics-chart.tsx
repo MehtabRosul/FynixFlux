@@ -27,7 +27,7 @@ interface LiveMetricsChartProps {
 
 export function LiveMetricsChart({ isTraining }: LiveMetricsChartProps) {
   return (
-    <Card className="min-h-[465px]">
+    <Card>
       <CardHeader>
         <CardTitle>Live Training Metrics</CardTitle>
         {isTraining && <CardDescription>Epoch 7/20 — val_auc = 0.842</CardDescription>}
