@@ -57,7 +57,7 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
         {/* Panel */}
         <aside
             className={cn(
-            'fixed top-0 right-0 h-full z-[60] bg-card border-l transition-transform duration-300 ease-in-out flex flex-col',
+            'fixed top-16 right-0 h-[calc(100vh-4rem)] z-30 bg-card border-l transition-transform duration-300 ease-in-out flex flex-col',
             isOpen ? 'translate-x-0' : 'translate-x-full'
             )}
             style={{ width: '420px' }}
@@ -78,7 +78,7 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
             </header>
 
             {/* Quick Actions */}
-             <div className="p-2 border-b">
+             <div className="p-2 border-b flex-shrink-0">
                 <div className="grid grid-cols-4 gap-1">
                     {quickActions.map(action => (
                         <TooltipProvider key={action.id}>
@@ -99,30 +99,34 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
             </div>
 
             {/* Main Content */}
-            <div className="flex-grow">
+            <div className="flex-grow overflow-y-auto">
                  <Tabs defaultValue="data" className="flex flex-col h-full">
-                    <TabsList className="mx-2">
-                        <TabsTrigger value="data">Data</TabsTrigger>
-                        <TabsTrigger value="training">Training</TabsTrigger>
-                        <TabsTrigger value="evaluation">Evaluation</TabsTrigger>
-                        <TabsTrigger value="deployment">Deployment</TabsTrigger>
-                        <TabsTrigger value="assistant">Assistant</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="data" className="flex-grow p-4">
-                        <DataHealthPanel />
-                    </TabsContent>
-                    <TabsContent value="training" className="flex-grow p-4">
-                        <p className="text-center text-muted-foreground">Training insights will appear here.</p>
-                    </TabsContent>
-                    <TabsContent value="evaluation" className="flex-grow p-4">
-                        <p className="text-center text-muted-foreground">Evaluation insights will appear here.</p>
-                    </TabsContent>
-                    <TabsContent value="deployment" className="flex-grow p-4">
-                        <p className="text-center text-muted-foreground">Deployment insights will appear here.</p>
-                    </TabsContent>
-                    <TabsContent value="assistant" className="flex-grow p-4">
-                        <p className="text-center text-muted-foreground">AI Assistant chat will appear here.</p>
-                    </TabsContent>
+                    <div className="flex-shrink-0">
+                        <TabsList className="mx-2 mt-2">
+                            <TabsTrigger value="data">Data</TabsTrigger>
+                            <TabsTrigger value="training">Training</TabsTrigger>
+                            <TabsTrigger value="evaluation">Evaluation</TabsTrigger>
+                            <TabsTrigger value="deployment">Deployment</TabsTrigger>
+                            <TabsTrigger value="assistant">Assistant</TabsTrigger>
+                        </TabsList>
+                    </div>
+                    <div className="flex-grow">
+                        <TabsContent value="data" className="p-4">
+                            <DataHealthPanel />
+                        </TabsContent>
+                        <TabsContent value="training" className="p-4">
+                            <p className="text-center text-muted-foreground">Training insights will appear here.</p>
+                        </TabsContent>
+                        <TabsContent value="evaluation" className="p-4">
+                            <p className="text-center text-muted-foreground">Evaluation insights will appear here.</p>
+                        </TabsContent>
+                        <TabsContent value="deployment" className="p-4">
+                            <p className="text-center text-muted-foreground">Deployment insights will appear here.</p>
+                        </TabsContent>
+                        <TabsContent value="assistant" className="p-4">
+                            <p className="text-center text-muted-foreground">AI Assistant chat will appear here.</p>
+                        </TabsContent>
+                    </div>
                 </Tabs>
             </div>
             
@@ -133,7 +137,7 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
         </aside>
         
         {/* Overlay */}
-        {isOpen && <div onClick={() => onOpenChange(false)} className="fixed inset-0 bg-black/30 z-50 md:hidden" />}
+        {isOpen && <div onClick={() => onOpenChange(false)} className="fixed inset-0 bg-black/30 z-20 md:hidden" />}
     </>
   );
 }

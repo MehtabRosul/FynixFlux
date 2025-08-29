@@ -26,7 +26,7 @@ function DashboardHeader() {
     const pathname = usePathname();
 
     return (
-        <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6">
+        <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6 flex-shrink-0">
             <Link href="/" className="flex items-center gap-2 font-semibold">
                 <Logo />
                 <span>ForgeFlow</span>
@@ -92,14 +92,14 @@ function DashboardHeader() {
 
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [isInsightHubOpen, setIsInsightHubOpen] = useState(false);
+  const [isInsightHubOpen, setIsInsightHubOpen] = useState(true);
   
   return (
-    <div className="flex min-h-screen w-full flex-col">
+    <div className="flex flex-col h-screen w-full bg-background">
       <DashboardHeader />
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
         <main className={cn(
-          "flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 transition-all duration-300 ease-in-out",
+          "flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 transition-all duration-300 ease-in-out overflow-y-auto",
           isInsightHubOpen ? 'md:mr-[420px]' : 'mr-0'
         )}>
           {children}
