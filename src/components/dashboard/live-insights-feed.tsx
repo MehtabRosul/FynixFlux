@@ -92,7 +92,7 @@ export function LiveInsightsFeed({ isTraining }: LiveInsightsFeedProps) {
         <CardDescription>A real-time feed of events and observations from the training run.</CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-48 w-full rounded-md border p-4" ref={scrollAreaRef}>
+        <ScrollArea className="h-40 w-full rounded-md border p-4" ref={scrollAreaRef}>
           {insights.length > 0 ? (
             <AnimatePresence>
               {insights.map((insight, index) => (
