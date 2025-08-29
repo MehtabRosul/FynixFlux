@@ -29,6 +29,7 @@ export default {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          'rgb': 'var(--primary-rgb)',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -112,6 +113,17 @@ export default {
             opacity: '0'
           }
         },
+        'tilt': {
+          '0%, 50%, 100%': {
+            transform: 'rotate(0deg)'
+          },
+          '25%': {
+            transform: 'rotate(1deg)'
+          },
+          '75%': {
+            transform: 'rotate(-1deg)'
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -119,6 +131,7 @@ export default {
         'gradient-xy': 'gradient-xy 15s ease infinite',
         'text-gradient': 'text-gradient 3s linear infinite',
         'ripple-effect': 'ripple-effect 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'tilt': 'tilt 10s infinite linear',
       },
     },
   },
