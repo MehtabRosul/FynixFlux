@@ -11,7 +11,7 @@ export function DataUploadPanel() {
         <CardTitle>Dataset upload here</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-muted-foreground/30 p-12 text-center relative">
+        <div className="flex flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-muted-foreground/30 p-16 text-center relative">
             <UploadCloud className="w-12 h-12 text-muted-foreground" />
             <p className="text-muted-foreground text-sm">Drag & drop data here or click to select. Any dataset format is supported.</p>
             <Button asChild variant="outline">
