@@ -9,6 +9,7 @@ import { ModelDetailsPanel } from '@/components/dashboard/model-details-panel';
 import { ModelTestPanel } from '@/components/dashboard/model-test-panel';
 import { TopControlRow } from '@/components/dashboard/top-control-row';
 import { TrainingControlsPanel } from '@/components/dashboard/training-controls-panel';
+import { AiInsights } from '@/components/dashboard/ai-insights';
 
 export interface TrainingConfig {
   problemCategorization: string | null;
@@ -45,24 +46,25 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <TopControlRow config={trainingConfig} onConfigChange={handleConfigChange} />
 
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column */}
-        <div className="col-span-12 lg:col-span-8 space-y-6">
+        <div className="lg:col-span-8 space-y-6">
           <LiveMetricsChart isTraining={isTraining} />
+          <AiInsights />
         </div>
 
         {/* Right Column */}
-        <div className="col-span-12 lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-6">
           <DataUploadPanel />
           <TrainingControlsPanel onStartTraining={handleStartTraining} />
         </div>
+      </div>
 
-        {/* Lower Row */}
-        <div className="col-span-12 grid lg:grid-cols-3 gap-6">
-          <ModelTestPanel />
-          <ModelDetailsPanel />
-          <DatasetPreviewPanel />
-        </div>
+      {/* Lower Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <ModelTestPanel />
+        <ModelDetailsPanel />
+        <DatasetPreviewPanel />
       </div>
     </div>
   );
