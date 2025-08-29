@@ -13,7 +13,7 @@ export function DataUploadPanel() {
       <CardContent className="space-y-4">
         <div className="flex flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-muted-foreground/30 p-12 text-center relative">
             <UploadCloud className="w-12 h-12 text-muted-foreground" />
-            <p className="text-muted-foreground text-sm">Drag & drop data here or click to select. Supported: CSV, Parquet, JSONL, XLSX.</p>
+            <p className="text-muted-foreground text-sm">Drag & drop data here or click to select. Any dataset format is supported.</p>
             <Button asChild variant="outline">
                 <label htmlFor="file-upload">
                     <FileUp className="mr-2 h-4 w-4" />
