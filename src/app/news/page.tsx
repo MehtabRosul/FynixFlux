@@ -11,8 +11,8 @@ interface Article {
     name: string;
   };
   title: string;
-  description: string;
-  content: string; // Add content field
+  description: string | null;
+  content: string | null;
   url: string;
   publishedAt: string;
 }
@@ -43,8 +43,7 @@ export default async function NewsPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {newsItems.length > 0 ? (
               newsItems.map((item, index) => {
-                // Use content if description is short or missing, then truncate
-                const displayContent = item.description && item.description.length > 50 ? item.description : item.content;
+                const displayContent = (item.description && item.description.length > 50) ? item.description : (item.content || item.description);
                 return (
                   <Card key={index} className="flex flex-col hover:shadow-lg transition-shadow">
                     <CardHeader>
