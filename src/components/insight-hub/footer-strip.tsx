@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -7,7 +8,7 @@ import { MessageSquare } from "lucide-react";
 
 export function FooterStrip() {
   return (
-    <div className="bg-[#0f1113] rounded-xl h-full flex items-center justify-between px-6 border border-white/5">
+    <div className="bg-[#0f1113] rounded-xl h-[96px] flex items-center justify-between px-6 border border-white/5 shadow-[0_-6px_18px_rgba(2,2,8,0.35)]">
         {/* Left: Global Controls */}
         <div className="flex items-center gap-6">
             <div className="flex items-center space-x-2">
@@ -53,10 +54,10 @@ export function FooterStrip() {
                 <MessageSquare className="w-4 h-4 mr-2" />
                 Ask Insight Hub
             </Button>
-             <Button variant="outline" className="text-white/90 border-white/20 hover:bg-white/10">
+             <Button variant="outline" className="text-white/90 border-white/20 hover:bg-white/10 h-11">
                 Apply All (Preview)
             </Button>
-            <Button className="bg-[#4F46E5] text-white hover:bg-[#4F46E5]/90">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 h-11 w-40 shadow-lg shadow-primary/30">
                 Export Model
             </Button>
         </div>

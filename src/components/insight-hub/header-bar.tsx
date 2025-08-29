@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Lightbulb, Settings, ShieldCheck, TestTube } from "lucide-react";
@@ -11,40 +12,34 @@ const Logo = () => (
 
 export function HeaderBar() {
   return (
-    <div className="bg-[#0f1113] rounded-xl h-full flex items-center justify-between px-4 border border-white/5">
+    <div className="bg-[#0f1113] rounded-xl h-[72px] flex items-center justify-between px-6 border border-white/5 shadow-[0_6px_18px_rgba(2,2,8,0.35)]">
       <div className="flex items-center gap-4">
         <Logo />
         <div>
-            <h1 className="text-lg font-bold">Insight Hub</h1>
-            <p className="text-xs text-white/70">Project • Run Name • <span className="text-green-400">Healthy</span></p>
+            <h1 className="text-lg font-bold leading-none">Insight Hub</h1>
+            <p className="text-xs text-white/60 leading-tight mt-1">Project • Run Name • <span className="text-green-400">Healthy</span></p>
         </div>
       </div>
       
-      {/* Center content if any, e.g., context selector */}
-      <div>
-        {/* Placeholder for Context Selector */}
+      <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" className="text-white/70 hover:bg-white/10 hover:text-white w-10 h-10 rounded-full">
+                <ShieldCheck className="w-5 h-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="text-white/70 hover:bg-white/10 hover:text-white w-10 h-10 rounded-full">
+                <Lightbulb className="w-5 h-5" />
+            </Button>
+             <Button variant="ghost" size="icon" className="text-white/70 hover:bg-white/10 hover:text-white w-10 h-10 rounded-full">
+                <Settings className="w-5 h-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="text-white/70 hover:bg-white/10 hover:text-white w-10 h-10 rounded-full">
+                <TestTube className="w-5 h-5" />
+            </Button>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" className="text-white/70 hover:bg-white/10 hover:text-white">
-                <ShieldCheck className="w-4 h-4 mr-2" /> Validate Dataset
-            </Button>
-            <Button variant="ghost" size="sm" className="text-white/70 hover:bg-white/10 hover:text-white">
-                <Lightbulb className="w-4 h-4 mr-2" /> Suggest Model
-            </Button>
-             <Button variant="ghost" size="sm" className="text-white/70 hover:bg-white/10 hover:text-white">
-                <Settings className="w-4 h-4 mr-2" /> Plan Tuning
-            </Button>
-            <Button variant="ghost" size="sm" className="text-white/70 hover:bg-white/10 hover:text-white">
-                <TestTube className="w-4 h-4 mr-2" /> Run AI QA
-            </Button>
-        </div>
-        <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="bg-[#161719] text-white/70">Health: 98%</Badge>
-            <Badge variant="secondary" className="bg-[#161719] text-white/70">Task: T-a4g8s</Badge>
+      <div className="flex items-center gap-2">
+            <Badge variant="secondary" className="bg-[#161719] text-white/70 border-none">Health: 98%</Badge>
+            <Badge variant="secondary" className="bg-[#161719] text-white/70 border-none">Task: T-a4g8s</Badge>
             <Badge variant="secondary" className="bg-green-500/20 text-green-300 border border-green-500/30">GPU: Idle</Badge>
-        </div>
       </div>
     </div>
   );
