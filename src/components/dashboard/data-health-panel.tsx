@@ -29,7 +29,7 @@ export function DataHealthPanel() {
     const healthScore = 82;
 
     return (
-        <Card className="bg-background/50 border-none shadow-none">
+        <Card className="border-none">
             <CardHeader>
                 <CardTitle>Dataset Health & Auto-Diagnosis</CardTitle>
                 <CardDescription>customer_churn_v1.csv (version <GitCommitVertical className="inline-block h-4 w-4" /> a1b2c3d)</CardDescription>
