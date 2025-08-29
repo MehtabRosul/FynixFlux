@@ -34,17 +34,19 @@ export function DataHealthPanel() {
                 <CardTitle>Dataset Health & Auto-Diagnosis</CardTitle>
                 <CardDescription>customer_churn_v1.csv (version <GitCommitVertical className="inline-block h-4 w-4" /> a1b2c3d)</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="px-0 space-y-6">
                 <div>
-                    <div className="flex justify-between items-center mb-2">
+                    <div className="flex justify-between items-center mb-2 px-6">
                          <h3 className="text-sm font-medium">Health Score</h3>
                          <span className="text-lg font-bold text-primary">{healthScore}/100</span>
                     </div>
-                    <Progress value={healthScore} />
-                    <p className="text-xs text-muted-foreground mt-2">Looks good, but some improvements possible.</p>
+                    <div className="px-6">
+                      <Progress value={healthScore} />
+                      <p className="text-xs text-muted-foreground mt-2">Looks good, but some improvements possible.</p>
+                    </div>
                 </div>
 
-                <div>
+                <div className="px-6">
                     <h3 className="text-sm font-medium mb-3">Prioritized Issues</h3>
                     <div className="space-y-3">
                         {issues.map((issue, index) => (
