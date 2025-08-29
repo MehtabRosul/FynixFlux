@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, LayoutDashboard, Database, Library } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { InsightHub } from "../dashboard/insight-hub";
+import { useState } from "react";
 
 const Logo = () => (
   <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -90,12 +92,20 @@ function DashboardHeader() {
 
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const [isInsightHubOpen, setIsInsightHubOpen] = useState(false);
+  
   return (
     <div className="flex min-h-screen w-full flex-col">
       <DashboardHeader />
-      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-        {children}
-      </main>
+      <div className="flex flex-1">
+        <main className={cn(
+          "flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 transition-all duration-300 ease-in-out",
+          isInsightHubOpen ? 'md:mr-[420px]' : 'mr-0'
+        )}>
+          {children}
+        </main>
+        <InsightHub isOpen={isInsightHubOpen} onOpenChange={setIsInsightHubOpen} />
+      </div>
     </div>
   );
 }
