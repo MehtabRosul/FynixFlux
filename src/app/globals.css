@@ -12,6 +12,7 @@
     --popover: 240 9% 6%;
     --popover-foreground: 210 40% 98%;
     --primary: 243 75% 58%; /* #4F46E5 */
+    --primary-rgb: 79, 70, 229;
     --primary-foreground: 210 40% 98%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -40,6 +41,7 @@
     --popover: 240 9% 6%;
     --popover-foreground: 210 40% 98%;
     --primary: 243 75% 58%;
+    --primary-rgb: 79, 70, 229;
     --primary-foreground: 210 40% 98%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;

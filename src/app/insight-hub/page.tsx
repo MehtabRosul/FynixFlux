@@ -12,28 +12,28 @@ const insightActions = [
       label: "Analyze Dataset Health", 
       description: "Run automated data quality, PII, and schema checks.",
       icon: ShieldCheck,
-      href: "/dashboard/datasets"
+      href: "/dashboard"
     },
     { 
       id: "suggest_model", 
       label: "Get Model Suggestions",
       description: "Receive AI-powered recommendations for the best model types.",
       icon: Lightbulb,
-      href: "#"
+      href: "/dashboard"
     },
     { 
       id: "plan_tuning", 
       label: "Create a Tuning Plan",
       description: "Generate a hyperparameter tuning strategy for your model.",
       icon: Settings,
-      href: "#"
+      href: "/dashboard"
     },
     { 
       id: "run_qa", 
       label: "Perform AI-driven QA",
       description: "Run robustness, fairness, and adversarial tests on your model.",
       icon: TestTube,
-      href: "#"
+      href: "/dashboard"
     }
 ];
 
