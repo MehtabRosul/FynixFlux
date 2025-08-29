@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { Menu, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Logo = () => (
@@ -17,6 +17,7 @@ const Logo = () => (
 
 export function Header() {
   const pathname = usePathname();
+  const isDashboard = pathname.startsWith('/dashboard');
 
   const navLinks = [
     { href: "/features", label: "Features" },
@@ -53,9 +54,15 @@ export function Header() {
         </div>
 
         <div className="hidden md:flex items-center gap-4 ml-6">
-           <Button asChild>
-                <Link href="/get-in-touch">Contact Us</Link>
-            </Button>
+           {isDashboard ? (
+                <Button asChild variant="outline">
+                    <Link href="/"><ArrowLeft className="mr-2 h-4 w-4" /> Exit Dashboard</Link>
+                </Button>
+           ) : (
+             <Button asChild>
+                  <Link href="/get-in-touch">Contact Us</Link>
+              </Button>
+           )}
         </div>
 
 
@@ -89,9 +96,15 @@ export function Header() {
                 ))}
               </nav>
                <div className="flex flex-col gap-2">
-                 <Button asChild>
-                    <Link href="/get-in-touch">Contact Us</Link>
-                </Button>
+                 {isDashboard ? (
+                      <Button asChild variant="outline">
+                          <Link href="/"><ArrowLeft className="mr-2 h-4 w-4" /> Exit Dashboard</Link>
+                      </Button>
+                 ) : (
+                   <Button asChild>
+                      <Link href="/get-in-touch">Contact Us</Link>
+                  </Button>
+                 )}
                 </div>
             </div>
           </SheetContent>

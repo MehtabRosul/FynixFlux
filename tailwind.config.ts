@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -101,16 +102,12 @@ export default {
             'background-position': '200% center',
           },
         },
-        'pulse-glow': {
+        'subtle-pulse': {
           '0%, 100%': {
-            opacity: '1',
-            transform: 'scale(1)',
-            'box-shadow': '0 0 0 0 rgba(var(--primary-rgb), 0.7)',
+            'box-shadow': '0 0 0 0 rgba(var(--primary-rgb), 0.3)',
           },
-          '50%': {
-            opacity: '0.9',
-            transform: 'scale(1.05)',
-            'box-shadow': '0 0 20px 10px rgba(var(--primary-rgb), 0)',
+          '70%': {
+            'box-shadow': '0 0 0 10px rgba(var(--primary-rgb), 0)',
            },
         },
       },
@@ -119,7 +116,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'gradient-xy': 'gradient-xy 15s ease infinite',
         'text-gradient': 'text-gradient 3s linear infinite',
-        'pulse-glow': 'pulse-glow 2s infinite cubic-bezier(0.4, 0, 0.6, 1)',
+        'subtle-pulse': 'subtle-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1)',
       },
     },
   },
