@@ -14,7 +14,7 @@ export function TrainingControlsPanel({ onStartTraining }: TrainingControlsPanel
         <CardTitle>Start Training</CardTitle>
         <CardDescription>Begin the model training process.</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="py-7">
         <Button className="w-full" onClick={onStartTraining}>
           <Rocket className="mr-2 h-4 w-4" />
           Start Model Training
