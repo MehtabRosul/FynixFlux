@@ -8,7 +8,6 @@ import {
   BrainCircuit,
   X,
   Pin,
-  Minimize2,
   MessageSquare,
   ShieldCheck,
   Lightbulb,
@@ -17,6 +16,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { DataHealthPanel } from './data-health-panel';
 
 interface InsightHubProps {
     isOpen: boolean;
@@ -109,11 +109,7 @@ export function InsightHub({ isOpen, onOpenChange }: InsightHubProps) {
                         <TabsTrigger value="assistant">Assistant</TabsTrigger>
                     </TabsList>
                     <TabsContent value="data" className="flex-grow p-4">
-                        <Card>
-                            <CardContent className="pt-6">
-                                <p className="text-center text-muted-foreground">Dataset Health & Auto-Diagnosis will appear here.</p>
-                            </CardContent>
-                        </Card>
+                        <DataHealthPanel />
                     </TabsContent>
                     <TabsContent value="training" className="flex-grow p-4">
                         <p className="text-center text-muted-foreground">Training insights will appear here.</p>
