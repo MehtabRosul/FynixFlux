@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 interface InsightHubPanelProps {
@@ -21,14 +22,16 @@ const placeholderQuestions = [
 ];
 
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
-  const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholderQuestions[0]);
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     if (inputValue) return;
 
+    let index = 0;
     const intervalId = setInterval(() => {
-      setCurrentPlaceholderIndex(prevIndex => (prevIndex + 1) % placeholderQuestions.length);
+      index = (index + 1) % placeholderQuestions.length;
+      setCurrentPlaceholder(placeholderQuestions[index]);
     }, 4000); 
 
     return () => clearInterval(intervalId);
@@ -36,7 +39,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
 
 
   return (
-    <Card>
+    <Card className="relative overflow-hidden">
         <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
@@ -51,11 +54,18 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
         <CardContent>
             <div className="space-y-4">
                  <div className="relative">
-                       <div
+                    <AnimatePresence mode="wait">
+                       <motion.div
+                           key={currentPlaceholder}
+                           initial={{ opacity: 0, y: -10 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           exit={{ opacity: 0, y: 10 }}
+                           transition={{ duration: 0.5 }}
                            className="absolute inset-0 p-3 pointer-events-none text-muted-foreground text-sm"
                        >
-                           {placeholderQuestions[currentPlaceholderIndex]}
-                       </div>
+                           {currentPlaceholder}
+                       </motion.div>
+                    </AnimatePresence>
                     <Textarea
                         placeholder=""
                         rows={4}
@@ -64,28 +74,15 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                         onChange={(e) => setInputValue(e.target.value)}
                     />
                 </div>
-                <div className="flex justify-end items-center pt-4 pr-4">
-                     <div className="relative w-20 h-20 group">
-                        {/* Ripple Animation */}
-                        <span className="absolute inline-flex h-full w-full rounded-full bg-primary/20 animate-ripple-effect opacity-75"></span>
-                        
-                        {/* Gradient Background */}
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-secondary transition-all duration-300 group-hover:from-accent group-hover:to-primary"></div>
-                        
-                        {/* Glassmorphism Effect */}
-                        <div className="absolute inset-0 rounded-full backdrop-blur-sm bg-white/10"></div>
-                        
-                        {/* Inner Shadow and Border */}
-                        <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/20 shadow-inner"></div>
-
-                        <Button 
-                            size="icon"
-                            className="relative w-full h-full rounded-full bg-transparent shadow-lg hover:bg-transparent"
-                            aria-label="Run"
-                        >
-                            <Sparkles className="h-9 w-9 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] transition-all duration-300 group-hover:scale-110" />
-                        </Button>
-                    </div>
+                <div className="flex justify-end pt-4">
+                    <Button
+                        size="lg"
+                        className="bg-gradient-to-r from-accent to-primary text-white font-bold text-lg animate-tilt"
+                        aria-label="Run"
+                    >
+                        <Sparkles className="mr-2 h-5 w-5" />
+                        Run Query
+                    </Button>
                 </div>
             </div>
         </CardContent>
