@@ -15,6 +15,7 @@ import { InsightHubPanel } from '@/components/dashboard/insight-hub-panel';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { InsightHubButton } from '@/components/dashboard/insight-hub-button';
+import { AiExplanationPanel } from '@/components/dashboard/ai-explanation-panel';
 
 export interface TrainingConfig {
   problemCategorization: string | null;
@@ -136,6 +137,19 @@ export default function DashboardPage() {
             </motion.div>
          )}
         </AnimatePresence>
+        
+        {isInsightHubMode && (
+             <motion.div
+                className="overflow-hidden"
+                variants={animationVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+            >
+                <AiExplanationPanel className="h-full" />
+            </motion.div>
+        )}
+
         <ModelDetailsPanel className="h-full" />
         <DatasetPreviewPanel />
       </div>
