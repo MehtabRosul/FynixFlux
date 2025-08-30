@@ -4,9 +4,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bot, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { AnimatedBotIcon } from "@/components/ui/animated-bot-icon";
 
 interface InsightHubPanelProps {
   onExit: () => void;
@@ -41,7 +42,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
         <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
-                   <Bot className="w-8 h-8 text-primary" />
+                   <AnimatedBotIcon className="w-8 h-8 text-primary" />
                 </div>
                 <div>
                     <CardTitle className="text-2xl font-headline">Insight Hub</CardTitle>
