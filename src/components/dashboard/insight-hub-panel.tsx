@@ -6,18 +6,19 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface InsightHubPanelProps {
   onExit: () => void;
 }
 
 const placeholderQuestions = [
-    "Generate a SHAP explanation for the current model.",
-    "Compare the performance of the last two training runs.",
-    "What was the best performing model for the `user_churn` dataset?",
-    "Summarize the training logs from run `run_abc_123`.",
-    "Explain the feature importance for my regression model.",
-    "Draft a model card for the production candidate."
+    "What were the top 5 most important features for my latest `churn-prediction` model?",
+    "Compare the ROC AUC of `run-xgboost-v1` and `run-lightgbm-v2`.",
+    "Generate a model card for the model tagged as `production-candidate`.",
+    "Summarize the training logs for any failed runs in the last 24 hours.",
+    "Show me all datasets with a data quality score below 85%.",
+    "Draft a Python script to load and run inference with model `v3.onnx`."
 ];
 
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
@@ -29,7 +30,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
 
     const intervalId = setInterval(() => {
       setCurrentPlaceholderIndex(prevIndex => (prevIndex + 1) % placeholderQuestions.length);
-    }, 2000);
+    }, 4000); // Increased interval for a calmer feel
 
     return () => clearInterval(intervalId);
   }, [inputValue]);
@@ -50,13 +51,29 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
         </CardHeader>
         <CardContent>
             <div className="space-y-4">
-                <Textarea 
-                    placeholder={placeholderQuestions[currentPlaceholderIndex]}
-                    rows={4}
-                    className="text-base"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                />
+                 <div className="relative">
+                    <AnimatePresence mode="wait">
+                       {!inputValue && (
+                           <motion.div
+                               key={currentPlaceholderIndex}
+                               initial={{ opacity: 0, y: 5 }}
+                               animate={{ opacity: 1, y: 0 }}
+                               exit={{ opacity: 0, y: -5 }}
+                               transition={{ duration: 0.5, ease: "easeInOut" }}
+                               className="absolute inset-0 p-3 pointer-events-none text-muted-foreground text-sm"
+                           >
+                               {placeholderQuestions[currentPlaceholderIndex]}
+                           </motion.div>
+                       )}
+                    </AnimatePresence>
+                    <Textarea
+                        placeholder=""
+                        rows={4}
+                        className="text-base bg-transparent"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                    />
+                </div>
                 <div className="flex justify-end">
                     <Button>
                         <Sparkles className="mr-2" />
