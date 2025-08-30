@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 interface InsightHubPanelProps {
@@ -56,18 +55,11 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
         <CardContent>
             <div className="space-y-4">
                  <div className="relative">
-                    <AnimatePresence mode="wait">
-                       <motion.div
-                           key={currentPlaceholder}
-                           initial={{ opacity: 0, y: -10 }}
-                           animate={{ opacity: 1, y: 0 }}
-                           exit={{ opacity: 0, y: 10 }}
-                           transition={{ duration: 0.5 }}
-                           className="absolute inset-0 p-3 pointer-events-none text-muted-foreground text-sm"
-                       >
-                           {currentPlaceholder}
-                       </motion.div>
-                    </AnimatePresence>
+                    <div
+                       className="absolute inset-0 p-3 pointer-events-none text-muted-foreground text-sm"
+                    >
+                       {currentPlaceholder}
+                    </div>
                     <Textarea
                         placeholder=""
                         rows={4}
@@ -77,7 +69,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     />
                 </div>
                 <div className="flex justify-end pt-4">
-                    <Button size="lg">
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-primary-foreground animate-subtle-gradient bg-[length:400%_400%]">
                         <Sparkles className="mr-2 h-5 w-5" />
                         Start Training
                     </Button>
