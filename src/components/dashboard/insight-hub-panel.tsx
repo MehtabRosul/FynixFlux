@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
-import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from "react";
 
 interface InsightHubPanelProps {
