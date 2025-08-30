@@ -64,7 +64,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     />
                 </div>
                 <div className="flex justify-end pt-4">
-                    <Button size="lg" className="animate-breathing-glow">
+                    <Button size="lg">
                         <Sparkles className="mr-2 h-5 w-5" />
                         Start Training
                     </Button>
