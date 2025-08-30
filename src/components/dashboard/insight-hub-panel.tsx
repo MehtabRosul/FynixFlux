@@ -28,10 +28,12 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
   useEffect(() => {
     if (inputValue) return;
 
-    let index = 0;
     const intervalId = setInterval(() => {
-      index = (index + 1) % placeholderQuestions.length;
-      setCurrentPlaceholder(placeholderQuestions[index]);
+      setCurrentPlaceholder((prev) => {
+        const currentIndex = placeholderQuestions.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % placeholderQuestions.length;
+        return placeholderQuestions[nextIndex];
+      });
     }, 4000); 
 
     return () => clearInterval(intervalId);
@@ -75,13 +77,9 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     />
                 </div>
                 <div className="flex justify-end pt-4">
-                    <Button
-                        size="lg"
-                        className="bg-gradient-to-r from-accent to-primary text-white font-bold text-lg animate-tilt"
-                        aria-label="Run"
-                    >
+                    <Button size="lg">
                         <Sparkles className="mr-2 h-5 w-5" />
-                        Run Query
+                        Start Training
                     </Button>
                 </div>
             </div>
