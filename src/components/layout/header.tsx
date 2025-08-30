@@ -55,8 +55,8 @@ export function Header() {
 
         <div className="hidden md:flex items-center gap-4 ml-6">
            {isDashboard ? (
-                <Button asChild variant="outline">
-                    <Link href="/"><ArrowLeft className="mr-2 h-4 w-4" /> Exit Dashboard</Link>
+                <Button asChild>
+                    <Link href="/dashboard">Exit Insight Hub</Link>
                 </Button>
            ) : (
              <Button asChild>
@@ -97,8 +97,8 @@ export function Header() {
               </nav>
                <div className="flex flex-col gap-2">
                  {isDashboard ? (
-                      <Button asChild variant="outline">
-                          <Link href="/"><ArrowLeft className="mr-2 h-4 w-4" /> Exit Dashboard</Link>
+                      <Button asChild>
+                          <Link href="/dashboard">Exit Insight Hub</Link>
                       </Button>
                  ) : (
                    <Button asChild>
