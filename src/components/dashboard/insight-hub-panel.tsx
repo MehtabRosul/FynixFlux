@@ -30,10 +30,6 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     <CardDescription>Automated Assistant for End-to-End Model Development</CardDescription>
                 </div>
             </div>
-            <Button variant="outline" onClick={onExit}>
-                <ArrowLeft className="mr-2" />
-                Exit Insight Hub
-            </Button>
         </CardHeader>
         <CardContent>
             <div className="space-y-4">
