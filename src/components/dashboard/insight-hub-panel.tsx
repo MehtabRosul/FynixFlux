@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 interface InsightHubPanelProps {
   onExit: () => void;
@@ -38,9 +37,9 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
 
 
   return (
-    <Card className="relative overflow-hidden group">
+    <Card className="relative overflow-hidden group border-transparent before:absolute before:inset-0 before:p-px before:rounded-[inherit] before:bg-gradient-to-br before:from-primary/30 before:via-accent/30 before:to-secondary/30 before:animate-breathing-glow">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 opacity-50 group-hover:opacity-70 transition-opacity duration-500 animate-gradient-xy bg-[length:400%_400%]"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-subtle-gradient bg-[length:400%_400%]"></div>
       
       <div className="relative z-10 bg-card/80 backdrop-blur-sm h-full">
         <CardHeader className="flex flex-row items-center justify-between">

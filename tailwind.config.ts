@@ -90,13 +90,26 @@ export default {
             height: '0',
           },
         },
-        'gradient-xy': {
-          '0%, 100%': {
-            'background-position': '0% 0%',
+        'subtle-gradient': {
+          '0%': {
+            'background-position': '0% 50%',
           },
           '50%': {
-            'background-position': '100% 100%',
+            'background-position': '100% 50%',
           },
+          '100%': {
+            'background-position': '0% 50%',
+          },
+        },
+        'breathing-glow': {
+          '0%, 100%': {
+             opacity: '0.4',
+             'box-shadow': '0 0 4px 1px hsl(var(--primary)), 0 0 6px 1px hsl(var(--accent))'
+          },
+          '50%': {
+            opacity: '1',
+            'box-shadow': '0 0 12px 2px hsl(var(--primary)), 0 0 16px 2px hsl(var(--accent))'
+          }
         },
         'text-gradient': {
           'to': {
@@ -128,10 +141,11 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'gradient-xy': 'gradient-xy 15s ease infinite',
+        'subtle-gradient': 'subtle-gradient 25s ease infinite',
         'text-gradient': 'text-gradient 3s linear infinite',
         'ripple-effect': 'ripple-effect 2s cubic-bezier(0, 0, 0.2, 1) infinite',
         'tilt': 'tilt 10s infinite linear',
+        'breathing-glow': 'breathing-glow 6s ease-in-out infinite',
       },
     },
   },
