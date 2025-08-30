@@ -12,12 +12,12 @@ interface InsightHubPanelProps {
 }
 
 const placeholderQuestions = [
-    "What were the top 5 most important features for my latest `churn-prediction` model?",
-    "Compare the ROC AUC of `run-xgboost-v1` and `run-lightgbm-v2`.",
-    "Generate a model card for the model tagged as `production-candidate`.",
-    "Summarize the training logs for any failed runs in the last 24 hours.",
-    "Show me all datasets with a data quality score below 85%.",
-    "Draft a Python script to load and run inference with model `v3.onnx`."
+    "Train a classification model on the 'customer_churn_v2.csv' dataset to predict the 'churn' column.",
+    "Use a RandomForest classifier, reserve 30% of the data for testing, and focus on maximizing the AUC score.",
+    "Clean the dataset by removing rows with missing values and apply one-hot encoding to categorical features before training.",
+    "Train an XGBoost model for 100 epochs with a learning rate of 0.05. After training, test its accuracy.",
+    "Perform hyperparameter tuning using grid search on the 'learning_rate' and 'max_depth' parameters.",
+    "Split the data using stratified sampling to handle class imbalance, then train a logistic regression model."
 ];
 
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
@@ -64,7 +64,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     />
                 </div>
                 <div className="flex justify-end pt-4">
-                    <Button size="lg">
+                    <Button size="lg" className="bg-gradient-to-r from-primary/80 to-accent/80 text-primary-foreground animate-subtle-gradient bg-[length:400%_400%]">
                         <Sparkles className="mr-2 h-5 w-5" />
                         Start Training
                     </Button>
