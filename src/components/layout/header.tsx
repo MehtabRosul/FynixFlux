@@ -53,16 +53,10 @@ export function Header() {
             </nav>
         </div>
 
-        <div className="hidden md:flex items-center gap-4 ml-6">
-           {isDashboardPage ? (
-                <Button asChild>
-                    <Link href="/dashboard">Go to Dashboard</Link>
-                </Button>
-           ) : (
+        <div className="flex items-center gap-4 ml-auto md:ml-6">
              <Button asChild>
                   <Link href="/get-in-touch">Contact Us</Link>
               </Button>
-           )}
         </div>
 
 
