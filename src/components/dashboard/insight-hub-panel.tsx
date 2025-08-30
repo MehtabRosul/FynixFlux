@@ -37,8 +37,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
 
 
   return (
-    <Card className="relative overflow-hidden group border-transparent before:absolute before:inset-0 before:p-px before:rounded-[inherit] before:bg-gradient-to-br before:from-primary/30 before:via-accent/30 before:to-secondary/30 before:animate-breathing-glow">
-      <div className="relative z-10 bg-card/80 backdrop-blur-sm h-full">
+    <Card>
         <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
@@ -83,7 +82,6 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                 </div>
             </div>
         </CardContent>
-      </div>
     </Card>
   );
 }
