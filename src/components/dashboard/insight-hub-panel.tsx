@@ -4,7 +4,8 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bot, Sparkles } from "lucide-react";
+import { Bot, Sparkles, X } from "lucide-react";
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from "react";
 
 interface InsightHubPanelProps {
@@ -23,16 +24,18 @@ const placeholderQuestions = [
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholderQuestions[0]);
   const [inputValue, setInputValue] = useState("");
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
     if (inputValue) return;
 
     const intervalId = setInterval(() => {
-      setCurrentPlaceholder((prev) => {
-        const currentIndex = placeholderQuestions.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % placeholderQuestions.length;
-        return placeholderQuestions[nextIndex];
-      });
+        setKey(prevKey => prevKey + 1);
+        setCurrentPlaceholder((prev) => {
+            const currentIndex = placeholderQuestions.indexOf(prev);
+            const nextIndex = (currentIndex + 1) % placeholderQuestions.length;
+            return placeholderQuestions[nextIndex];
+        });
     }, 4000); 
 
     return () => clearInterval(intervalId);

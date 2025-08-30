@@ -91,14 +91,8 @@ export default {
           },
         },
         'subtle-gradient': {
-          '0%': {
-            'background-position': '0% 50%',
-          },
-          '50%': {
-            'background-position': '100% 50%',
-          },
-          '100%': {
-            'background-position': '0% 50%',
+          'to': {
+            'background-position': '200% center',
           },
         },
         'breathing-glow': {
@@ -141,7 +135,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'subtle-gradient': 'subtle-gradient 15s linear infinite',
+        'subtle-gradient': 'subtle-gradient 3s linear infinite',
         'text-gradient': 'text-gradient 3s linear infinite',
         'ripple-effect': 'ripple-effect 2s cubic-bezier(0, 0, 0.2, 1) infinite',
         'tilt': 'tilt 10s infinite linear',
