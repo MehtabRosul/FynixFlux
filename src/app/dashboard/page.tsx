@@ -10,6 +10,11 @@ import { ModelTestPanel } from '@/components/dashboard/model-test-panel';
 import { TopControlRow } from '@/components/dashboard/top-control-row';
 import { TrainingControlsPanel } from '@/components/dashboard/training-controls-panel';
 import { LiveInsightsFeed } from '@/components/dashboard/live-insights-feed';
+import { AnimatePresence, motion } from 'framer-motion';
+import { InsightHubPanel } from '@/components/dashboard/insight-hub-panel';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
+import { InsightHubButton } from '@/components/dashboard/insight-hub-button';
 
 export interface TrainingConfig {
   problemCategorization: string | null;
@@ -21,6 +26,7 @@ export interface TrainingConfig {
 
 export default function DashboardPage() {
   const [isTraining, setIsTraining] = useState(false);
+  const [isInsightHubMode, setIsInsightHubMode] = useState(false);
   const [trainingConfig, setTrainingConfig] = useState<TrainingConfig>({
     problemCategorization: null,
     modelSelection: null,
@@ -30,7 +36,6 @@ export default function DashboardPage() {
   });
 
   const handleStartTraining = () => {
-    // In a real app, you would pass the trainingConfig to the training service
     console.log("Starting training with config:", trainingConfig);
     setIsTraining(true);
   };
@@ -42,30 +47,100 @@ export default function DashboardPage() {
     }));
   };
 
+  const animationVariants = {
+      initial: { opacity: 0, y: -20, height: 0 },
+      animate: { opacity: 1, y: 0, height: 'auto', transition: { duration: 0.3, ease: "easeInOut" } },
+      exit: { opacity: 0, y: -20, height: 0, transition: { duration: 0.2, ease: "easeInOut" } },
+  };
+
   return (
     <div className="space-y-6">
-      <TopControlRow config={trainingConfig} onConfigChange={handleConfigChange} />
+      <AnimatePresence>
+        {isInsightHubMode && (
+           <motion.div
+              variants={animationVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="overflow-hidden"
+            >
+              <InsightHubPanel onExit={() => setIsInsightHubMode(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {!isInsightHubMode && (
+          <motion.div 
+            variants={animationVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="overflow-hidden"
+          >
+            <TopControlRow config={trainingConfig} onConfigChange={handleConfigChange} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column */}
         <div className="lg:col-span-8 space-y-6">
           <LiveMetricsChart isTraining={isTraining} />
-          <LiveInsightsFeed isTraining={isTraining} />
+           <AnimatePresence>
+            {!isInsightHubMode && (
+                <motion.div
+                    variants={animationVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="overflow-hidden"
+                >
+                    <LiveInsightsFeed isTraining={isTraining} />
+                </motion.div>
+            )}
+           </AnimatePresence>
         </div>
 
         {/* Right Column */}
         <div className="lg:col-span-4 space-y-6">
           <DataUploadPanel />
-          <TrainingControlsPanel onStartTraining={handleStartTraining} />
+           <AnimatePresence>
+            {!isInsightHubMode && (
+               <motion.div
+                    variants={animationVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="overflow-hidden"
+                >
+                  <TrainingControlsPanel onStartTraining={handleStartTraining} />
+               </motion.div>
+            )}
+           </AnimatePresence>
         </div>
       </div>
 
       {/* Lower Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <ModelTestPanel />
+        <AnimatePresence>
+         {!isInsightHubMode && (
+            <motion.div
+                className="overflow-hidden"
+                variants={animationVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+            >
+                <ModelTestPanel />
+            </motion.div>
+         )}
+        </AnimatePresence>
         <ModelDetailsPanel />
         <DatasetPreviewPanel />
       </div>
+
+      {!isInsightHubMode && <InsightHubButton onClick={() => setIsInsightHubMode(true)} />}
     </div>
   );
 }
