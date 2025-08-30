@@ -65,13 +65,27 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     />
                 </div>
                 <div className="flex justify-end items-center pt-4 pr-4">
-                     <Button
-                        size="icon"
-                        className="rounded-full h-16 w-16 bg-gradient-to-br from-primary via-accent to-secondary text-white shadow-2xl shadow-primary/20 animate-breathing-glow hover:shadow-primary/40 hover:-translate-y-1"
-                    >
-                        <Sparkles className="h-7 w-7" />
-                        <span className="sr-only">Run</span>
-                    </Button>
+                     <div className="relative w-20 h-20 group">
+                        {/* Ripple Animation */}
+                        <span className="absolute inline-flex h-full w-full rounded-full bg-primary/20 animate-ripple-effect opacity-75"></span>
+                        
+                        {/* Gradient Background */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-secondary transition-all duration-300 group-hover:from-accent group-hover:to-primary"></div>
+                        
+                        {/* Glassmorphism Effect */}
+                        <div className="absolute inset-0 rounded-full backdrop-blur-sm bg-white/10"></div>
+                        
+                        {/* Inner Shadow and Border */}
+                        <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/20 shadow-inner"></div>
+
+                        <Button 
+                            size="icon"
+                            className="relative w-full h-full rounded-full bg-transparent shadow-lg hover:bg-transparent"
+                            aria-label="Run"
+                        >
+                            <Sparkles className="h-9 w-9 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] transition-all duration-300 group-hover:scale-110" />
+                        </Button>
+                    </div>
                 </div>
             </div>
         </CardContent>
