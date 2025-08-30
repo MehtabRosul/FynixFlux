@@ -64,7 +64,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     />
                 </div>
                 <div className="flex justify-end pt-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary/80 to-accent/80 text-primary-foreground animate-subtle-gradient bg-[length:400%_400%]">
+                    <Button size="lg" className="bg-gradient-to-r from-primary/80 to-accent/80 text-primary-foreground">
                         <Sparkles className="mr-2 h-5 w-5" />
                         Start Training
                     </Button>
