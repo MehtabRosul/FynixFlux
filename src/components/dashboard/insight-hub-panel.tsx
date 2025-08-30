@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 
 interface InsightHubPanelProps {
   onExit: () => void;
@@ -30,7 +29,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
 
     const intervalId = setInterval(() => {
       setCurrentPlaceholderIndex(prevIndex => (prevIndex + 1) % placeholderQuestions.length);
-    }, 4000); // Increased interval for a calmer feel
+    }, 4000); 
 
     return () => clearInterval(intervalId);
   }, [inputValue]);
@@ -52,20 +51,11 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
         <CardContent>
             <div className="space-y-4">
                  <div className="relative">
-                    <AnimatePresence mode="wait">
-                       {!inputValue && (
-                           <motion.div
-                               key={currentPlaceholderIndex}
-                               initial={{ opacity: 0, y: 5 }}
-                               animate={{ opacity: 1, y: 0 }}
-                               exit={{ opacity: 0, y: -5 }}
-                               transition={{ duration: 0.5, ease: "easeInOut" }}
-                               className="absolute inset-0 p-3 pointer-events-none text-muted-foreground text-sm"
-                           >
-                               {placeholderQuestions[currentPlaceholderIndex]}
-                           </motion.div>
-                       )}
-                    </AnimatePresence>
+                       <div
+                           className="absolute inset-0 p-3 pointer-events-none text-muted-foreground text-sm"
+                       >
+                           {placeholderQuestions[currentPlaceholderIndex]}
+                       </div>
                     <Textarea
                         placeholder=""
                         rows={4}
@@ -74,10 +64,13 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                         onChange={(e) => setInputValue(e.target.value)}
                     />
                 </div>
-                <div className="flex justify-end">
-                    <Button>
-                        <Sparkles className="mr-2" />
-                        Run
+                <div className="flex justify-end items-center pt-4 pr-4">
+                     <Button
+                        size="icon"
+                        className="rounded-full h-16 w-16 bg-gradient-to-br from-primary via-accent to-secondary text-white shadow-2xl shadow-primary/20 animate-breathing-glow hover:shadow-primary/40 hover:-translate-y-1"
+                    >
+                        <Sparkles className="h-7 w-7" />
+                        <span className="sr-only">Run</span>
                     </Button>
                 </div>
             </div>
