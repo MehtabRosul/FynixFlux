@@ -23,13 +23,11 @@ const placeholderQuestions = [
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholderQuestions[0]);
   const [inputValue, setInputValue] = useState("");
-  const [key, setKey] = useState(0);
 
   useEffect(() => {
     if (inputValue) return;
 
     const intervalId = setInterval(() => {
-        setKey(prevKey => prevKey + 1);
         setCurrentPlaceholder((prev) => {
             const currentIndex = placeholderQuestions.indexOf(prev);
             const nextIndex = (currentIndex + 1) % placeholderQuestions.length;
