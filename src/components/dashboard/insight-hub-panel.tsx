@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface InsightHubPanelProps {
   onExit: () => void;
@@ -21,18 +22,14 @@ const placeholderQuestions = [
 ];
 
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
-  const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholderQuestions[0]);
+  const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     if (inputValue) return;
 
     const intervalId = setInterval(() => {
-        setCurrentPlaceholder((prev) => {
-            const currentIndex = placeholderQuestions.indexOf(prev);
-            const nextIndex = (currentIndex + 1) % placeholderQuestions.length;
-            return placeholderQuestions[nextIndex];
-        });
+        setCurrentPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholderQuestions.length);
     }, 4000); 
 
     return () => clearInterval(intervalId);
@@ -56,12 +53,26 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
             <div className="space-y-4">
                  <div className="relative">
                     <Textarea
-                        placeholder={currentPlaceholder}
+                        placeholder=""
                         rows={4}
                         className="bg-background/50"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     />
+                    {!inputValue && (
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentPlaceholderIndex}
+                                initial={{ opacity: 0, y: 5 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -5 }}
+                                transition={{ duration: 0.5 }}
+                                className="absolute top-0 left-0 px-3 py-2 text-sm text-muted-foreground pointer-events-none"
+                            >
+                                {placeholderQuestions[currentPlaceholderIndex]}
+                            </motion.div>
+                        </AnimatePresence>
+                    )}
                 </div>
                 <div className="flex justify-end pt-4">
                     <Button size="lg" className="bg-gradient-to-r from-primary/80 to-accent/80 text-primary-foreground">
