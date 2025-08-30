@@ -34,7 +34,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
         <CardContent>
             <div className="space-y-4">
                 <Textarea 
-                    placeholder="Describe what you want the system to do with the uploaded dataset (task, metric, constraints). E.g.: 'Train a binary classifier for churn. Optimize for recall; ensure model size < 50MB; provide ONNX export.'"
+                    placeholder="Describe your goal (e.g., 'Train a classifier for churn, optimizing for recall')."
                     rows={4}
                     className="text-base"
                 />
