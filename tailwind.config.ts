@@ -141,7 +141,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'subtle-gradient': 'subtle-gradient 25s ease infinite',
+        'subtle-gradient': 'subtle-gradient 15s linear infinite',
         'text-gradient': 'text-gradient 3s linear infinite',
         'ripple-effect': 'ripple-effect 2s cubic-bezier(0, 0, 0.2, 1) infinite',
         'tilt': 'tilt 10s infinite linear',
