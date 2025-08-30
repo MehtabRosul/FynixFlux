@@ -132,11 +132,11 @@ export default function DashboardPage() {
                 animate="animate"
                 exit="exit"
             >
-                <ModelTestPanel />
+                <ModelTestPanel className="h-full" />
             </motion.div>
          )}
         </AnimatePresence>
-        <ModelDetailsPanel />
+        <ModelDetailsPanel className="h-full" />
         <DatasetPreviewPanel />
       </div>
 

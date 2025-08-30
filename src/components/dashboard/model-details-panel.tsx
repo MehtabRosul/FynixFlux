@@ -1,9 +1,14 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-export function ModelDetailsPanel() {
+interface ModelDetailsPanelProps {
+  className?: string;
+}
+
+export function ModelDetailsPanel({ className }: ModelDetailsPanelProps) {
   return (
-    <Card>
+    <Card className={cn(className)}>
       <CardHeader>
         <CardTitle>trained model details will be shown here</CardTitle>
         <CardDescription>Summary of the best performing model.</CardDescription>
