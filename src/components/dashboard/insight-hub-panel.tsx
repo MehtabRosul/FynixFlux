@@ -4,7 +4,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bot, Sparkles, X } from "lucide-react";
+import { Bot, Sparkles } from "lucide-react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from "react";
 
@@ -67,7 +67,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     />
                 </div>
                 <div className="flex justify-end pt-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-primary-foreground animate-subtle-gradient bg-[length:400%_400%]">
+                    <Button size="lg" className="animate-breathing-glow">
                         <Sparkles className="mr-2 h-5 w-5" />
                         Start Training
                     </Button>
