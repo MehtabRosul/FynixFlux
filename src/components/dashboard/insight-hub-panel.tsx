@@ -37,7 +37,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
 
 
   return (
-    <Card>
+    <Card className="animate-breathing-glow">
         <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
