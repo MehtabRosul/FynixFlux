@@ -4,20 +4,13 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bot, Sparkles, ArrowLeft } from "lucide-react";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { Bot, Sparkles } from "lucide-react";
 
 interface InsightHubPanelProps {
   onExit: () => void;
 }
 
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
-  const examplePrompts = [
-    "Train a binary classifier for churn. Optimize for recall; ensure model size < 50MB; provide ONNX export.",
-    "Build a regression model to predict house prices. Use MAE as the primary evaluation metric.",
-    "Analyze customer feedback for sentiment. Identify the top 5 most common negative themes."
-  ];
-
   return (
     <Card className="border-primary/50 border-2 shadow-primary/10">
         <CardHeader className="flex flex-row items-center justify-between">
@@ -34,26 +27,11 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
         <CardContent>
             <div className="space-y-4">
                 <Textarea 
-                    placeholder="Describe your goal (e.g., 'Train a classifier for churn, optimizing for recall')."
+                    placeholder="Describe your goal..."
                     rows={4}
                     className="text-base"
                 />
-                <div className="flex justify-between items-center">
-                    <div className="flex gap-2">
-                       <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" size="sm">Examples</Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                {examplePrompts.map((prompt, index) => (
-                                    <DropdownMenuItem key={index} onSelect={() => console.log(prompt)}>
-                                        {prompt.substring(0, 50)}...
-                                    </DropdownMenuItem>
-                                ))}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                        <Button variant="ghost" size="sm">Reset</Button>
-                    </div>
+                <div className="flex justify-end">
                     <Button>
                         <Sparkles className="mr-2" />
                         Run
