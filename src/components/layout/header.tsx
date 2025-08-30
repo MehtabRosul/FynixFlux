@@ -17,7 +17,7 @@ const Logo = () => (
 
 export function Header() {
   const pathname = usePathname();
-  const isDashboard = pathname.startsWith('/dashboard');
+  const isDashboardPage = pathname === '/dashboard';
 
   const navLinks = [
     { href: "/features", label: "Features" },
@@ -54,9 +54,9 @@ export function Header() {
         </div>
 
         <div className="hidden md:flex items-center gap-4 ml-6">
-           {isDashboard ? (
+           {isDashboardPage ? (
                 <Button asChild>
-                    <Link href="/dashboard">Exit Insight Hub</Link>
+                    <Link href="/">Exit Dashboard</Link>
                 </Button>
            ) : (
              <Button asChild>
@@ -96,9 +96,9 @@ export function Header() {
                 ))}
               </nav>
                <div className="flex flex-col gap-2">
-                 {isDashboard ? (
+                 {isDashboardPage ? (
                       <Button asChild>
-                          <Link href="/dashboard">Exit Insight Hub</Link>
+                          <Link href="/">Exit Dashboard</Link>
                       </Button>
                  ) : (
                    <Button asChild>
