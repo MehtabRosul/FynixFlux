@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
-import { Bot, Terminal } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Bot, Lightbulb, ListChecks, PlayCircle } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 
 const steps = [
   {
@@ -35,6 +35,11 @@ const steps = [
 ];
 
 export function HowItWorksSection() {
+  const insightHubSteps = [
+      { icon: <Lightbulb className="w-8 h-8 text-primary" />, title: "Describe", description: "State your goal in plain English." },
+      { icon: <ListChecks className="w-8 h-8 text-primary" />, title: "Plan", description: "The AI forms a step-by-step plan." },
+      { icon: <PlayCircle className="w-8 h-8 text-primary" />, title: "Execute", description: "The plan is executed from start to finish." },
+  ]
   return (
     <section
       id="how-it-works"
@@ -88,32 +93,30 @@ export function HowItWorksSection() {
 
         <Separator className="my-16 md:my-24" />
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-4">
-            <div className="inline-block rounded-lg bg-primary/10 p-3 text-sm">
+        <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-block rounded-lg bg-primary/10 p-3 text-sm mb-4">
               <Bot className="w-8 h-8 text-primary" />
             </div>
             <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">
-              Or, Do It All With One Command
+              Or, Skip the Steps
             </h3>
-            <p className="text-lg text-muted-foreground">
-              The Insight Hub is your AI-powered MLOps assistant. Instead of
-              manual steps, simply describe your goal in plain English. The Hub
-              analyzes your request, forms a plan, and executes the entire
-              workflow, giving you live updates along the way.
+            <p className="text-lg text-muted-foreground mt-4">
+              The Insight Hub is your AI-powered MLOps assistant. Instead of manual clicks, simply describe your goal in plain English. The Hub analyzes your request, forms a plan, and executes the entire workflow for you.
             </p>
-          </div>
-          <div className="relative">
-             <Card className="p-6 bg-black/50 border-primary/20 animate-breathing-glow">
-                <div className="flex items-center gap-2 mb-4">
-                    <Terminal className="w-5 h-5 text-green-400" />
-                    <p className="text-sm font-mono text-green-400">/insight_hub/prompt</p>
-                </div>
-                <p className="font-mono text-base text-foreground leading-relaxed">
-                    "Train a RandomForest classifier on 'customer_churn_v2.csv', predict the 'churn' column, reserve 30% for testing, and focus on maximizing the AUC score."
-                </p>
+
+            <Card className="mt-8">
+                <CardContent className="p-6">
+                    <div className="grid md:grid-cols-3 gap-6 text-center">
+                        {insightHubSteps.map(step => (
+                            <div key={step.title} className="flex flex-col items-center gap-2">
+                                {step.icon}
+                                <h4 className="font-semibold text-lg">{step.title}</h4>
+                                <p className="text-sm text-muted-foreground">{step.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </CardContent>
             </Card>
-          </div>
         </div>
       </div>
     </section>

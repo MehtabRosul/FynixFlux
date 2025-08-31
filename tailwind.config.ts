@@ -95,16 +95,6 @@ export default {
             'background-position': '200% center',
           },
         },
-        'breathing-glow': {
-          '0%, 100%': {
-             opacity: '0.9',
-             'box-shadow': '0 0 2px 0px hsl(var(--primary))'
-          },
-          '50%': {
-            opacity: '1',
-            'box-shadow': '0 0 4px 0px hsl(var(--primary))'
-          }
-        },
         'text-gradient': {
           'to': {
             'background-position': '200% center',
@@ -139,7 +129,6 @@ export default {
         'text-gradient': 'text-gradient 3s linear infinite',
         'ripple-effect': 'ripple-effect 2s cubic-bezier(0, 0, 0.2, 1) infinite',
         'tilt': 'tilt 10s infinite linear',
-        'breathing-glow': 'breathing-glow 8s ease-in-out infinite',
       },
     },
   },
