@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -52,12 +51,6 @@ export function InsightHubSection() {
                             <p className="text-muted-foreground">{feature.description}</p>
                         </Card>
                     ))}
-                </div>
-
-                <div className="text-center mt-12">
-                    <Button size="lg" asChild>
-                        <Link href="/dashboard">Try the Insight Hub</Link>
-                    </Button>
                 </div>
             </div>
         </section>
