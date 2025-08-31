@@ -1,9 +1,10 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { Bot, Lightbulb, ListChecks } from 'lucide-react';
-import Link from 'next/link';
+import { useParallax } from '@/components/providers/parallax-provider';
+import React, { useRef } from 'react';
+import { cn } from '@/lib/utils';
 
 const features = [
   {
@@ -22,6 +23,35 @@ const features = [
     description: "Once approved, the Hub executes the entire workflow, providing live updates and final results automatically.",
   },
 ];
+
+const ParallaxCard = ({ children, className, index }: { children: React.ReactNode; className?: string; index: number }) => {
+    const { scrollY } = useParallax();
+    const cardRef = useRef<HTMLDivElement>(null);
+    const isReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let translateY = 0;
+    if (cardRef.current && !isReducedMotion) {
+        const rect = cardRef.current.getBoundingClientRect();
+        const scrollCenter = scrollY + window.innerHeight / 2;
+        const cardCenter = rect.top + scrollY + rect.height / 2;
+        const distance = scrollCenter - cardCenter;
+        translateY = distance * -0.05 * (index % 2 === 0 ? 1 : 1.2);
+    }
+
+    return (
+        <Card 
+            ref={cardRef}
+            className={cn("text-center p-6 transition-transform duration-300 ease-out", className)}
+            style={{ 
+                transform: `translateY(${translateY}px)`,
+                willChange: 'transform'
+            }}
+        >
+            {children}
+        </Card>
+    );
+};
+
 
 export function InsightHubSection() {
     return (
@@ -42,14 +72,11 @@ export function InsightHubSection() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {features.map((feature, index) => (
-                         <Card 
-                            key={feature.title} 
-                            className="text-center p-6 transition-all duration-500 hover:shadow-primary/20 hover:-translate-y-2"
-                        >
+                         <ParallaxCard key={feature.title} index={index}>
                             <div className="flex justify-center mb-4">{feature.icon}</div>
                             <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                             <p className="text-muted-foreground">{feature.description}</p>
-                        </Card>
+                        </ParallaxCard>
                     ))}
                 </div>
             </div>
