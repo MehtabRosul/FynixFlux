@@ -29,7 +29,7 @@ export function ControlCard({ label, options, value, onValueChange }: ControlCar
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex-1 min-w-[220px] h-[72px] bg-card/80 border border-white/5 rounded-xl p-4 flex items-center justify-between transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20">
+        <button className="flex-1 min-w-[220px] h-[72px] bg-card/80 border border-white/5 rounded-xl p-4 flex items-center justify-between transition-all duration-300 ease-in-out hover:shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)] hover:border-primary/40">
           <div className={cn("text-left", !value && "flex items-center h-full w-full")}>
             <p className={cn(
               "text-sm text-muted-foreground uppercase tracking-wider",
