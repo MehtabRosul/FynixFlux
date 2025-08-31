@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Bot } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const steps = [
   {
@@ -66,25 +67,22 @@ export function HowItWorksSection() {
 
         <Separator className="my-16 md:my-24" />
 
-        <div className="grid gap-8 md:gap-16 items-center lg:grid-cols-2">
-            <Image
-                src="https://picsum.photos/600/400"
-                alt="Insight Hub"
-                data-ai-hint="AI bot interface"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl"
-            />
-            <div className="space-y-4">
-                <div className="inline-flex items-center rounded-lg bg-background px-3 py-1 text-sm font-medium">
-                    <Bot className="w-4 h-4 mr-2 text-primary" />
-                    The Fast Track
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight sm:text-3xl font-headline">Or, Do It All With a Single Command</h3>
-                <p className="text-muted-foreground text-lg">
-                    The Insight Hub is your AI-powered MLOps assistant. Instead of manual steps, simply describe your goal in plain English. The Hub analyzes your request, forms a plan, and executes the entire workflow from training to evaluation, giving you live updates along the way.
-                </p>
-            </div>
+        <div className="max-w-3xl mx-auto text-center">
+            <Card className="bg-card/80 backdrop-blur-sm">
+                <CardHeader>
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                        <Bot className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">
+                         Or, Do It All With a Single Command
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-muted-foreground text-lg">
+                        The Insight Hub is your AI-powered MLOps assistant. Instead of manual steps, simply describe your goal in plain English. The Hub analyzes your request, forms a plan, and executes the entire workflow from training to evaluation, giving you live updates along the way.
+                    </p>
+                </CardContent>
+            </Card>
         </div>
 
       </div>
