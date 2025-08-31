@@ -19,8 +19,8 @@ const features = [
   },
   {
     icon: <Bot className="w-8 h-8 text-primary" />,
-    title: "AI-Powered Insights",
-    description: "Receive human-readable summaries of training performance, generated automatically by our AI.",
+    title: "AI-Powered Workflows",
+    description: "Use natural language to command the entire MLOps workflow from data prep to model evaluation with the Insight Hub.",
   },
   {
     icon: <Download className="w-8 h-8 text-primary" />,

@@ -1,28 +1,30 @@
 import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
+import { Bot } from "lucide-react";
 
 const steps = [
   {
     title: "1. Upload & Profile",
     description: "Securely upload your dataset. ForgeFlow Pilot automatically profiles it, flagging quality issues and sensitive data so you can start with a clean slate.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://picsum.photos/600/400",
     aiHint: "data upload",
   },
   {
     title: "2. Train & Monitor",
     description: "Configure your training job and launch a worker. Watch the magic happen on your live dashboard with real-time metrics, logs, and AI-generated narrative insights.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://picsum.photos/600/400",
     aiHint: "dashboard chart",
   },
   {
     title: "3. Test & Validate",
     description: "Once training is complete, use the sandbox to test your model artifacts. Compare versions, run batch tests, and generate explainability reports to ensure performance.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://picsum.photos/600/400",
     aiHint: "code terminal",
   },
   {
     title: "4. Deploy & Manage",
     description: "Promote your validated model to the registry. Download it in your preferred format with ready-to-use code snippets, and manage its lifecycle with tags and rollbacks.",
-    image: "https://placehold.co/600x400.png",
+    image: "https://picsum.photos/600/400",
     aiHint: "server deployment",
   },
 ];
@@ -61,6 +63,30 @@ export function HowItWorksSection() {
             </div>
           ))}
         </div>
+
+        <Separator className="my-16 md:my-24" />
+
+        <div className="grid gap-8 md:gap-16 items-center lg:grid-cols-2">
+            <Image
+                src="https://picsum.photos/600/400"
+                alt="Insight Hub"
+                data-ai-hint="AI bot interface"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-xl"
+            />
+            <div className="space-y-4">
+                <div className="inline-flex items-center rounded-lg bg-background px-3 py-1 text-sm font-medium">
+                    <Bot className="w-4 h-4 mr-2 text-primary" />
+                    The Fast Track
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight sm:text-3xl font-headline">Or, Do It All With a Single Command</h3>
+                <p className="text-muted-foreground text-lg">
+                    The Insight Hub is your AI-powered MLOps assistant. Instead of manual steps, simply describe your goal in plain English. The Hub analyzes your request, forms a plan, and executes the entire workflow from training to evaluation, giving you live updates along the way.
+                </p>
+            </div>
+        </div>
+
       </div>
     </section>
   );
