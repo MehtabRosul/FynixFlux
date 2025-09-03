@@ -58,12 +58,20 @@ export function CtaSection() {
                 }}
              >
                 <div 
-                    className="relative overflow-hidden rounded-lg p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:400%_400%]"
+                    className="relative overflow-hidden rounded-lg p-8 shadow-2xl md:p-12 lg:p-16 animate-subtle-gradient bg-[length:400%_400%]"
                     style={{
-                        backgroundImage: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--destructive)), hsl(var(--secondary)))'
+                        backgroundImage: `linear-gradient(to right, 
+                            hsl(var(--primary)), 
+                            hsl(var(--primary) / 0.8), 
+                            hsl(var(--accent)), 
+                            hsl(var(--accent) / 0.8), 
+                            hsl(var(--destructive)), 
+                            hsl(var(--destructive) / 0.8),
+                            hsl(var(--primary))
+                        )`
                     }}
                 >
-                <div className="relative z-10 flex flex-col items-center text-center">
+                <div className="relative z-10 flex flex-col items-center text-center animate-tilt">
                     <h2 className="text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl md:text-5xl font-headline">
                     Ready to Forge Your Next Breakthrough?
                     </h2>
