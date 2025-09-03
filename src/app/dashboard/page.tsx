@@ -29,11 +29,11 @@ export default function DashboardPage() {
   const [isTraining, setIsTraining] = useState(false);
   const [isInsightHubMode, setIsInsightHubMode] = useState(false);
   const [trainingConfig, setTrainingConfig] = useState<TrainingConfig>({
-    problemCategorization: 'Classification',
-    modelSelection: 'XGBoost',
-    dataSplitting: 'Train/Test Split',
-    hyperparameterTuning: 'Grid Search',
-    evaluationMetric: 'AUC-ROC',
+    problemCategorization: null,
+    modelSelection: null,
+    dataSplitting: null,
+    hyperparameterTuning: null,
+    evaluationMetric: null,
   });
   const [dataset, setDataset] = useState<Dataset | null>(null);
   const [modelDetails, setModelDetails] = useState<ModelDetails | null>(null);
@@ -52,7 +52,7 @@ export default function DashboardPage() {
     // Simulate a training process that takes time
     setTimeout(() => {
         const simulatedDetails: ModelDetails = {
-            modelName: `${trainingConfig.modelSelection}-run-${Math.random().toString(36).substring(2, 9)}`,
+            modelName: `${trainingConfig.modelSelection || 'Custom'}-run-${Math.random().toString(36).substring(2, 9)}`,
             version: `v${Math.floor(Math.random() * 3) + 1}`,
             primaryMetric: {
                 name: trainingConfig.evaluationMetric || 'AUC-ROC',
