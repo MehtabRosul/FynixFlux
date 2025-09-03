@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -37,10 +38,10 @@ export function HeroSection() {
           transform: `translate3d(0, ${textY}px, 0)`,
         }}
       >
-        <h1 className="text-4xl font-headline font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 className="text-4xl font-headline font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-8xl">
           <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-text-gradient bg-[200%_auto]">ForgeFlow Pilot</span>
         </h1>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+        <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
             Streamline Your MLOps Pipeline
         </h2>
         <p className="mx-auto mt-6 max-w-[700px] text-muted-foreground md:text-xl">
