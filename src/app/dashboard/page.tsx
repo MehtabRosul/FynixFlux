@@ -6,7 +6,7 @@ import { DataUploadPanel } from '@/components/dashboard/data-upload-panel';
 import { DatasetPreviewPanel } from '@/components/dashboard/dataset-preview-panel';
 import { LiveMetricsChart } from '@/components/dashboard/live-metrics-chart';
 import { ModelDetailsPanel, ModelDetails } from '@/components/dashboard/model-details-panel';
-import { ModelTestPanel } from '@/components/dashboard/model-test-panel';
+import { ModelTestPanel, TestReport } from '@/components/dashboard/model-test-panel';
 import { TopControlRow } from '@/components/dashboard/top-control-row';
 import { TrainingControlsPanel } from '@/components/dashboard/training-controls-panel';
 import { LiveInsightsFeed } from '@/components/dashboard/live-insights-feed';
@@ -38,6 +38,8 @@ export default function DashboardPage() {
   const [dataset, setDataset] = useState<Dataset | null>(null);
   const [modelDetails, setModelDetails] = useState<ModelDetails | null>(null);
   const [isTrainingComplete, setIsTrainingComplete] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
+  const [testReport, setTestReport] = useState<TestReport | null>(null);
 
   const handleDatasetUpload = (data: Dataset) => {
     setDataset(data);
@@ -48,6 +50,7 @@ export default function DashboardPage() {
     setIsTraining(true);
     setIsTrainingComplete(false);
     setModelDetails(null);
+    setTestReport(null);
 
     // Simulate a training process that takes time
     setTimeout(() => {
@@ -70,6 +73,25 @@ export default function DashboardPage() {
       ...prevConfig,
       [key]: value
     }));
+  };
+
+  const handleTestModel = () => {
+    setIsTesting(true);
+    // Simulate testing process
+    setTimeout(() => {
+      setTestReport({
+        biasMetrics: {
+          demographicParity: parseFloat((0.05 + Math.random() * 0.1).toFixed(3)),
+          equalizedOdds: parseFloat((0.02 + Math.random() * 0.08).toFixed(3)),
+        },
+        performanceMetrics: {
+          testAccuracy: parseFloat((0.85 + Math.random() * 0.1).toFixed(3)),
+          testPrecision: parseFloat((0.82 + Math.random() * 0.1).toFixed(3)),
+          testRecall: parseFloat((0.88 + Math.random() * 0.1).toFixed(3)),
+        },
+      });
+      setIsTesting(false);
+    }, 2000);
   };
 
   const animationVariants = {
@@ -159,7 +181,13 @@ export default function DashboardPage() {
                 animate="animate"
                 exit="exit"
             >
-                <ModelTestPanel className="h-full" isTrainingComplete={isTrainingComplete} />
+                <ModelTestPanel 
+                    className="h-full" 
+                    isTrainingComplete={isTrainingComplete} 
+                    onTestModel={handleTestModel}
+                    isTesting={isTesting}
+                    testReport={testReport}
+                />
             </motion.div>
          )}
         </AnimatePresence>
