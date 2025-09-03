@@ -1,7 +1,7 @@
 
 'use client';
 import { LegalLayout } from '@/components/layout/legal-layout';
-import { Book, User, Database, Globe, Archive, Shield, Cookie, UserX, UserCheck, Bell, Info, Mail, Users, Server } from 'lucide-react';
+import { Book, User, Database, Globe, Archive, Shield, Cookie, UserX, UserCheck, Bell, Info, Mail, Users, Server, Bot } from 'lucide-react';
 
 
 export default function PrivacyPage() {
@@ -18,14 +18,14 @@ export default function PrivacyPage() {
       id: "info-we-collect",
       title: "2. Information We Collect",
       summary: "We collect basic account information and data you provide to make our services work for you.",
-      content: "We collect account information (name, email), user content (datasets, model artifacts), usage data (IP address, logs), and communications. We use essential and analytics cookies to operate and improve the service.",
+      content: "We collect account information (name, email), user content (datasets, model artifacts), usage data (IP address, logs), and communications. This includes prompts you send to the Insight Hub. We use essential and analytics cookies to operate and improve the service.",
       icon: <Database size={20} />
     },
     {
       id: "how-we-use-info",
       title: "3. How We Use Information",
       summary: "We use your data to provide, improve, and secure our services.",
-      content: "We use your information to provide and improve our services, communicate with you, ensure security, and comply with legal obligations. Our legal basis for processing is typically the performance of our contract with you or our legitimate interests.",
+      content: "We use your information to provide and improve our services, communicate with you, ensure security, and comply with legal obligations. Prompts provided to the Insight Hub are processed by our AI models to generate plans and assist your workflow. Our legal basis for processing is typically the performance of our contract with you or our legitimate interests.",
       icon: <Info size={20} />
     },
     {

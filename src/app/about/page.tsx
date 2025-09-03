@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
-import { ShieldCheck, GitCommit, Eye, Zap } from 'lucide-react';
+import { ShieldCheck, GitCommit, Eye, Zap, Bot } from 'lucide-react';
 import { ParallaxProvider, useParallax } from '@/components/providers/parallax-provider';
 
 // Parallax-aware Section Component
@@ -94,9 +94,9 @@ const CorePrinciplesSection = () => {
         description: "Data controls, masking options, and private project isolation are core.",
       },
       {
-        icon: <Zap className="w-8 h-8 text-primary" />,
-        title: "Efficiency",
-        description: "Optimized pipelines and checkpointing to iterate faster with predictable resource usage.",
+        icon: <Bot className="w-8 h-8 text-primary" />,
+        title: "AI-Powered Automation",
+        description: "Use the Insight Hub to automate entire workflows with a single natural language command.",
       },
     ];
     return (
