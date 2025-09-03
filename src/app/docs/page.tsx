@@ -33,6 +33,7 @@ export default function DocsPage() {
                     <li><strong>Datasets:</strong> The starting point for any project. Upload your data, and we'll automatically version and profile it for quality and security.</li>
                     <li><strong>Runs:</strong> A single, reproducible training job. Every run tracks code, hyperparameters, and artifacts to ensure full lineage.</li>
                     <li><strong>Artifacts:</strong> The output of a run, including trained models, model cards, and evaluation metrics, ready for testing and deployment.</li>
+                    <li><strong>Insight Hub:</strong> An AI-powered assistant that can understand natural language commands to automate your entire workflow.</li>
                 </ul>
             </CardContent>
           </Card>
@@ -68,7 +69,14 @@ hyperparameters:
 validation_split: 0.2`}
               </CodeBlock>
 
-              <h3 className="text-xl font-semibold text-foreground">4. Test, Promote, and Export</h3>
+              <h3 className="text-xl font-semibold text-foreground">4. Alternative: Using the Insight Hub</h3>
+              <p>Instead of manual configuration, you can use the AI-powered Insight Hub to perform the same task with a single command. Open the Insight Hub from the dashboard and provide your instructions in plain English.</p>
+               <CodeBlock>
+{`# Example Insight Hub Prompt
+"Train a RandomForest classifier on 'customer_churn_v1.csv' to predict churn, using 20% of the data for validation and aiming for the highest AUC score."`}
+               </CodeBlock>
+              
+              <h3 className="text-xl font-semibold text-foreground">5. Test, Promote, and Export</h3>
               <p>After a run completes, you can inspect its performance and test the generated model in our sandbox. If you're happy with the results, promote the model to your project's registry. From the registry, you can export artifacts for use in your own applications. We provide artifacts in common formats like ONNX, TFLite, and versioned Python wheels.</p>
             </CardContent>
           </Card>
@@ -149,6 +157,7 @@ curl -X POST "https://api.forgeflow.pilot/v1/projects/{projectId}/runs" \\
                     <li><span className="font-semibold text-foreground">Best Practices for Data Preparation:</span> Learn how to format your data for optimal model performance.</li>
                     <li><span className="font-semibold text-foreground">Interpreting Model Evaluation Metrics:</span> A deep dive into classification and regression metrics.</li>
                     <li><span className="font-semibold text-foreground">Integrating Exported Models:</span> Step-by-step instructions for deploying a downloaded artifact in a Python web service.</li>
+                    <li><span className="font-semibold text-foreground">Mastering the Insight Hub:</span> Advanced tips for getting the most out of the AI assistant.</li>
                 </ul>
             </CardContent>
           </Card>
