@@ -100,6 +100,14 @@ export default {
             'background-position': '200% center',
           },
         },
+        'gradient-xy': {
+          '0%, 100%': {
+            'background-position': '0% 50%',
+          },
+          '50%': {
+            'background-position': '100% 50%',
+          },
+        },
         'ripple-effect': {
           '0%': {
              transform: 'scale(1)',
@@ -127,6 +135,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'subtle-gradient': 'subtle-gradient 3s linear infinite',
         'text-gradient': 'text-gradient 3s linear infinite',
+        'gradient-xy': 'gradient-xy 6s ease infinite',
         'ripple-effect': 'ripple-effect 2s cubic-bezier(0, 0, 0.2, 1) infinite',
         'tilt': 'tilt 10s infinite linear',
       },
