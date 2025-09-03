@@ -39,8 +39,10 @@ export function HeroSection() {
       >
         <h1 className="text-4xl font-headline font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
           <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-text-gradient bg-[200%_auto]">ForgeFlow Pilot</span>
-          <span className="block text-foreground">Streamline Your MLOps Pipeline</span>
         </h1>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            Streamline Your MLOps Pipeline
+        </h2>
         <p className="mx-auto mt-6 max-w-[700px] text-muted-foreground md:text-xl">
           From dataset to deployment, ForgeFlow Pilot provides the tools you need to build, test, and manage your machine learning models with confidence and speed.
         </p>
