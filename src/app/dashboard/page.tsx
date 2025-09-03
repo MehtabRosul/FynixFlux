@@ -128,8 +128,10 @@ export default function DashboardPage() {
         </div>
 
         {/* Right Column */}
-        <div className="lg:col-span-4 space-y-6">
-          <DataUploadPanel onDatasetUpload={handleDatasetUpload} />
+        <div className="lg:col-span-4 space-y-6 flex flex-col">
+          <div className="flex-grow">
+            <DataUploadPanel onDatasetUpload={handleDatasetUpload} />
+          </div>
            <AnimatePresence>
             {!isInsightHubMode && (
                <motion.div

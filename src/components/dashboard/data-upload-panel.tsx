@@ -85,11 +85,11 @@ export function DataUploadPanel({ onDatasetUpload }: DataUploadPanelProps) {
   }, [onDatasetUpload, toast]);
   
   return (
-    <Card>
+    <Card className="flex flex-col h-full">
       <CardHeader>
         <CardTitle>Dataset Upload</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="flex-grow flex flex-col justify-center">
         <div className="flex flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-muted-foreground/30 p-10 text-center relative">
             {uploadStatus === 'idle' && <UploadCloud className="w-12 h-12 text-muted-foreground" />}
             {uploadStatus === 'success' && <CheckCircle className="w-12 h-12 text-green-500" />}
