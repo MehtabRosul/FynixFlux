@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -56,7 +57,12 @@ export function CtaSection() {
                     willChange: 'transform, opacity'
                 }}
              >
-                <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary via-accent to-secondary p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:400%_400%]">
+                <div 
+                    className="relative overflow-hidden rounded-lg p-8 shadow-2xl md:p-12 lg:p-16 animate-gradient-xy bg-[length:400%_400%]"
+                    style={{
+                        backgroundImage: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--destructive)), hsl(var(--secondary)))'
+                    }}
+                >
                 <div className="relative z-10 flex flex-col items-center text-center">
                     <h2 className="text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl md:text-5xl font-headline">
                     Ready to Forge Your Next Breakthrough?
