@@ -8,17 +8,20 @@ import { Wand2 } from "lucide-react";
 
 interface ModelTestPanelProps {
   className?: string;
+  isTrainingComplete: boolean;
 }
 
-export function ModelTestPanel({ className }: ModelTestPanelProps) {
+export function ModelTestPanel({ className, isTrainingComplete }: ModelTestPanelProps) {
   return (
     <Card className={cn(className)}>
       <CardHeader>
-        <CardTitle>if user want to test the model then details for that will be here</CardTitle>
-        <CardDescription>Test model after training</CardDescription>
+        <CardTitle>Test Model</CardTitle>
+        <CardDescription>
+            {isTrainingComplete ? "Test your trained model with new inputs." : "Test model after training."}
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Button disabled className="w-full">
+        <Button disabled={!isTrainingComplete} className="w-full">
           <Wand2 className="mr-2 h-4 w-4" />
           Test Model
         </Button>

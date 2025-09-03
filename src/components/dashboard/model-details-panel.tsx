@@ -1,7 +1,9 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 
 export interface ModelDetails {
   modelName: string;
@@ -16,9 +18,10 @@ interface ModelDetailsPanelProps {
   className?: string;
   model: ModelDetails | null;
   isTraining: boolean;
+  isTrainingComplete: boolean;
 }
 
-export function ModelDetailsPanel({ className, model, isTraining }: ModelDetailsPanelProps) {
+export function ModelDetailsPanel({ className, model, isTraining, isTrainingComplete }: ModelDetailsPanelProps) {
   const renderContent = () => {
     if (isTraining) {
       return (
@@ -47,16 +50,24 @@ export function ModelDetailsPanel({ className, model, isTraining }: ModelDetails
   };
 
   return (
-    <Card className={cn(className)}>
+    <Card className={cn("flex flex-col", className)}>
       <CardHeader>
         <CardTitle>Model Details</CardTitle>
         <CardDescription>
           {isTraining ? "Generating model details..." : "Summary of the best performing model."}
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-grow">
         {renderContent()}
       </CardContent>
+      {isTrainingComplete && (
+        <CardFooter>
+            <Button className="w-full">
+                <Download className="mr-2 h-4 w-4" />
+                Export Artifacts
+            </Button>
+        </CardFooter>
+      )}
     </Card>
   );
 }

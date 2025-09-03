@@ -159,7 +159,7 @@ export default function DashboardPage() {
                 animate="animate"
                 exit="exit"
             >
-                <ModelTestPanel className="h-full" />
+                <ModelTestPanel className="h-full" isTrainingComplete={isTrainingComplete} />
             </motion.div>
          )}
         </AnimatePresence>
@@ -176,7 +176,7 @@ export default function DashboardPage() {
             </motion.div>
         )}
 
-        <ModelDetailsPanel className="h-full" model={modelDetails} isTraining={isTraining} />
+        <ModelDetailsPanel className="h-full" model={modelDetails} isTraining={isTraining} isTrainingComplete={isTrainingComplete} />
         <DatasetPreviewPanel dataset={dataset} />
       </div>
 
