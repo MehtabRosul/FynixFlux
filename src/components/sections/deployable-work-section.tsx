@@ -127,27 +127,29 @@ export function DeployableWorkSection() {
                 </div>
 
                 {/* Bottom Section */}
-                <div className="text-center max-w-3xl mx-auto space-y-4 pt-12 reveal-on-scroll opacity-0 transition-all duration-700" style={{ transitionDelay: '300ms' }}>
-                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
-                        Built by Developers, for Developers
-                    </h2>
-                     <p className="text-lg text-muted-foreground">
-                        ForgeFlow ML is a powerful tool built for collaboration. Integrate with your favorite tools,
-                        share insights with your team, and build on a platform designed for the entire machine
-                        learning community.
-                    </p>
-                </div>
+                <div className="relative rounded-lg -mx-4 md:-mx-8 py-16 px-4 md:px-8 bg-gradient-to-b from-secondary/10 to-background">
+                    <div className="text-center max-w-3xl mx-auto space-y-4 pt-12 reveal-on-scroll opacity-0 transition-all duration-700" style={{ transitionDelay: '300ms' }}>
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
+                            Built by Developers, for Developers
+                        </h2>
+                        <p className="text-lg text-muted-foreground">
+                            ForgeFlow ML is a powerful tool built for collaboration. Integrate with your favorite tools,
+                            share insights with your team, and build on a platform designed for the entire machine
+                            learning community.
+                        </p>
+                    </div>
 
-                 <div className="grid md:grid-cols-2 gap-8 pt-8 max-w-4xl mx-auto">
-                    {devFeatures.map((feature, index) => (
-                        <ParallaxCard key={feature.title} index={index}>
-                            <div className="flex items-center gap-4 mb-4">
-                               {feature.icon}
-                               <h3 className="text-xl font-semibold">{feature.title}</h3>
-                            </div>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                        </ParallaxCard>
-                    ))}
+                    <div className="grid md:grid-cols-2 gap-8 pt-8 max-w-4xl mx-auto">
+                        {devFeatures.map((feature, index) => (
+                            <ParallaxCard key={feature.title} index={index}>
+                                <div className="flex items-center gap-4 mb-4">
+                                {feature.icon}
+                                <h3 className="text-xl font-semibold">{feature.title}</h3>
+                                </div>
+                                <p className="text-muted-foreground">{feature.description}</p>
+                            </ParallaxCard>
+                        ))}
+                    </div>
                 </div>
 
             </div>
