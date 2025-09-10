@@ -11,8 +11,12 @@ const CodeBlock = ({ children }: { children: React.ReactNode }) => (
 export default function DocsPage() {
   const sections = [
     { id: 'introduction', title: 'Introduction' },
-    { id: 'getting-started', title: 'Getting Started' },
-    { id: 'api-reference', title: 'API Reference' },
+    { id: 'quickstart', title: 'Quickstart' },
+    { id: 'core-features', title: 'Core Features' },
+    { id: 'dashboard-walkthrough', title: 'Dashboard Walkthrough' },
+    { id: 'ai-capabilities', title: 'AI Capabilities' },
+    { id: 'configuration', title: 'Configuration' },
+    { id: 'api-reference', title: 'API Reference (text-only)' },
     { id: 'guides', title: 'Guides' },
   ];
 
@@ -25,86 +29,157 @@ export default function DocsPage() {
               <CardTitle className="text-3xl font-bold font-headline">Introduction</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
-              <p>Welcome to the ForgeFlow Pilot documentation. This is your central resource for understanding how to use our platform to streamline your entire machine learning workflow, from uploading your first dataset to deploying a production-ready model.</p>
-              <p>Our goal is to provide a powerful, intuitive, and secure environment that empowers you to build, test, and manage models with confidence. Whether you are a solo developer or part of a large team, ForgeFlow Pilot is designed to accelerate your MLOps cycle by focusing on key principles: reproducibility, security, and velocity.</p>
-               <h3 className="text-xl font-semibold text-foreground mt-6">Core Concepts</h3>
-                <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Projects:</strong> A project is a dedicated workspace for your ML initiatives, containing datasets, training runs, and models.</li>
-                    <li><strong>Datasets:</strong> The starting point for any project. Upload your data, and we'll automatically version and profile it for quality and security.</li>
-                    <li><strong>Runs:</strong> A single, reproducible training job. Every run tracks code, hyperparameters, and artifacts to ensure full lineage.</li>
-                    <li><strong>Artifacts:</strong> The output of a run, including trained models, model cards, and evaluation metrics, ready for testing and deployment.</li>
-                    <li><strong>Insight Hub:</strong> An AI-powered assistant that can understand natural language commands to automate your entire workflow.</li>
-                </ul>
+              <p>Welcome to the ForgeFlow Pilot documentation. This is the single source of truth for operating the platform to ship reliable ML — from dataset upload to artifact export — with a modern, accessible UI built on Next.js and shadcn/ui.</p>
+              <p>The demo experience mirrors a production MLOps workflow: upload a dataset, configure a run, observe live metrics, generate a test report, and export artifacts. AI assistance is available via Genkit + Google AI to draft narratives and explanation summaries.</p>
+              <h3 className="text-xl font-semibold text-foreground mt-6">Core Concepts</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong>Dataset:</strong> CSV upload and preview with lightweight inference to enable the flow.</li>
+                <li><strong>Run:</strong> Training configured through top‑level controls, with live metrics and event feed.</li>
+                <li><strong>Artifact:</strong> What you deploy — export flows represent ONNX, TFLite, wheel, etc.</li>
+                <li><strong>Insight Hub:</strong> AI‑assisted narratives and model explanations powered by Genkit.</li>
+              </ul>
             </CardContent>
           </Card>
         </section>
 
-        <section id="getting-started">
+        <section id="quickstart">
           <Card>
             <CardHeader>
-              <CardTitle className="text-3xl font-bold font-headline">Getting Started</CardTitle>
+              <CardTitle className="text-3xl font-bold font-headline">Quickstart</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed space-y-4">
-              <h3 className="text-xl font-semibold text-foreground">1. Sign Up & Create a Project</h3>
-              <p>First, create an account to get access to your personal dashboard. Once inside, create your first project. This will be the home for your datasets, models, and experiments.</p>
-              
-              <h3 className="text-xl font-semibold text-foreground">2. Upload Your First Dataset</h3>
-              <p>Navigate to the "Datasets" section in your project dashboard and click "Upload Dataset". We support various formats, including CSV, JSONL, and Parquet. Once uploaded, we automatically profile your data, providing schema inference, data quality warnings, and PII detection to ensure your data is clean and secure before training.</p>
-              
-              <h3 className="text-xl font-semibold text-foreground">3. Configure and Start a Training Run</h3>
-              <p>With a dataset ready, you can configure and start a training run. Select your dataset, choose a model type (e.g., classification, regression), and configure hyperparameters through our intuitive UI or by uploading a configuration file. You can monitor the progress live from the "Runs" dashboard.</p>
+              <h3 className="text-xl font-semibold text-foreground">1) Get Started on the Web</h3>
+              <p>Open the application in your browser to get started—everything runs online.</p>
+              <ul className="list-disc pl-6">
+                <li>Open the site in a modern browser (Chrome, Edge, Safari, or Firefox).</li>
+                <li>Use the navigation to explore <strong>Dashboard</strong>, <strong>Docs</strong>, and <strong>Security</strong>.</li>
+                <li>For the best experience, enable JavaScript and do not block third‑party fonts.</li>
+              </ul>
+              <h3 className="text-xl font-semibold text-foreground">2) Open the Dashboard</h3>
+              <p>Upload a CSV, set <em>Problem</em>, <em>Model</em>, <em>Split</em>, <em>Tuning</em>, and <em>Metric</em>, then start training. Live metrics and feed will animate to reflect progress.</p>
               <CodeBlock>
-{`# Example of a training configuration (config.yaml)
-model_type: "classification"
-dataset_id: "ds_a1b2c3d4"
-target_column: "churn"
-feature_columns: ["age", "plan_type", "monthly_spend"]
-
-hyperparameters:
-  learning_rate: 0.001
-  epochs: 20
-  batch_size: 32
-  optimizer: "adam"
-
-validation_split: 0.2`}
+{`TrainingConfig
+- problem: classification | regression | time-series | clustering
+- model: AutoML | RandomForest | XGBoost | LightGBM | CatBoost | SVM | Prophet
+- split: train/test | k-fold | time-based
+- tuning: grid | random | bayesian | hyperband | ASHA
+- metric: accuracy | F1 | AUC-ROC | MAE | MSE | R2`}
               </CodeBlock>
-
-              <h3 className="text-xl font-semibold text-foreground">4. Alternative: Using the Insight Hub</h3>
-              <p>Instead of manual configuration, you can use the AI-powered Insight Hub to perform the same task with a single command. Open the Insight Hub from the dashboard and provide your instructions in plain English.</p>
-               <CodeBlock>
-{`# Example Insight Hub Prompt
-"Train a RandomForest classifier on 'customer_churn_v1.csv' to predict churn, using 20% of the data for validation and aiming for the highest AUC score."`}
-               </CodeBlock>
-              
-              <h3 className="text-xl font-semibold text-foreground">5. Test, Promote, and Export</h3>
-              <p>After a run completes, you can inspect its performance and test the generated model in our sandbox. If you're happy with the results, promote the model to your project's registry. From the registry, you can export artifacts for use in your own applications. We provide artifacts in common formats like ONNX, TFLite, and versioned Python wheels.</p>
+              <h3 className="text-xl font-semibold text-foreground">3) Test & Export</h3>
+              <p>Use <strong>Test Model</strong> for a quick performance/bias snapshot, review <strong>Model Details</strong>, and export artifacts for deployment.</p>
             </CardContent>
           </Card>
         </section>
 
-        <section id="api-reference">
-           <Card>
+        <section id="core-features">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-3xl font-bold font-headline">API Reference</CardTitle>
+              <CardTitle className="text-3xl font-bold font-headline">Core Features</CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong>Dataset Upload & Preview:</strong> Client‑side CSV parsing and preview.</li>
+                <li><strong>Configurable Training:</strong> Problem, model, split, tuning, and metric.</li>
+                <li><strong>Live Metrics:</strong> Real‑time charting of validation loss.</li>
+                <li><strong>Event Feed:</strong> Human‑readable training updates and tips.</li>
+                <li><strong>Model Testing:</strong> Compact performance and bias summary.</li>
+                <li><strong>Artifacts:</strong> Export flows representing ONNX, TFLite, wheel, etc.</li>
+                <li><strong>AI Assistance:</strong> Genkit flows for narrative and explanation authoring.</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section id="dashboard-walkthrough">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold font-headline">Dashboard Walkthrough</CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed space-y-2">
+              <ol className="list-decimal pl-6 space-y-2">
+                <li><strong>Top Controls</strong> — configure the training run.</li>
+                <li><strong>Upload Panel</strong> — provide dataset to enable training.</li>
+                <li><strong>Live Metrics</strong> — observe validation loss per epoch.</li>
+                <li><strong>Event Feed</strong> — friendly log of progress and checkpoints.</li>
+                <li><strong>Model Details</strong> — name, version, and metric summary.</li>
+                <li><strong>Test Model</strong> — quick health‑check before export.</li>
+              </ol>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section id="ai-capabilities">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold font-headline">AI Capabilities</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed space-y-4">
-               <p>Our REST API provides programmatic access to manage your resources. All endpoints require authentication via an API key, which you can generate in your account settings.</p>
-                <h3 className="text-xl font-semibold text-foreground">Base URL</h3>
-                <CodeBlock>https://api.forgeflow.pilot/v1</CodeBlock>
+              <p>ForgeFlow Pilot integrates <strong>Genkit</strong> with Google AI (Gemini). Two demo flows are available:</p>
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong>ai-narrative-tool</strong> — converts metrics + logs into concise narratives.</li>
+                <li><strong>model-test-explanation</strong> — drafts an explanation summary for a test input.</li>
+              </ul>
+              <p>Flows execute via Next.js Server Actions. Provide valid credentials to call real models.</p>
+            </CardContent>
+          </Card>
+        </section>
 
-                <h3 className="text-xl font-semibold text-foreground">Authentication</h3>
-                <p>Authenticate your API requests by providing your secret key in the `Authorization` header. All API requests must be made over HTTPS.</p>
-                 <CodeBlock>
+        <section id="configuration">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold font-headline">Configuration</CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed space-y-4">
+              <p>Before starting a training run on the Dashboard, configure these settings in the top control bar:</p>
+              <ol className="list-decimal pl-6 space-y-3">
+                <li>
+                  <span className="font-semibold text-foreground">Problem Categorization</span>
+                  <br />Choose the task that matches your outcome variable: classification, regression, time‑series forecasting, or clustering. This determines available models and metrics.
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">Model Selection</span>
+                  <br />Pick a baseline to start (e.g., AutoML, RandomForest, XGBoost, LightGBM, CatBoost, SVM, Prophet for time‑series). You can iterate and compare later.
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">Data Splitting</span>
+                  <br />Define how data is partitioned for training and validation: simple train/test split, k‑fold cross‑validation, or time‑based split for temporal data.
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">Hyperparameter Tuning</span>
+                  <br />Select a strategy: grid, random, Bayesian, Hyperband, or ASHA. Set budget/iterations as needed. For quick runs, keep tuning off or minimal.
+                </li>
+                <li>
+                  <span className="font-semibold text-foreground">Evaluation Metric</span>
+                  <br />Choose the metric used to optimize and report results (e.g., Accuracy, F1, AUC‑ROC for classification; MAE/MSE/R² for regression). Ensure it aligns with your business goal.
+                </li>
+              </ol>
+              <p className="mt-2">After configuring these, click <strong>Start Training</strong>. Live charts and the event feed will reflect progress in real‑time.</p>
+            </CardContent>
+          </Card>
+        </section>
+
+        
+
+        <section id="api-reference">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold font-headline">API Reference (text-only)</CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed space-y-4">
+              <p>Our REST API provides programmatic access to manage your resources. All endpoints require authentication via an API key, which you can generate in your account settings.</p>
+              <h3 className="text-xl font-semibold text-foreground">Base URL</h3>
+              <CodeBlock>https://api.forgeflow.pilot/v1</CodeBlock>
+              <h3 className="text-xl font-semibold text-foreground">Authentication</h3>
+              <p>Authenticate your API requests by providing your secret key in the <code>Authorization</code> header. All API requests must be made over HTTPS.</p>
+              <CodeBlock>
 {`Authorization: Bearer YOUR_API_KEY`}
-                 </CodeBlock>
-
-                 <h3 className="text-xl font-semibold text-foreground">Endpoints</h3>
-
-                 <h4>List Datasets</h4>
-                 <p>To get a list of your datasets for a specific project, make a GET request to the `/datasets` endpoint.</p>
-                 <CodeBlock>
+              </CodeBlock>
+              <h3 className="text-xl font-semibold text-foreground">Endpoints</h3>
+              <h4>List Datasets</h4>
+              <p>To get a list of your datasets for a specific project, make a GET request to the <code>/datasets</code> endpoint.</p>
+              <CodeBlock>
 {`# Request
-curl -X GET "https://api.forgeflow.pilot/v1/projects/{projectId}/datasets" \\
+curl -X GET "https://api.forgeflow.pilot/v1/projects/{projectId}/datasets" \
   -H "Authorization: Bearer YOUR_API_KEY"
 
 # Response (200 OK)
@@ -118,15 +193,14 @@ curl -X GET "https://api.forgeflow.pilot/v1/projects/{projectId}/datasets" \\
     }
   ]
 }`}
-                 </CodeBlock>
-
-                  <h4 className="mt-4">Create Training Run</h4>
-                 <p>To start a new training run, make a POST request to the `/runs` endpoint with your configuration.</p>
-                 <CodeBlock>
+              </CodeBlock>
+              <h4 className="mt-4">Create Training Run</h4>
+              <p>To start a new training run, make a POST request to the <code>/runs</code> endpoint with your configuration.</p>
+              <CodeBlock>
 {`# Request
-curl -X POST "https://api.forgeflow.pilot/v1/projects/{projectId}/runs" \\
-  -H "Authorization: Bearer YOUR_API_KEY" \\
-  -H "Content-Type: application/json" \\
+curl -X POST "https://api.forgeflow.pilot/v1/projects/{projectId}/runs" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
   -d '{
     "dataset_id": "ds_a1b2c3d4",
     "config": {
@@ -141,24 +215,24 @@ curl -X POST "https://api.forgeflow.pilot/v1/projects/{projectId}/runs" \\
   "status": "queued",
   "dashboard_url": "https://app.forgeflow.pilot/runs/run_e5f6g7h8"
 }`}
-                 </CodeBlock>
+              </CodeBlock>
             </CardContent>
           </Card>
         </section>
 
         <section id="guides">
-            <Card>
+          <Card>
             <CardHeader>
               <CardTitle className="text-3xl font-bold font-headline">Guides</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
-                <p>This section contains in-depth guides for specific use cases. More guides are being added regularly.</p>
-                <ul className="list-disc pl-6">
-                    <li><span className="font-semibold text-foreground">Best Practices for Data Preparation:</span> Learn how to format your data for optimal model performance.</li>
-                    <li><span className="font-semibold text-foreground">Interpreting Model Evaluation Metrics:</span> A deep dive into classification and regression metrics.</li>
-                    <li><span className="font-semibold text-foreground">Integrating Exported Models:</span> Step-by-step instructions for deploying a downloaded artifact in a Python web service.</li>
-                    <li><span className="font-semibold text-foreground">Mastering the Insight Hub:</span> Advanced tips for getting the most out of the AI assistant.</li>
-                </ul>
+              <p>This section contains in‑depth guides for specific use cases. More guides are being added regularly.</p>
+              <ul className="list-disc pl-6">
+                <li><span className="font-semibold text-foreground">Best Practices for Data Preparation:</span> Format your data for optimal model performance.</li>
+                <li><span className="font-semibold text-foreground">Interpreting Model Evaluation Metrics:</span> A deep dive into classification and regression metrics.</li>
+                <li><span className="font-semibold text-foreground">Integrating Exported Models:</span> Deploy a downloaded artifact in a Python web service.</li>
+                <li><span className="font-semibold text-foreground">Mastering the Insight Hub:</span> Advanced tips for getting the most out of the AI assistant.</li>
+              </ul>
             </CardContent>
           </Card>
         </section>

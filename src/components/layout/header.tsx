@@ -10,7 +10,7 @@ import { Menu, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Logo = () => (
-  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+  <div className="w-12 h-12 lg:w-60 lg:h-12 bg-primary/20 rounded-lg flex items-center justify-center">
     {/* Your Logo Here */}
   </div>
 );
@@ -23,19 +23,20 @@ export function Header() {
     { href: "/features", label: "Features" },
     { href: "/how-it-works", label: "How It Works" },
     { href: "/about", label: "About Us" },
-    { href: "/news", label: "News" },
+    { href: "/security", label: "Security" },
+    { href: "/docs", label: "Documentation" },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm border-b">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+      <div className="px-4 lg:px-6">
+        <div className="mx-auto w-full max-w-6xl flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 mr-6" prefetch={false}>
           <Logo />
-          <span className="font-bold text-lg">ForgeFlow</span>
         </Link>
         
-        {/* Desktop Nav */}
-        <div className="hidden md:flex flex-grow items-center justify-center">
+        {/* Desktop Nav (PC only) */}
+        <div className="hidden lg:flex flex-grow items-center justify-center">
             <nav className="flex items-center gap-6 text-sm font-medium">
             {navLinks.map((link) => (
                 <Link 
@@ -53,7 +54,7 @@ export function Header() {
             </nav>
         </div>
 
-        <div className="flex items-center gap-4 ml-auto md:ml-6">
+        <div className="hidden lg:flex items-center gap-4 ml-auto lg:ml-6">
              <Button asChild>
                   <Link href="/get-in-touch">Contact Us</Link>
               </Button>
@@ -63,7 +64,7 @@ export function Header() {
         {/* Mobile Nav */}
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden">
+            <Button variant="outline" size="icon" className="lg:hidden">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
@@ -94,19 +95,19 @@ export function Header() {
                 ))}
               </nav>
                <div className="flex flex-col gap-2">
-                 {isDashboardPage ? (
+                 {isDashboardPage && (
                       <Button asChild>
                           <Link href="/dashboard">Go to Dashboard</Link>
                       </Button>
-                 ) : (
-                   <Button asChild>
-                      <Link href="/get-in-touch">Contact Us</Link>
-                  </Button>
                  )}
+                 <Button asChild>
+                    <Link href="/get-in-touch">Contact Us</Link>
+                 </Button>
                 </div>
             </div>
           </SheetContent>
         </Sheet>
+        </div>
       </div>
     </header>
   );

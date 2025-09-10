@@ -11,6 +11,9 @@ import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { ShieldCheck, GitCommit, Eye, Zap, Bot } from 'lucide-react';
 import { ParallaxProvider, useParallax } from '@/components/providers/parallax-provider';
+import { Playfair_Display } from 'next/font/google';
+
+const display = Playfair_Display({ subsets: ['latin'], weight: ['600','700'] });
 
 // Parallax-aware Section Component
 const ParallaxSection = ({ children, className }: { children: React.ReactNode; className?: string }) => {
@@ -124,27 +127,84 @@ const CorePrinciplesSection = () => {
 }
 
 const CreatorSection = () => {
+    const [clicks, setClicks] = React.useState(0)
+    const [showEgg, setShowEgg] = React.useState(false)
+    const sparkles = React.useMemo(() => Array.from({ length: 14 }).map((_, i) => ({
+        id: i,
+        top: Math.random() * 80 + 10,
+        left: Math.random() * 80 + 10,
+        delay: Math.random() * 1.5 + 0.2,
+    })), [])
+    // removed mini-game for performance stability
+
+    React.useEffect(() => {
+        if (clicks === 0) return
+        const reset = setTimeout(() => setClicks(0), 4000)
+        if (clicks >= 5) {
+            setShowEgg(true)
+            setClicks(0)
+            const hide = setTimeout(() => setShowEgg(false), 12000)
+            return () => {
+                clearTimeout(reset)
+                clearTimeout(hide)
+            }
+        }
+        return () => clearTimeout(reset)
+    }, [clicks])
+
+
     return (
         <ParallaxSection>
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div className="flex flex-col items-center">
-                       <Image
-                          src="https://placehold.co/600x600.png"
-                          alt="Mehtab Rosul, Creator of ForgeFlow Pilot"
-                          data-ai-hint="male portrait"
-                          width={600}
-                          height={600}
-                          className="rounded-full shadow-2xl w-64 h-64 lg:w-80 lg:h-80 object-cover"
-                        />
+                        <div
+                          className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-lg hover:rounded-full overflow-hidden shadow-2xl ring-1 ring-border/30 hover:ring-primary/50 transition-[border-radius,box-shadow,ring-color] duration-150"
+                          role="button"
+                          aria-label="Portrait"
+                          tabIndex={0}
+                          onClick={() => setClicks(c => c + 1)}
+                        >
+                          <Image
+                            src="https://placehold.co/600x600.png"
+                            alt="Portrait"
+                            data-ai-hint="square portrait"
+                            fill
+                            className="object-cover"
+                          />
+                          {showEgg && (
+                            <>
+                              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent animate-subtle-gradient pointer-events-none" />
+                              {sparkles.map(s => (
+                                <span
+                                  key={s.id}
+                                  className="absolute w-1.5 h-1.5 rounded-full bg-primary/70 animate-ping"
+                                  style={{ top: `${s.top}%`, left: `${s.left}%`, animationDelay: `${s.delay}s` }}
+                                />
+                              ))}
+                              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-full bg-background/80 backdrop-blur text-[10px] font-medium text-foreground shadow ring-1 ring-border">
+                                Craft Mode Unlocked
+                              </div>
+                            </>
+                          )}
+                        </div>
+                        {showEgg && (
+                          <div className="mt-3 text-xs text-muted-foreground italic flex items-center gap-2">
+                            <Zap className="w-4 h-4 text-primary" />
+                            <span>Hidden note: craft with care, measure twice, ship once.</span>
+                          </div>
+                        )}
                     </div>
                     <div className="space-y-6 text-center lg:text-left">
-                        <h2 className="text-3xl font-bold tracking-tighter font-headline">Creator — Mehtab Rosul</h2>
-                        <p className="text-xl text-muted-foreground font-semibold">The architect and driving force behind ForgeFlow Pilot.</p>
+                        <h2 className={`text-3xl font-bold tracking-tight ${display.className}`}>Principal Maker — Mehtab Rosul</h2>
+                        <p className="text-xl text-muted-foreground font-semibold">Engineering the bridge from raw data to reliable production models.</p>
                         <p className="text-lg text-muted-foreground">
                            Mehtab Rosul is an experienced machine learning engineer and MLOps practitioner focused on building tooling that removes friction between data and production. With a background in large-scale model deployment and developer tooling, Mehtab created ForgeFlow Pilot to give creators a single, safe, and flexible platform to iterate and ship models.
                         </p>
                         <p className="font-semibold text-foreground">Focus areas: model reproducibility • explainability • developer DX • production artifacts.</p>
+                        {showEgg && (
+                          <p className="text-xs text-muted-foreground">You unlocked the artisan’s pledge. Expect deliberate defaults and respectful ergonomics across the stack.</p>
+                        )}
                     </div>
                 </div>
             </div>

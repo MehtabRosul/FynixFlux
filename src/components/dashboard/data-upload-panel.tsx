@@ -8,18 +8,19 @@ import { Input } from "@/components/ui/input";
 import { useState, useCallback } from "react";
 import type { Dataset } from "@/app/dashboard/page";
 import { useToast } from "@/hooks/use-toast";
+import { ingestFile, Row } from "@/app/actions/ingest";
 
 interface DataUploadPanelProps {
   onDatasetUpload: (data: Dataset) => void;
 }
 
-// A simple CSV parser
-const parseCSV = (csvText: string): Dataset => {
-    const lines = csvText.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
+// Generic delimited-text parser (CSV/TSV/pipe/semicolon)
+const parseDelimited = (text: string, delimiter: string): Dataset => {
+    const lines = text.trim().split(/\r?\n/);
+    const headers = lines[0].split(delimiter).map(h => h.trim());
     const rows: Dataset = [];
     for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(',').map(v => v.trim());
+        const values = lines[i].split(delimiter).map(v => v.trim());
         const row: Record<string, string | number> = {};
         headers.forEach((header, j) => {
             const value = values[j];
@@ -35,6 +36,30 @@ const parseCSV = (csvText: string): Dataset => {
     return rows;
 };
 
+const sniffDelimiter = (text: string): string => {
+  const sample = text.split(/\r?\n/).slice(0, 5).join('\n');
+  const counts: Record<string, number> = { ',': 0, '\t': 0, '|': 0, ';': 0 };
+  for (const ch of Object.keys(counts)) {
+    counts[ch] = (sample.match(new RegExp(escapeRegExp(ch), 'g')) || []).length;
+  }
+  const best = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || ',';
+  return best;
+};
+
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const parseJSON = (text: string): Dataset => {
+  const data = JSON.parse(text);
+  if (Array.isArray(data)) return data as Dataset;
+  if (typeof data === 'object') return [data as Record<string, string | number>];
+  throw new Error('Unsupported JSON structure');
+};
+
+const parseJSONL = (text: string): Dataset => {
+  const lines = text.trim().split(/\r?\n/);
+  return lines.filter(Boolean).map(l => JSON.parse(l));
+};
+
 
 export function DataUploadPanel({ onDatasetUpload }: DataUploadPanelProps) {
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -45,10 +70,26 @@ export function DataUploadPanel({ onDatasetUpload }: DataUploadPanelProps) {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = async (e) => {
         try {
           const text = e.target?.result as string;
-          const parsedData = parseCSV(text);
+          const lower = file.name.toLowerCase();
+          let parsedData: Dataset = [];
+          if (lower.endsWith('.csv') || lower.endsWith('.tsv') || lower.endsWith('.txt') || lower.endsWith('.psv') || lower.endsWith('.ssv')) {
+            const delimiter = lower.endsWith('.tsv') ? '\t' : lower.endsWith('.psv') ? '|' : lower.endsWith('.ssv') ? ';' : sniffDelimiter(text);
+            parsedData = parseDelimited(text, delimiter);
+          } else if (lower.endsWith('.json')) {
+            parsedData = parseJSON(text);
+          } else if (lower.endsWith('.jsonl') || lower.endsWith('.ndjson')) {
+            parsedData = parseJSONL(text);
+          } else {
+            // Offload to server action for heavy formats
+            const rows = await ingestFile(file as unknown as File);
+            if (!rows || rows.length === 0) {
+              throw new Error('This file format is not supported in-browser.');
+            }
+            parsedData = rows as unknown as Dataset;
+          }
           if (parsedData.length > 0 && Object.keys(parsedData[0]).length > 0) {
               onDatasetUpload(parsedData);
               setFileName(file.name);
@@ -58,7 +99,7 @@ export function DataUploadPanel({ onDatasetUpload }: DataUploadPanelProps) {
                   description: `${file.name} has been processed and is ready for preview.`,
               });
           } else {
-              throw new Error("Failed to parse CSV or CSV is empty.");
+              throw new Error("Failed to parse data or file is empty.");
           }
         } catch (error) {
           console.error("Error parsing file:", error);
@@ -67,7 +108,7 @@ export function DataUploadPanel({ onDatasetUpload }: DataUploadPanelProps) {
            toast({
                 variant: "destructive",
                 title: "Upload Failed",
-                description: `There was an error parsing ${file.name}. Please check the file format.`,
+                description: `There was an error parsing ${file.name}. Supported in-browser: CSV/TSV/JSON/JSONL.`,
             });
         }
       };
@@ -107,7 +148,7 @@ export function DataUploadPanel({ onDatasetUpload }: DataUploadPanelProps) {
                     {uploadStatus === 'idle' ? 'Select File' : 'Select Another File'}
                 </label>
             </Button>
-            <Input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept=".csv" />
+            <Input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept=".csv,.tsv,.txt,.json,.jsonl,.ndjson,.psv,.ssv" />
             <a href="#" className="text-xs text-muted-foreground hover:text-primary">How to prepare your data</a>
         </div>
       </CardContent>

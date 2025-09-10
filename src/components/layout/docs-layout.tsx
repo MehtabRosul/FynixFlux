@@ -30,7 +30,9 @@ export function DocsLayout({ children, sections }: DocsLayoutProps) {
           }
         });
       },
-      { rootMargin: '-20% 0px -80% 0px' }
+      // Make the bottom margin less aggressive so the last section
+      // becomes active when it enters the lower third of the viewport.
+      { rootMargin: '0px 0px -35% 0px', threshold: 0.1 }
     );
 
     sections.forEach((section) => {
@@ -53,8 +55,8 @@ export function DocsLayout({ children, sections }: DocsLayoutProps) {
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <div className="flex-grow container mx-auto px-4 py-8 md:px-6 md:py-12">
-        <div className="flex gap-12">
-          <aside className="hidden lg:block w-64 flex-shrink-0">
+        <div className="mx-auto w-full max-w-6xl flex gap-8">
+          <aside className="hidden lg:block w-56 flex-shrink-0">
             <div className="sticky top-24">
               <h3 className="text-lg font-semibold mb-4 text-foreground">On This Page</h3>
               <nav className="space-y-2">
@@ -76,7 +78,7 @@ export function DocsLayout({ children, sections }: DocsLayoutProps) {
               </nav>
             </div>
           </aside>
-          <main className="w-full">
+          <main className="w-full max-w-3xl mx-auto">
             {children}
           </main>
         </div>

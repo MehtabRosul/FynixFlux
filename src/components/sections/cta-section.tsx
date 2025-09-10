@@ -39,7 +39,8 @@ export function CtaSection() {
       setTranslateY(100);
       setOpacity(0);
     } else {
-      setIsFixed(true);
+      // Once we've scrolled past the pin range, release the section
+      setIsFixed(false);
       setTranslateY(0);
       setOpacity(1);
     }
@@ -47,8 +48,8 @@ export function CtaSection() {
   }, [scrollY]);
 
   return (
-    <section id="cta" ref={sectionRef} className="relative h-[150vh] bg-transparent">
-        <div className={cn("top-0 left-0 w-full h-screen flex items-center justify-center", isFixed ? 'fixed' : 'absolute bottom-0')}>
+    <section id="cta" ref={sectionRef} className="relative h-[88vh] md:h-[88vh] bg-transparent">
+        <div className={cn("top-0 left-0 w-full h-[64vh] md:h-[72vh] flex items-center justify-center", isFixed ? 'fixed' : 'relative')}>
              <div 
                 className="container mx-auto px-4 md:px-6"
                 style={{

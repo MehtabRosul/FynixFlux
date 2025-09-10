@@ -2,10 +2,8 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { useParallax } from '@/components/providers/parallax-provider';
 import { Card } from '@/components/ui/card';
 import { Code, Zap, Package, Grid, FileText, Terminal } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const exportFormats = [
   {
@@ -39,33 +37,7 @@ const devFeatures = [
     }
 ]
 
-const ParallaxCard = ({ children, className, index }: { children: React.ReactNode; className?: string; index: number }) => {
-    const { scrollY } = useParallax();
-    const cardRef = useRef<HTMLDivElement>(null);
-    const isReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let translateY = 0;
-    if (cardRef.current && !isReducedMotion) {
-        const rect = cardRef.current.getBoundingClientRect();
-        const scrollCenter = scrollY + window.innerHeight / 2;
-        const cardCenter = rect.top + scrollY + rect.height / 2;
-        const distance = scrollCenter - cardCenter;
-        translateY = distance * -0.05 * (index % 2 === 0 ? 1 : 1.2);
-    }
-
-    return (
-        <Card 
-            ref={cardRef}
-            className={cn("reveal-on-scroll opacity-0 p-6 transition-all duration-500 ease-in-out hover:shadow-primary/20 hover:-translate-y-2", className)}
-            style={{ 
-                transform: `translateY(${translateY}px)`,
-                transitionDelay: `${(index + 4) * 150}ms` 
-            }}
-        >
-            {children}
-        </Card>
-    );
-};
+// Removed parallax card for developer feature cards per request
 
 
 export function DeployableWorkSection() {
@@ -140,14 +112,14 @@ export function DeployableWorkSection() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 pt-8 max-w-4xl mx-auto">
-                        {devFeatures.map((feature, index) => (
-                            <ParallaxCard key={feature.title} index={index}>
+                        {devFeatures.map((feature) => (
+                            <Card key={feature.title} className="p-6">
                                 <div className="flex items-center gap-4 mb-4">
-                                {feature.icon}
-                                <h3 className="text-xl font-semibold">{feature.title}</h3>
+                                    {feature.icon}
+                                    <h3 className="text-xl font-semibold">{feature.title}</h3>
                                 </div>
                                 <p className="text-muted-foreground">{feature.description}</p>
-                            </ParallaxCard>
+                            </Card>
                         ))}
                     </div>
                 </div>

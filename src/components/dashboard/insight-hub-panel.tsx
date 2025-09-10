@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Bot, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useToast } from "@/hooks/use-toast";
+import { parseTrainingPrompt, ParsedTrainingPlan } from "@/app/actions/ai";
 
 interface InsightHubPanelProps {
   onExit: () => void;
@@ -24,6 +26,62 @@ const placeholderQuestions = [
 export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
+  const { toast } = useToast();
+
+  const isTrainingPrompt = (text: string) => {
+    const normalized = text.toLowerCase();
+    const positiveSignals = [
+      // actions
+      "train", "training", "fit", "tune", "optimize", "evaluate", "test",
+      // objects
+      "model", "dataset", "data", "features", "labels",
+      // tasks
+      "classification", "regression", "time-series", "forecast", "clustering",
+      // config terms
+      "split", "train/test", "k-fold", "cross-validation", "hyperparameter", "learning rate", "epochs", "max_depth",
+      // metrics
+      "accuracy", "f1", "auc", "roc", "mae", "mse", "rmse", "r2",
+      // algorithms
+      "randomforest", "xgboost", "lightgbm", "catboost", "svm", "logistic", "prophet"
+    ];
+    const hasSignal = positiveSignals.some((kw) => normalized.includes(kw));
+    // guard against clearly off-topic prompts
+    const offTopicSignals = ["joke", "weather", "news", "email", "login", "image", "story", "translate", "code a website"];
+    const isOffTopic = offTopicSignals.some((kw) => normalized.includes(kw));
+    return hasSignal && !isOffTopic;
+  };
+
+  const handleStart = async () => {
+    const text = inputValue.trim();
+    if (!text) {
+      toast({ title: "Enter a training prompt", description: "Describe how you want the model trained." });
+      return;
+    }
+    if (!isTrainingPrompt(text)) {
+      toast({
+        title: "Prompt not related to model training",
+        description: "Please provide instructions about training, tuning, splitting, models, or metrics.",
+      });
+      return;
+    }
+    toast({ title: "Processing training plan", description: "Analyzing your instructions..." });
+    try {
+      const plan: ParsedTrainingPlan = await parseTrainingPrompt(text);
+      const detail = [
+        plan.problemCategorization && `Problem: ${plan.problemCategorization}`,
+        plan.modelSelection && `Model: ${plan.modelSelection}`,
+        plan.dataSplitting && `Split: ${plan.dataSplitting}`,
+        plan.hyperparameterTuning && `Tuning: ${plan.hyperparameterTuning}`,
+        plan.evaluationMetric && `Metric: ${plan.evaluationMetric}`,
+      ].filter(Boolean).join(" · ");
+      toast({ title: "Plan created", description: detail || "Defaults will be used." });
+      // Emit a custom event so the dashboard can apply configuration and start training
+      const event = new CustomEvent("insighthub:training-plan", { detail: plan });
+      window.dispatchEvent(event);
+    } catch (e) {
+      toast({ title: "Failed to parse prompt", description: "Please refine your training instructions." });
+    }
+  };
 
   useEffect(() => {
     if (inputValue) return;
@@ -75,7 +133,7 @@ export function InsightHubPanel({ onExit }: InsightHubPanelProps) {
                     )}
                 </div>
                 <div className="flex justify-end pt-4">
-                    <Button size="lg" className="bg-gradient-to-r from-primary/80 to-accent/80 text-primary-foreground">
+                    <Button size="lg" className="bg-gradient-to-r from-primary/80 to-accent/80 text-primary-foreground" onClick={handleStart}>
                         <Sparkles className="mr-2 h-5 w-5" />
                         Start Training
                     </Button>

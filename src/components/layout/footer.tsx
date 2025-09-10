@@ -1,9 +1,9 @@
 
 import Link from 'next/link';
-import { Separator } from '@/components/ui/separator';
+// import removed
 
 const Logo = () => (
-  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
     {/* Your Logo Here */}
   </div>
 );
@@ -16,18 +16,7 @@ export function Footer() {
         <div className="flex flex-col items-center justify-center gap-4 text-sm text-muted-foreground md:flex-row md:gap-6">
           <div className="flex items-center gap-2">
             <Logo />
-             <p className="text-center md:text-left">
-              &copy; {year} ForgeFlow. Build by expertise by{' '}
-              <a
-                href="https://www.rosulmehtab.tech/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-primary hover:underline"
-              >
-                Mehtab Rosul
-              </a>
-              .
-            </p>
+            <p className="text-center md:text-left">© 2025 ForgeFlow. All rights reserved.</p>
           </div>
           <div className="flex gap-4">
             <Link href="/terms" className="hover:text-primary transition-colors">
@@ -40,6 +29,19 @@ export function Footer() {
               Get in Touch
             </Link>
           </div>
+        </div>
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+          <p className="text-center">&copy; {year}. Designed, developed & supported by{' '}
+            <a
+              href="https://www.rosulmehtab.tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
+              Mehtab Rosul
+            </a>
+            .
+          </p>
         </div>
       </div>
     </footer>

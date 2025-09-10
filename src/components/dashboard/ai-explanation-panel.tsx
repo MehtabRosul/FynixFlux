@@ -8,23 +8,31 @@ import { BrainCircuit } from "lucide-react";
 
 interface AiExplanationPanelProps {
   className?: string;
+  canGenerate: boolean;
+  isGenerating: boolean;
+  explanation: string | null;
+  onGenerate: () => void;
 }
 
-export function AiExplanationPanel({ className }: AiExplanationPanelProps) {
+export function AiExplanationPanel({ className, canGenerate, isGenerating, explanation, onGenerate }: AiExplanationPanelProps) {
   return (
     <Card className={cn(className)}>
       <CardHeader>
-        <CardTitle>AI-Generated Explanation</CardTitle>
-        <CardDescription>Get a narrative explanation of model behavior.</CardDescription>
+        <CardTitle>Training Insights & Findings</CardTitle>
+        <CardDescription>{explanation ? "Explanation ready." : isGenerating ? "Generating explanation..." : "Get a narrative explanation of model behavior."}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="text-sm text-muted-foreground">
-            Use AI to generate SHAP values and a human-readable summary of how the model makes predictions for a specific input.
-        </p>
-        <Button disabled className="w-full">
-          <BrainCircuit className="mr-2 h-4 w-4" />
-          Generate Explanation
-        </Button>
+        {!isGenerating && !explanation && (
+          <Button disabled={!canGenerate} onClick={onGenerate} className="w-full">
+            <BrainCircuit className="mr-2 h-4 w-4" />
+            Generate Explanation
+          </Button>
+        )}
+        {explanation && (
+          <div className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed max-h-72 overflow-auto pr-2">
+            {explanation}
+          </div>
+        )}
       </CardContent>
     </Card>
   );
