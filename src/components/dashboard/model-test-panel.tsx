@@ -2,18 +2,42 @@
 "use client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Loader2, CheckCircle, AlertTriangle } from "lucide-react";
+import { Loader2, CheckCircle, Scale } from "lucide-react";
 
+// Updated TestReport interface to match the new comprehensive structure
 export interface TestReport {
-  biasMetrics: {
+  metadata: {
+    reportVersion: string;
+    generatedAt: string;
+  };
+  modelDetails: {
+    name: string;
+    version: string;
+  };
+  trainingConfiguration: any; // Using 'any' for simplicity, could be a strong type
+  performanceMetrics: {
+    overall: {
+      accuracy: number;
+      precision: number;
+      recall: number;
+      f1Score: number;
+      auc_roc: number;
+    };
+    confusionMatrix: {
+      truePositive: number;
+      falsePositive: number;
+      trueNegative: number;
+      falseNegative: number;
+    };
+  };
+  biasAndFairness: {
     demographicParity: number;
     equalizedOdds: number;
   };
-  performanceMetrics: {
-    testAccuracy: number;
-    testPrecision: number;
-    testRecall: number;
+  explainability: {
+    shapValues: string;
   };
+  executiveSummary: string;
 }
 
 interface ModelTestPanelProps {
@@ -25,8 +49,8 @@ interface ModelTestPanelProps {
 }
 
 const ReportMetric = ({ label, value, higherIsBetter = true }: { label: string, value: number, higherIsBetter?: boolean }) => {
-  const isGood = higherIsBetter ? value > 0.9 : value < 0.1;
-  const isNeutral = higherIsBetter ? value > 0.8 : value < 0.2;
+  const isGood = higherIsBetter ? value > 0.85 : value < 0.1;
+  const isNeutral = higherIsBetter ? value > 0.75 : value < 0.2;
   const colorClass = isGood ? "text-green-400" : isNeutral ? "text-yellow-400" : "text-red-400";
   return (
     <div className="flex justify-between items-center text-sm">
@@ -36,6 +60,28 @@ const ReportMetric = ({ label, value, higherIsBetter = true }: { label: string, 
   );
 };
 
+const ConfusionMatrix = ({ data }: { data: TestReport['performanceMetrics']['confusionMatrix']}) => {
+    return (
+        <div className="grid grid-cols-2 gap-px bg-border overflow-hidden rounded-lg border border-border">
+            <div className="bg-card p-2 text-center">
+                <p className="text-xs text-muted-foreground">True Positive</p>
+                <p className="font-bold text-lg text-green-400">{data.truePositive}</p>
+            </div>
+             <div className="bg-card p-2 text-center">
+                <p className="text-xs text-muted-foreground">False Positive</p>
+                <p className="font-bold text-lg text-red-400">{data.falsePositive}</p>
+            </div>
+             <div className="bg-card p-2 text-center">
+                <p className="text-xs text-muted-foreground">False Negative</p>
+                <p className="font-bold text-lg text-red-400">{data.falseNegative}</p>
+            </div>
+             <div className="bg-card p-2 text-center">
+                <p className="text-xs text-muted-foreground">True Negative</p>
+                <p className="font-bold text-lg text-green-400">{data.trueNegative}</p>
+            </div>
+        </div>
+    )
+}
 
 export function ModelTestPanel({ className, isTrainingComplete, onTestModel: _onTestModel, isTesting, testReport }: ModelTestPanelProps) {
   const renderContent = () => {
@@ -45,16 +91,21 @@ export function ModelTestPanel({ className, isTrainingComplete, onTestModel: _on
             <div>
               <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2"><CheckCircle className="w-5 h-5 text-primary" /> Performance</h4>
               <div className="space-y-1">
-                <ReportMetric label="Test Accuracy" value={testReport.performanceMetrics.testAccuracy} />
-                <ReportMetric label="Test Precision" value={testReport.performanceMetrics.testPrecision} />
-                <ReportMetric label="Test Recall" value={testReport.performanceMetrics.testRecall} />
+                <ReportMetric label="Accuracy" value={testReport.performanceMetrics.overall.accuracy} />
+                <ReportMetric label="Precision" value={testReport.performanceMetrics.overall.precision} />
+                <ReportMetric label="Recall" value={testReport.performanceMetrics.overall.recall} />
+                <ReportMetric label="F1-Score" value={testReport.performanceMetrics.overall.f1Score} />
+                <ReportMetric label="AUC-ROC" value={testReport.performanceMetrics.overall.auc_roc} />
               </div>
             </div>
+            
+            <ConfusionMatrix data={testReport.performanceMetrics.confusionMatrix} />
+
              <div>
-              <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5 text-primary" /> Bias Check</h4>
+              <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2"><Scale className="w-5 h-5 text-primary" /> Bias & Fairness</h4>
               <div className="space-y-1">
-                 <ReportMetric label="Demographic Parity" value={testReport.biasMetrics.demographicParity} higherIsBetter={false} />
-                 <ReportMetric label="Equalized Odds" value={testReport.biasMetrics.equalizedOdds} higherIsBetter={false} />
+                 <ReportMetric label="Demographic Parity" value={testReport.biasAndFairness.demographicParity} higherIsBetter={false} />
+                 <ReportMetric label="Equalized Odds" value={testReport.biasAndFairness.equalizedOdds} higherIsBetter={false} />
               </div>
             </div>
         </div>

@@ -3,14 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { Download, Sparkles } from "lucide-react";
+import { Download, Sparkles, Rocket } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { db } from "@/lib/firebase";
-import { ref, push, set } from "firebase/database";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import { TestReport } from "./model-test-panel";
 
 export interface ModelDetails {
   modelName: string;
@@ -26,21 +25,20 @@ interface ModelDetailsPanelProps {
   model: ModelDetails | null;
   isTraining: boolean;
   isTrainingComplete: boolean;
-  testReport?: any | null;
+  testReport?: TestReport | null;
   onUpdate?: (changes: Partial<ModelDetails>) => void;
 }
 
 export function ModelDetailsPanel({ className, model, isTraining, isTrainingComplete, testReport, onUpdate }: ModelDetailsPanelProps) {
+  const router = useRouter();
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingVersion, setIsEditingVersion] = useState(false);
   const [draftName, setDraftName] = useState("");
   const [draftVersion, setDraftVersion] = useState("");
   const [exportFormat, setExportFormat] = useState<string>("");
-  const [isExporting, setIsExporting] = useState(false);
-  const [confirmOpen, setConfirmOpen] = useState(false);
   const [useCaseAnswer, setUseCaseAnswer] = useState("");
-  const [questionnaireOpen, setQuestionnaireOpen] = useState(false);
-  const [isPersisted, setIsPersisted] = useState(false);
+  const [exportDialogOpen, setExportDialogOpen] = useState(false);
+  const [step, setStep] = useState(1);
 
   const commitName = () => {
     if (!onUpdate) return setIsEditingName(false);
@@ -54,6 +52,17 @@ export function ModelDetailsPanel({ className, model, isTraining, isTrainingComp
     const value = draftVersion.trim();
     if (value && model) onUpdate({ version: value });
     setIsEditingVersion(false);
+  };
+
+  const handleContinueToExport = () => {
+    const exportData = {
+      model,
+      testReport,
+      exportFormat,
+      useCaseAnswer,
+    };
+    localStorage.setItem('exportData', JSON.stringify(exportData));
+    router.push('/export');
   };
 
   const renderContent = () => {
@@ -132,7 +141,7 @@ export function ModelDetailsPanel({ className, model, isTraining, isTrainingComp
       <CardHeader>
         <CardTitle>Model Details</CardTitle>
         <CardDescription>
-          {isTraining ? "Generating model details..." : "Summary of the best performing model."}
+          {isTraining ? "Generating model details..." : "Summary of the a best performing model."}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow space-y-4">
@@ -145,46 +154,46 @@ export function ModelDetailsPanel({ className, model, isTraining, isTrainingComp
                 <SelectValue placeholder="Select a format" />
               </SelectTrigger>
               <SelectContent className="max-h-80">
-                <SelectGroup>
-                  <SelectLabel>Framework-specific</SelectLabel>
-                  <SelectItem value="pickle">Pickle / Joblib (.pkl/.joblib)</SelectItem>
-                  <SelectItem value="keras_h5">Keras HDF5 (.h5)</SelectItem>
-                  <SelectItem value="keras_savedmodel">Keras SavedModel (folder)</SelectItem>
-                  <SelectItem value="tf_ckpt">TensorFlow Checkpoint (.ckpt)</SelectItem>
-                  <SelectItem value="pytorch">PyTorch (.pt/.pth)</SelectItem>
-                  <SelectItem value="mxnet">MXNet (.params/.json)</SelectItem>
-                  <SelectItem value="catboost">CatBoost (.cbm)</SelectItem>
-                  <SelectItem value="lightgbm">LightGBM (.txt/.bin)</SelectItem>
-                  <SelectItem value="xgboost">XGBoost (.model/.json)</SelectItem>
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>Cross-framework / Interchange</SelectLabel>
-                  <SelectItem value="onnx">ONNX (.onnx)</SelectItem>
-                  <SelectItem value="pmml">PMML (.pmml)</SelectItem>
-                  <SelectItem value="pfa">PFA (.pfa)</SelectItem>
-                  <SelectItem value="mlir">MLIR</SelectItem>
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>Deployment / Inference</SelectLabel>
-                  <SelectItem value="torchscript">TorchScript (.pt)</SelectItem>
-                  <SelectItem value="tensorrt">TensorRT (.plan)</SelectItem>
-                  <SelectItem value="coreml">CoreML (.mlmodel)</SelectItem>
-                  <SelectItem value="tflite">TensorFlow Lite (.tflite)</SelectItem>
-                  <SelectItem value="tfjs">TensorFlow.js (.json + .bin)</SelectItem>
-                  <SelectItem value="openvino">OpenVINO IR (.xml + .bin)</SelectItem>
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>Big Data / Enterprise</SelectLabel>
-                  <SelectItem value="mleap">MLeap (.zip)</SelectItem>
-                  <SelectItem value="h2o_mojo">H2O MOJO (.zip)</SelectItem>
-                  <SelectItem value="h2o_pojo">H2O POJO (.java)</SelectItem>
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>Specialized / Niche</SelectLabel>
-                  <SelectItem value="libsvm">LibSVM model</SelectItem>
-                  <SelectItem value="caffe">Caffe (.caffemodel/.prototxt)</SelectItem>
-                  <SelectItem value="dlr">DLR (.dlr)</SelectItem>
-                </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel>Framework-specific</SelectLabel>
+                    <SelectItem value="pickle">Pickle / Joblib (.pkl/.joblib)</SelectItem>
+                    <SelectItem value="keras_h5">Keras HDF5 (.h5)</SelectItem>
+                    <SelectItem value="keras_savedmodel">Keras SavedModel (folder)</SelectItem>
+                    <SelectItem value="tf_ckpt">TensorFlow Checkpoint (.ckpt)</SelectItem>
+                    <SelectItem value="pytorch">PyTorch (.pt/.pth)</SelectItem>
+                    <SelectItem value="mxnet">MXNet (.params/.json)</SelectItem>
+                    <SelectItem value="catboost">CatBoost (.cbm)</SelectItem>
+                    <SelectItem value="lightgbm">LightGBM (.txt/.bin)</SelectItem>
+                    <SelectItem value="xgboost">XGBoost (.model/.json)</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel>Cross-framework / Interchange</SelectLabel>
+                    <SelectItem value="onnx">ONNX (.onnx)</SelectItem>
+                    <SelectItem value="pmml">PMML (.pmml)</SelectItem>
+                    <SelectItem value="pfa">PFA (.pfa)</SelectItem>
+                    <SelectItem value="mlir">MLIR</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel>Deployment / Inference</SelectLabel>
+                    <SelectItem value="torchscript">TorchScript (.pt)</SelectItem>
+                    <SelectItem value="tensorrt">TensorRT (.plan)</SelectItem>
+                    <SelectItem value="coreml">CoreML (.mlmodel)</SelectItem>
+                    <SelectItem value="tflite">TensorFlow Lite (.tflite)</SelectItem>
+                    <SelectItem value="tfjs">TensorFlow.js (.json + .bin)</SelectItem>
+                    <SelectItem value="openvino">OpenVINO IR (.xml + .bin)</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel>Big Data / Enterprise</SelectLabel>
+                    <SelectItem value="mleap">MLeap (.zip)</SelectItem>
+                    <SelectItem value="h2o_mojo">H2O MOJO (.zip)</SelectItem>
+                    <SelectItem value="h2o_pojo">H2O POJO (.java)</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel>Specialized / Niche</SelectLabel>
+                    <SelectItem value="libsvm">LibSVM model</SelectItem>
+                    <SelectItem value="caffe">Caffe (.caffemodel/.prototxt)</SelectItem>
+                    <SelectItem value="dlr">DLR (.dlr)</SelectItem>
+                  </SelectGroup>
               </SelectContent>
             </Select>
           </div>
@@ -192,172 +201,70 @@ export function ModelDetailsPanel({ className, model, isTraining, isTrainingComp
       </CardContent>
       {isTrainingComplete && (
         <CardFooter>
-            <Button className="w-full" disabled={!exportFormat || isExporting} onClick={() => setQuestionnaireOpen(true)}>
+            <Button className="w-full" disabled={!exportFormat} onClick={() => setExportDialogOpen(true)}>
                 <Download className="mr-2 h-4 w-4" />
-                {isExporting ? "Exporting..." : "Export Artifacts"}
+                Export Artifacts
             </Button>
         </CardFooter>
       )}
-      {/* Pre-export questionnaire as dialog */}
-      <Dialog open={questionnaireOpen} onOpenChange={setQuestionnaireOpen}>
-        <DialogContent hideClose>
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              Before we package your model…
-            </DialogTitle>
-            <DialogDescription>
-              In one short note, what will you use this model for—and how will it help?
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-2">
-            <Textarea
-              value={useCaseAnswer}
-              onChange={(e) => setUseCaseAnswer(e.target.value)}
-              placeholder="Example: Detect churn weekly and trigger tailored retention offers in our CRM."
-              rows={4}
-            />
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>Aim for 50–150 characters.</span>
-              <span>{charCount(useCaseAnswer)} chars</span>
-            </div>
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setQuestionnaireOpen(false)}>Cancel</Button>
-            <Button
-              onClick={async () => {
-                const cc = charCount(useCaseAnswer);
-                if (cc < 50 || cc > 150 || !model || !exportFormat) return;
-                // Immediately proceed to confirmation and run the pre-save in the background
-                setQuestionnaireOpen(false);
-                setConfirmOpen(true);
-                (async () => {
-                  try {
-                    const res = await fetch("/api/export", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ format: exportFormat, model, useCase: useCaseAnswer })
-                    });
-                    if (!res.ok) throw new Error("Export prepare failed");
-                    const blob = await res.blob();
-                    const disposition = res.headers.get("Content-Disposition") || "attachment; filename=model.artifact";
-                    const fileMatch = /filename=([^;]+)/.exec(disposition || "");
-                    const filename = fileMatch ? fileMatch[1] : `model.${exportFormat}`;
-                    const storage = getStorage();
-                    const path = `models/${Date.now()}-${Math.random().toString(36).slice(2)}/${filename}`;
-                    const sref = storageRef(storage, path);
-                    await uploadBytes(sref, blob, {
-                      contentType: res.headers.get("Content-Type") || "application/octet-stream",
-                      contentDisposition: `attachment; filename="${filename}"`
-                    });
-                    const downloadURL = await getDownloadURL(sref);
-
-                    const exportRoot = ref(db, `exports`);
-                    const newRef = push(exportRoot);
-                    const payload = {
-                      createdAt: new Date().toISOString(),
-                      format: exportFormat,
-                      model: {
-                        ...model,
-                        storage: {
-                          path,
-                          downloadURL,
-                          contentType: res.headers.get("Content-Type") || "application/octet-stream",
-                          size: blob.size,
-                          format: exportFormat,
-                        },
-                      },
-                      testReport: testReport ?? null,
-                      note: useCaseAnswer,
-                    };
-                    await set(newRef, payload);
-                    setIsPersisted(true);
-                  } catch (e) {
-                    console.error("Pre-save failed:", e);
-                  }
-                })();
-              }}
-              disabled={(() => { const cc = charCount(useCaseAnswer); return cc < 50 || cc > 150 || !exportFormat || !model; })()}
-            >
-              Continue
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-      <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
-        <DialogContent hideClose>
-          <DialogHeader>
-            <DialogTitle>Export model artifacts?</DialogTitle>
-            <DialogDescription>
-              This will export the current model in the selected format. Choose Export to continue or Cancel to go back.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setConfirmOpen(false)}>Cancel</Button>
-            <Button
-              onClick={async () => {
-                if (!model || !exportFormat) return;
-                try {
-                  setIsExporting(true);
-                  const res = await fetch("/api/export", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ format: exportFormat, model, useCase: useCaseAnswer })
-                  });
-                  if (!res.ok) throw new Error("Export failed");
-                  const blob = await res.blob();
-                  // If background persist didn't happen, persist now (best-effort)
-                  if (!isPersisted) {
-                    try {
-                      const dispositionPersist = res.headers.get("Content-Disposition") || "attachment; filename=model.artifact";
-                      const fileMatchPersist = /filename=([^;]+)/.exec(dispositionPersist || "");
-                      const filenamePersist = fileMatchPersist ? fileMatchPersist[1] : `model.${exportFormat}`;
-                      const storage = getStorage();
-                      const path = `models/${Date.now()}-${Math.random().toString(36).slice(2)}/${filenamePersist}`;
-                      const sref = storageRef(storage, path);
-                      await uploadBytes(sref, blob, { contentType: res.headers.get("Content-Type") || "application/octet-stream", contentDisposition: `attachment; filename=\"${filenamePersist}\"` });
-                      const downloadURL = await getDownloadURL(sref);
-                      const exportRoot = ref(db, `exports`);
-                      const newRef = push(exportRoot);
-                      const payload = {
-                        createdAt: new Date().toISOString(),
-                        format: exportFormat,
-                        model: {
-                          ...model,
-                          storage: { path, downloadURL, contentType: res.headers.get("Content-Type") || "application/octet-stream", size: blob.size, format: exportFormat },
-                        },
-                        testReport: testReport ?? null,
-                        note: useCaseAnswer,
-                      };
-                      await set(newRef, payload);
-                      setIsPersisted(true);
-                    } catch (e) {
-                      console.error("Persist-on-export failed:", e);
-                    }
-                  }
-                  const disposition = res.headers.get("Content-Disposition") || "attachment; filename=model.artifact";
-                  const fileMatch = /filename=([^;]+)/.exec(disposition || "");
-                  const filename = fileMatch ? fileMatch[1] : `model.artifact`;
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = filename;
-                  document.body.appendChild(a);
-                  a.click();
-                  a.remove();
-                  URL.revokeObjectURL(url);
-                  setConfirmOpen(false);
-                } catch (e) {
-                  console.error("Export click failed:", e);
-                } finally {
-                  setIsExporting(false);
-                }
-              }}
-              disabled={isExporting}
-            >
-              Export
-            </Button>
-          </DialogFooter>
+      
+      <Dialog open={exportDialogOpen} onOpenChange={(isOpen) => { setExportDialogOpen(isOpen); if (!isOpen) setStep(1); }}>
+        <DialogContent>
+          {step === 1 && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-primary" />
+                  Before we package your model…
+                </DialogTitle>
+                <DialogDescription>
+                  In one short note, what will you use this model for—and how will it help?
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-2">
+                <Textarea
+                  value={useCaseAnswer}
+                  onChange={(e) => setUseCaseAnswer(e.target.value)}
+                  placeholder="Example: Detect churn weekly and trigger tailored retention offers in our CRM."
+                  rows={4}
+                />
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>Aim for 50–150 characters.</span>
+                  <span>{charCount(useCaseAnswer)} chars</span>
+                </div>
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setExportDialogOpen(false)}>Cancel</Button>
+                <Button
+                  onClick={() => setStep(2)}
+                  disabled={charCount(useCaseAnswer) < 50 || charCount(useCaseAnswer) > 150}
+                >
+                  Continue
+                </Button>
+              </DialogFooter>
+            </>
+          )}
+          {step === 2 && (
+             <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2"><Rocket className="w-5 h-5 text-primary"/> Your model is ready!</DialogTitle>
+                <DialogDescription className="text-base pt-2">
+                    Your model is ready to take flight! 🚀 For just ₹15—less than your next cup of chai ☕—you can unlock its full potential. This small contribution helps us keep the magic running.
+                    <br/><br/>
+                    Click "Pay Now" to open the payment screen. Once you're done, click "Continue" to proceed with the export.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex justify-center py-4">
+                <Button asChild>
+                    <a href="https://rzp.io/rzp/ZeHIIKX" target="_blank" rel="noopener noreferrer">Pay Now</a>
+                </Button>
+              </div>
+              <DialogFooter className="mt-4">
+                  <Button variant="outline" onClick={() => setStep(1)}>Back</Button>
+                  <Button onClick={handleContinueToExport}>Continue</Button>
+              </DialogFooter>
+           </>
+          )}
         </DialogContent>
       </Dialog>
     </Card>
