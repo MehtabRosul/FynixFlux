@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
-import { ShieldCheck, GitCommit, Eye, Zap, Bot } from 'lucide-react';
+import { ShieldCheck, GitCommit, Eye, Zap, Bot, Sparkles, Star, Code, Palette, Wrench, Heart, Trophy, Gift, Lock, Unlock } from 'lucide-react';
 import { ParallaxProvider, useParallax } from '@/components/providers/parallax-provider';
 import { Playfair_Display } from 'next/font/google';
 
@@ -129,71 +129,248 @@ const CorePrinciplesSection = () => {
 const CreatorSection = () => {
     const [clicks, setClicks] = React.useState(0)
     const [showEgg, setShowEgg] = React.useState(false)
-    const sparkles = React.useMemo(() => Array.from({ length: 14 }).map((_, i) => ({
+    const [eggStage, setEggStage] = React.useState(0) // 0: locked, 1: unlocking, 2: unlocked, 3: celebration
+    const [hoverCount, setHoverCount] = React.useState(0)
+    const [isAnimating, setIsAnimating] = React.useState(false)
+    
+    // Enhanced sparkles with different types and animations
+    const sparkles = React.useMemo(() => Array.from({ length: 24 }).map((_, i) => ({
         id: i,
-        top: Math.random() * 80 + 10,
-        left: Math.random() * 80 + 10,
-        delay: Math.random() * 1.5 + 0.2,
+        top: Math.random() * 90 + 5,
+        left: Math.random() * 90 + 5,
+        delay: Math.random() * 2 + 0.1,
+        size: Math.random() * 0.5 + 0.5,
+        type: ['star', 'sparkle', 'heart', 'code'][Math.floor(Math.random() * 4)],
+        duration: Math.random() * 1.5 + 1,
     })), [])
-    // removed mini-game for performance stability
+
+    // Achievement messages that cycle through
+    const achievements = [
+        "🎯 Precision unlocked!",
+        "⚡ Speed mode activated!",
+        "🎨 Creative flow engaged!",
+        "🔧 Craft mode enabled!",
+        "💎 Quality focus achieved!",
+        "🚀 Innovation boost ready!",
+        "🎪 Magic in the making!",
+        "🌟 Excellence unlocked!"
+    ]
+
+    const [currentAchievement, setCurrentAchievement] = React.useState(0)
 
     React.useEffect(() => {
         if (clicks === 0) return
-        const reset = setTimeout(() => setClicks(0), 4000)
-        if (clicks >= 5) {
+        
+        const reset = setTimeout(() => setClicks(0), 5000)
+        
+        if (clicks >= 3 && clicks < 7) {
+            setEggStage(1) // Unlocking
+            setIsAnimating(true)
+            setTimeout(() => setIsAnimating(false), 2000)
+        } else if (clicks >= 7) {
+            setEggStage(3) // Celebration
             setShowEgg(true)
             setClicks(0)
-            const hide = setTimeout(() => setShowEgg(false), 12000)
+            setIsAnimating(true)
+            
+            // Cycle through achievements
+            const achievementInterval = setInterval(() => {
+                setCurrentAchievement(prev => (prev + 1) % achievements.length)
+            }, 1500)
+            
+            const hide = setTimeout(() => {
+                setShowEgg(false)
+                setEggStage(0)
+                setIsAnimating(false)
+                clearInterval(achievementInterval)
+            }, 15000)
+            
             return () => {
                 clearTimeout(reset)
                 clearTimeout(hide)
+                clearInterval(achievementInterval)
             }
         }
         return () => clearTimeout(reset)
-    }, [clicks])
+    }, [clicks, achievements.length])
+
+    const handleClick = () => {
+        setClicks(c => c + 1)
+        setIsAnimating(true)
+        setTimeout(() => setIsAnimating(false), 300)
+    }
+
+    const handleHover = () => {
+        setHoverCount(c => c + 1)
+    }
 
 
     return (
         <ParallaxSection>
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <div className="flex flex-col items-center">
-                        <div
-                          className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-lg hover:rounded-full overflow-hidden shadow-2xl ring-1 ring-border/30 hover:ring-primary/50 transition-[border-radius,box-shadow,ring-color] duration-150"
-                          role="button"
-                          aria-label="Portrait"
-                          tabIndex={0}
-                          onClick={() => setClicks(c => c + 1)}
-                        >
-                          <Image
-                            src="https://placehold.co/600x600.png"
-                            alt="Portrait"
-                            data-ai-hint="square portrait"
-                            fill
-                            className="object-cover"
-                          />
-                          {showEgg && (
-                            <>
-                              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent animate-subtle-gradient pointer-events-none" />
-                              {sparkles.map(s => (
-                                <span
-                                  key={s.id}
-                                  className="absolute w-1.5 h-1.5 rounded-full bg-primary/70 animate-ping"
-                                  style={{ top: `${s.top}%`, left: `${s.left}%`, animationDelay: `${s.delay}s` }}
+                    <div className="flex flex-col items-center min-h-[400px] justify-center">
+
+                        {/* Main portrait container with flip effect */}
+                        <div className="relative w-64 h-64 lg:w-80 lg:h-80 perspective-1000">
+                          <div
+                            className={`relative w-full h-full transition-transform duration-700 cursor-pointer group ${
+                                showEgg ? 'rotate-y-180' : 'rotate-y-0'
+                            }`}
+                            style={{ transformStyle: 'preserve-3d' }}
+                            role="button"
+                            aria-label="Interactive Portrait - Click to unlock secrets"
+                            tabIndex={0}
+                            onClick={handleClick}
+                            onMouseEnter={handleHover}
+                          >
+                            {/* Front side - Image */}
+                            <div className="absolute inset-0 w-full h-full backface-hidden">
+                              <div
+                                className={`relative w-full h-full rounded-lg overflow-hidden shadow-2xl ring-1 transition-all duration-500 cursor-pointer ${
+                                    eggStage === 0 ? 'hover:rounded-full ring-border/30 hover:ring-primary/50 hover:shadow-primary/30' :
+                                    eggStage === 1 ? 'rounded-2xl ring-primary/70 animate-pulse' :
+                                    eggStage === 3 ? 'rounded-full ring-primary shadow-primary/50 scale-105' :
+                                    'rounded-2xl ring-primary/50'
+                                } ${isAnimating ? 'scale-105' : 'scale-100'}`}
+                                onClick={handleClick}
+                              >
+                                <Image
+                                  src="https://i.postimg.cc/F15sDGKp/IMG-20250130-014317.jpg"
+                                  alt="Mehtab Rosul - Creator of ForgeFlow Pilot"
+                                  data-ai-hint="Mehtab Rosul portrait"
+                                  fill
+                                  className={`object-cover transition-all duration-500 cursor-pointer ${
+                                      eggStage === 3 ? 'brightness-110 saturate-110' : ''
+                                  }`}
+                                  onClick={handleClick}
+                                  style={{ pointerEvents: 'auto' }}
                                 />
-                              ))}
-                              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-full bg-background/80 backdrop-blur text-[10px] font-medium text-foreground shadow ring-1 ring-border">
-                                Craft Mode Unlocked
+                                
+                                {/* Lock overlay for initial state */}
+                                {eggStage === 0 && (
+                                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <Lock className="w-8 h-8 text-white/80" />
+                                  </div>
+                                )}
+
+                                {/* Easter egg hint overlay */}
+                                {eggStage === 0 && (
+                                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+                                    {/* Main sparkle */}
+                                    <div className="absolute top-3 right-3 w-4 h-4 rounded-full bg-primary/80 animate-pulse shadow-lg">
+                                      <div className="absolute inset-0 rounded-full bg-white/40 animate-ping"></div>
+                                    </div>
+                                    {/* Secondary sparkles */}
+                                    <div className="absolute bottom-4 left-4 w-3 h-3 rounded-full bg-accent/80 animate-pulse shadow-lg" style={{ animationDelay: '0.3s' }}>
+                                      <div className="absolute inset-0 rounded-full bg-white/30 animate-ping" style={{ animationDelay: '0.3s' }}></div>
+                                    </div>
+                                    {/* Corner sparkles */}
+                                    <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-yellow-400/90 animate-pulse shadow-lg" style={{ animationDelay: '0.9s' }}></div>
+                                    <div className="absolute bottom-1 left-1 w-2 h-2 rounded-full bg-pink-400/90 animate-pulse shadow-lg" style={{ animationDelay: '1.2s' }}></div>
+                                    {/* Subtle text hint */}
+                                    <div className="absolute bottom-2 right-2 text-xs font-bold text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ animationDelay: '0.5s' }}>
+                                      ✨
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Unlocking animation */}
+                                {eggStage === 1 && (
+                                  <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-transparent animate-pulse">
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                      <Unlock className="w-12 h-12 text-primary animate-bounce" />
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Celebration effects */}
+                                {showEgg && (
+                                  <>
+                                    {/* Animated background gradient */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-transparent animate-pulse" />
+                                    
+                                    {/* Enhanced sparkles with different types */}
+                                    {sparkles.map(s => {
+                                      const IconComponent = s.type === 'star' ? Star : 
+                                                          s.type === 'heart' ? Heart : 
+                                                          s.type === 'code' ? Code : Sparkles
+                                      return (
+                                        <div
+                                          key={s.id}
+                                          className="absolute animate-ping"
+                                          style={{ 
+                                            top: `${s.top}%`, 
+                                            left: `${s.left}%`, 
+                                            animationDelay: `${s.delay}s`,
+                                            animationDuration: `${s.duration}s`
+                                          }}
+                                        >
+                                          <IconComponent 
+                                            className={`text-primary/80 ${
+                                              s.type === 'star' ? 'text-yellow-400' :
+                                              s.type === 'heart' ? 'text-red-400' :
+                                              s.type === 'code' ? 'text-blue-400' :
+                                              'text-primary'
+                                            }`}
+                                            style={{ 
+                                              width: `${s.size}rem`, 
+                                              height: `${s.size}rem` 
+                                            }}
+                                          />
+                                        </div>
+                                      )
+                                    })}
+
+                                  </>
+                                )}
+
+                                {/* Hover count indicator */}
+                                {hoverCount > 0 && hoverCount < 3 && (
+                                  <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary/80 text-white text-xs flex items-center justify-center font-bold animate-pulse">
+                                    {hoverCount}
+                                  </div>
+                                )}
                               </div>
-                            </>
-                          )}
+                            </div>
+
+                            {/* Back side - Quote */}
+                            <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                              <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl ring-1 ring-primary/50 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent border border-primary/30 p-6 flex flex-col justify-center items-center text-center">
+                                <div className="flex items-center gap-2 text-sm font-bold text-primary mb-3">
+                                  <Heart className="w-4 h-4 text-red-500 animate-pulse" />
+                                  <span>A Message from the Creator</span>
+                                </div>
+                                <blockquote className="text-xs leading-relaxed text-foreground italic mb-3 max-w-[85%]">
+                                  "Every line of code we write is a love letter to the future. 
+                                  Every bug we fix is a promise kept.
+                                  <br/><br/>
+                                  In this digital age, we are the architects of possibility. 
+                                  We build the tools that shape how humanity thinks and connects.
+                                  <br/><br/>
+                                  <strong>Keep building with love, keep shipping with pride, 
+                                  and never forget that your code touches lives you'll never meet.</strong>"
+                                </blockquote>
+                                <div className="text-xs text-primary/80 font-semibold">
+                                  — Mehtab Rosul, Creator of ForgeFlow Pilot
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
+
+                        {/* Philosophy quote - keep this */}
                         {showEgg && (
-                          <div className="mt-3 text-xs text-muted-foreground italic flex items-center gap-2">
-                            <Zap className="w-4 h-4 text-primary" />
-                            <span>Hidden note: craft with care, measure twice, ship once.</span>
+                          <div className="mt-6 space-y-2 animate-fade-in flex flex-col items-center text-center max-w-64 lg:max-w-80">
+                            <div className="text-xs text-muted-foreground italic leading-relaxed">
+                              "Craft with care, measure twice, ship once. Every pixel, every interaction, every line of code matters in the pursuit of excellence."
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              You've discovered the hidden philosophy behind ForgeFlow Pilot.
+                            </div>
                           </div>
                         )}
+
                     </div>
                     <div className="space-y-6 text-center lg:text-left">
                         <h2 className={`text-3xl font-bold tracking-tight ${display.className}`}>Principal Maker — Mehtab Rosul</h2>
@@ -202,8 +379,13 @@ const CreatorSection = () => {
                            Mehtab Rosul is an experienced machine learning engineer and MLOps practitioner focused on building tooling that removes friction between data and production. With a background in large-scale model deployment and developer tooling, Mehtab created ForgeFlow Pilot to give creators a single, safe, and flexible platform to iterate and ship models.
                         </p>
                         <p className="font-semibold text-foreground">Focus areas: model reproducibility • explainability • developer DX • production artifacts.</p>
-                        {showEgg && (
-                          <p className="text-xs text-muted-foreground">You unlocked the artisan’s pledge. Expect deliberate defaults and respectful ergonomics across the stack.</p>
+                        
+
+                        {/* Hover interaction hint */}
+                        {hoverCount > 0 && hoverCount < 3 && (
+                          <div className="text-xs text-muted-foreground italic animate-fade-in">
+                            💡 Try hovering more for additional secrets...
+                          </div>
                         )}
                     </div>
                 </div>
