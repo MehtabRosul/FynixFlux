@@ -256,7 +256,7 @@ export function ModelDetailsPanel({ className, model, isTraining, isTrainingComp
               </DialogHeader>
               <div className="flex justify-center py-4">
                 <Button asChild size="lg" className="px-8">
-                    <a href="https://rzp.io/rzp/ZeHIIKX" target="_blank" rel="noopener noreferrer" onClick={handleContinueToExport}>Pay Now & Continue</a>
+                    <a href="https://rzp.io/rzp/ZeHIIKX" target="_blank" rel="noopener noreferrer">Pay Now & Continue</a>
                 </Button>
               </div>
               <DialogFooter className="mt-4">
