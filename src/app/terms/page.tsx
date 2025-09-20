@@ -11,15 +11,14 @@ export default function TermsPage() {
     { 
       id: "definitions", 
       title: "1. Definitions",
-      summary: "This section explains the main words we use throughout these Terms — what we mean when we say “Service”, “User”, “Artifact”, and so on. It helps avoid confusion.",
+      summary: "Core terms used in these Terms.",
       content: (
         <>
           <p>For purposes of these Terms, the following capitalized terms have the meanings set forth below:</p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
             <li><strong>“Service” or “Platform”</strong> means the ForgeFlow Pilot web application, APIs, user interfaces, and related services provided by the Company that enable dataset upload, model training, testing, artifact export, and other project management features described on the Site.</li>
             <li><strong>“Company”, “We”, “Us”, “Our”</strong> means the operator of the Platform.</li>
-            <li><strong>“You”, “User”, “Customer”</strong> means the individual or entity that registers for, accesses, or uses the Service.</li>
-            <li><strong>“Account”</strong> means the user account created to access the Service.</li>
+            <li><strong>“You”</strong> means any visitor who accesses or uses the Service. This demo does not provide Accounts.</li>
             <li><strong>“Project”</strong> means a workspace or logical container within the Service where a User stores datasets, configurations, runs, and artifacts.</li>
             <li><strong>“Content”</strong> means any data, text, files, images, or other information uploaded by or on behalf of Users, including datasets and test inputs.</li>
             <li><strong>“Artifact”</strong> means any output produced by the Service on the basis of Content, including trained models, packaged binaries, manifests, and model cards.</li>
@@ -34,23 +33,16 @@ export default function TermsPage() {
     { 
       id: "acceptance-of-terms", 
       title: "2. Acceptance of Terms",
-      summary: "By creating an account or using the Service you agree to these Terms. If you do not agree, please do not use the Service.",
-      content: "By accessing or using the Service, creating an Account, or clicking an acceptance checkbox, you agree to be bound by these Terms. If you are accepting these Terms on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms, and “You” will refer to that organization. If you do not agree to these Terms, do not create an Account or use the Service. The Company may, at its discretion, refuse to provide the Service and may suspend or terminate access if it determines that You have violated these Terms.",
+      summary: "By using the demo Service you agree to these Terms.",
+      content: "By accessing or using the Service, you agree to be bound by these Terms. This demo does not include user registration or accounts.",
       icon: <CheckCircle size={20} />
     },
     { 
-      id: "account-responsibilities", 
-      title: "3. Account Registration & Responsibilities",
-      summary: "You are responsible for information in your account and for keeping your credentials safe. If something suspicious happens, tell us immediately.",
-      content: (
-        <>
-          <p><strong>Registration.</strong> To use certain features of the Service, You must register and create an Account. You agree to provide accurate, complete, and up-to-date information when creating and maintaining your Account.</p>
-          <p><strong>Account Responsibility.</strong> You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your Account, whether or not such activity was authorized by You. You must notify the Company immediately of any unauthorized use or security breach.</p>
-          <p><strong>Organization Accounts.</strong> For organization or team Accounts, the entity that registers will be responsible for all Users that it authorizes to access the Account. The registering entity will ensure that its Users comply with these Terms.</p>
-          <p><strong>Suspension/Termination.</strong> The Company may suspend or terminate an Account for violations of these Terms or for suspected misuse, with or without notice, as described in the Term and Termination section.</p>
-        </>
-      ),
-      icon: <UserCheck size={20} />
+      id: "service-usage", 
+      title: "3. Service Usage",
+      summary: "No accounts or login are provided in this demo.",
+      content: "The Service is accessible without authentication. Do not upload personal or confidential data.",
+      icon: <Info size={20} />
     },
     { 
       id: "acceptable-use", 
@@ -75,13 +67,13 @@ export default function TermsPage() {
     { 
       id: "service-description", 
       title: "5. Service Description & Scope",
-      summary: "This explains what the platform does — uploading datasets, profiling, training, testing, exporting artifacts, and model registry — and clarifies the level of support and guarantees (the Service is provided as described, subject to limitations).",
+      summary: "What this demo provides and important limitations.",
       content: (
         <>
-           <p><strong>Core Service.</strong> The Company provides an online platform that enables Users to upload datasets, run profiling and analysis, configure and execute model training jobs, inspect live training metrics and logs, test trained models, and export artifacts.</p>
+           <p><strong>Core Service.</strong> The Company provides an online demo that enables visitors to upload datasets locally (client-side parsing), configure mock training, view simulated metrics/logs, and export placeholder artifacts for demonstration.</p>
            <p><strong>Modifications.</strong> The Company may change, modify, or discontinue any aspect of the Service at any time, including features, APIs, integrations, and supported export formats. The Company will use commercially reasonable efforts to provide notice for material changes.</p>
-           <p><strong>Service Availability.</strong> The Service is provided “as available” and “as is” except as expressly set forth in these Terms. While the Company will use reasonable efforts to provide the Service with industry-standard availability, the Company does not guarantee uninterrupted access and is not responsible for events beyond its control.</p>
-           <p><strong>Third-Party Tools.</strong> The Service may integrate with third-party services (object storage, analytics, identity providers). Use of these integrations may be subject to separate third-party terms.</p>
+           <p><strong>Service Availability.</strong> The Service is provided “as available” and “as is”.</p>
+           <p><strong>Third-Party Tools.</strong> This demo does not include account, identity, or analytics integrations.</p>
         </>
       ),
       icon: <Server size={20} />
@@ -89,14 +81,12 @@ export default function TermsPage() {
     { 
       id: "data-ip", 
       title: "6. Data, Content & Intellectual Property",
-      summary: "You keep ownership of your data and models you upload. We need a license to operate the service (store/process/show), and we keep our platform IP.",
+      summary: "Ownership of content you upload; no personal data or accounts are used.",
       content: (
         <>
-            <p><strong>User Ownership.</strong> As between You and the Company, You retain all rights, title, and interest in and to any Content You upload to the Service, subject to the limited license granted below.</p>
-            <p><strong>License to Operate.</strong> By uploading Content, You grant the Company a limited, worldwide, non-exclusive, royalty-free license to access, store, copy, transmit, process, and display that Content solely as reasonably necessary to provide the Service and to operate, maintain, and improve the Service, including for backups and system operations.</p>
-            <p><strong>Company IP.</strong> The Company retains all right, title, and interest in and to the Service, Documentation, logos, trademarks, and all related intellectual property. No rights are granted to You other than the limited right to access and use the Service in accordance with these Terms.</p>
-            <p><strong>Feedback.</strong> If You provide feedback or suggestions, You grant the Company an irrevocable, perpetual, royalty-free license to use and incorporate such feedback in the Service.</p>
-            <p><strong>Restrictions.</strong> You will not remove or obscure any proprietary notices contained in the Service or attempt to copy or replicate proprietary components beyond those functions expressly permitted by the Service.</p>
+            <p><strong>Visitor Ownership.</strong> You retain rights to any non-personal content you load for demo purposes. Do not include personal or confidential data.</p>
+            <p><strong>Company IP.</strong> The Company retains rights to the Platform and related intellectual property. No additional rights are granted.</p>
+            <p><strong>Feedback.</strong> If you share feedback, you grant the Company a license to use it to improve the Service.</p>
         </>
       ),
       icon: <FileText size={20} />

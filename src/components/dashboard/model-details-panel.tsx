@@ -251,17 +251,16 @@ export function ModelDetailsPanel({ className, model, isTraining, isTrainingComp
                 <DialogDescription className="text-base pt-2">
                     Your model is ready to take flight! 🚀 For just ₹15—less than your next cup of chai ☕—you can unlock its full potential. This small contribution helps us keep the magic running.
                     <br/><br/>
-                    Click "Pay Now" to open the payment screen. Once you're done, click "Continue" to proceed with the export.
+                    Click "Pay Now & Continue" to complete your payment and proceed with the export.
                 </DialogDescription>
               </DialogHeader>
               <div className="flex justify-center py-4">
-                <Button asChild>
-                    <a href="https://rzp.io/rzp/ZeHIIKX" target="_blank" rel="noopener noreferrer">Pay Now</a>
+                <Button asChild size="lg" className="px-8">
+                    <a href="https://rzp.io/rzp/ZeHIIKX" target="_blank" rel="noopener noreferrer" onClick={handleContinueToExport}>Pay Now & Continue</a>
                 </Button>
               </div>
               <DialogFooter className="mt-4">
                   <Button variant="outline" onClick={() => setStep(1)}>Back</Button>
-                  <Button onClick={handleContinueToExport}>Continue</Button>
               </DialogFooter>
            </>
           )}

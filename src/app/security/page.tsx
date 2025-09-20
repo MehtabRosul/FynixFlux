@@ -31,8 +31,8 @@ export default function SecurityPage() {
                 <CardTitle className="text-xl">Data Handling</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2 flex-1">
-                <p>Client‑side CSV parsing for demo uploads. No server persistence unless you add one.</p>
-                <p>Secrets sourced from server env vars; never shipped to the client bundle.</p>
+                <p>Client‑side CSV parsing for demo uploads. No server persistence in this demo.</p>
+                <p>No accounts or personal data are collected by this demo.</p>
               </CardContent>
             </Card>
             </div>
@@ -86,7 +86,6 @@ export default function SecurityPage() {
                   <li><strong>Framework hardening:</strong> App Router, TypeScript, shadcn/ui (Radix) for accessible components.</li>
                   <li><strong>Dependencies:</strong> Keep lockfile updated; run <code>npm audit</code> and CI checks.</li>
                   <li><strong>Transport & headers:</strong> Enforce HTTPS, HSTS, X‑Content‑Type‑Options, X‑Frame‑Options and a strict CSP.</li>
-                  <li><strong>AuthN/Z:</strong> Add an IdP (e.g., Auth.js) and role‑based access for multi‑user deployments.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -110,14 +109,14 @@ export default function SecurityPage() {
               </CardHeader>
               <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Logging:</strong> Prefer structured logs with request IDs; avoid sensitive payloads.</li>
-                  <li><strong>Monitoring:</strong> Track job durations, queue depth, worker health, storage usage; alert on failures.</li>
-                  <li><strong>Backups & retention:</strong> Define lifecycle policies for datasets, artifacts, and logs.</li>
+                  <li><strong>Logging:</strong> Prefer structured logs; avoid sensitive payloads. This demo does not persist logs.</li>
+                  <li><strong>Monitoring:</strong> Track job durations, queue depth, worker health, storage usage if you add a backend.</li>
+                  <li><strong>Backups & retention:</strong> If you add persistence later, define lifecycle policies.</li>
                 </ul>
                 <div className="mt-4 rounded-md border border-yellow-400/30 bg-yellow-400/10 p-3 text-sm flex items-start gap-2">
                   <AlertTriangle className="w-4 h-4 mt-0.5 text-yellow-400" />
                   <p>
-                    Demo note: by default, this app does not persist uploaded datasets server‑side. If you connect a
+                    Demo note: by default, this app does not persist uploaded datasets or personal data. If you connect a
                     backend, ensure encryption in transit and at rest, access controls, and appropriate DPAs.
                   </p>
                 </div>

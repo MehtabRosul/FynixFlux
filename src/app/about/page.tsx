@@ -219,7 +219,7 @@ const CtaFooter = () => {
                  <h2 className="text-3xl font-bold tracking-tighter font-headline">Start building smarter, faster, and safer models with ForgeFlow Pilot</h2>
                  <div className="mt-8 flex gap-4 justify-center">
                      <Button size="lg" variant="secondary" asChild>
-                        <Link href="/signup">Get Started</Link>
+                        <Link href="/dashboard">Get Started</Link>
                      </Button>
                      <Button size="lg" variant="outline" className="text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
                         <Link href="/docs">View Docs</Link>
