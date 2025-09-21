@@ -74,14 +74,14 @@ export function CtaSection() {
                 >
                 <div className="relative z-10 flex flex-col items-center text-center animate-tilt">
                     <h2 className="text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl md:text-5xl font-headline">
-                    Ready to Forge Your Next Breakthrough?
+                    Ready to Fynix Your Next Breakthrough?
                     </h2>
                     <p className="mt-4 max-w-2xl text-lg text-primary-foreground/80">
                     Stop wrestling with infrastructure and start building better models. Join the waitlist and be the first to experience the future of MLOps.
                     </p>
                     <div className="mt-8">
                     <Button size="lg" variant="secondary" asChild>
-                        <Link href="/dashboard">Start Forging</Link>
+                        <Link href="/dashboard">Start Fynixing</Link>
                     </Button>
                     </div>
                 </div>

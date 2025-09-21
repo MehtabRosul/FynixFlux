@@ -46,7 +46,7 @@ export default function DocsPage() {
               <CardTitle className="text-3xl font-bold font-headline">Introduction</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
-              <p>Welcome to the ForgeFlow Pilot documentation. This is the single source of truth for operating the platform to ship reliable ML — from dataset upload to artifact export — with a modern, accessible UI built on Next.js and shadcn/ui.</p>
+              <p>Welcome to the Fynix Flux Pilot documentation. This is the single source of truth for operating the platform to ship reliable ML — from dataset upload to artifact export — with a modern, accessible UI built on Next.js and shadcn/ui.</p>
               <p>The demo experience mirrors a production MLOps workflow: upload a dataset, configure a run, observe live metrics, generate a test report, and export artifacts. AI assistance is available via Genkit + Google AI to draft narratives and explanation summaries.</p>
               <h3 className="text-xl font-semibold text-foreground mt-6">Core Concepts</h3>
               <ul className="list-disc pl-6 space-y-2">
@@ -131,7 +131,7 @@ export default function DocsPage() {
               <CardTitle className="text-3xl font-bold font-headline">AI Capabilities</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed space-y-4">
-              <p>ForgeFlow Pilot integrates <strong>Genkit</strong> with Google AI (Gemini). Two demo flows are available:</p>
+              <p>Fynix Flux Pilot integrates <strong>Genkit</strong> with Google AI (Gemini). Two demo flows are available:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>ai-narrative-tool</strong> — converts metrics + logs into concise narratives.</li>
                 <li><strong>model-test-explanation</strong> — drafts an explanation summary for a test input.</li>
@@ -185,7 +185,7 @@ export default function DocsPage() {
             <CardContent className="prose prose-invert max-w-none text-muted-foreground leading-relaxed space-y-4">
               <p>Our REST API provides programmatic access to manage your resources. All endpoints require authentication via an API key, which you can generate in your account settings.</p>
               <h3 className="text-xl font-semibold text-foreground">Base URL</h3>
-              <CodeBlock>https://api.forgeflow.pilot/v1</CodeBlock>
+              <CodeBlock>https://api.fynixflux.pilot/v1</CodeBlock>
               <h3 className="text-xl font-semibold text-foreground">Authentication</h3>
               <p>Authenticate your API requests by providing your secret key in the <code>Authorization</code> header. All API requests must be made over HTTPS.</p>
               <CodeBlock>
@@ -196,7 +196,7 @@ export default function DocsPage() {
               <p>To get a list of your datasets for a specific project, make a GET request to the <code>/datasets</code> endpoint.</p>
               <CodeBlock>
 {`# Request
-curl -X GET "https://api.forgeflow.pilot/v1/projects/{projectId}/datasets" \
+curl -X GET "https://api.fynixflux.pilot/v1/projects/{projectId}/datasets" \
   -H "Authorization: Bearer YOUR_API_KEY"
 
 # Response (200 OK)
@@ -215,7 +215,7 @@ curl -X GET "https://api.forgeflow.pilot/v1/projects/{projectId}/datasets" \
               <p>To start a new training run, make a POST request to the <code>/runs</code> endpoint with your configuration.</p>
               <CodeBlock>
 {`# Request
-curl -X POST "https://api.forgeflow.pilot/v1/projects/{projectId}/runs" \
+curl -X POST "https://api.fynixflux.pilot/v1/projects/{projectId}/runs" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -230,7 +230,7 @@ curl -X POST "https://api.forgeflow.pilot/v1/projects/{projectId}/runs" \
 {
   "run_id": "run_e5f6g7h8",
   "status": "queued",
-  "dashboard_url": "https://app.forgeflow.pilot/runs/run_e5f6g7h8"
+  "dashboard_url": "https://app.fynixflux.pilot/runs/run_e5f6g7h8"
 }`}
               </CodeBlock>
             </CardContent>

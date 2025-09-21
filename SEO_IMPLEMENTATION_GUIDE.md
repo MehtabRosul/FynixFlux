@@ -1,4 +1,4 @@
-# 🚀 ForgeFlow SEO Implementation Guide
+# 🚀 Fynix Flux SEO Implementation Guide
 
 ## 📁 SEO File Structure
 
@@ -48,7 +48,7 @@ Simplified SEO component for individual pages:
 import { PageSEO } from '@/components/seo/page-seo';
 
 <PageSEO
-  title="Custom Page - ForgeFlow | Mehtab Rosul | ECX | EncryptArx"
+  title="Custom Page - Fynix Flux | Mehtab Rosul | ECX | EncryptArx"
   description="Your custom description"
   url="/custom-page"
   keywords={['custom', 'keywords']}
@@ -156,7 +156,7 @@ export default function AboutPage() {
 ### 🎯 Target Keywords
 
 **Primary Keywords:**
-- ForgeFlow
+- Fynix Flux
 - Mehtab
 - Mehtab Rosul
 - ECX
@@ -205,8 +205,8 @@ export default function AIWorkflowsPage() {
   return (
     <>
       <PageSEO
-        title="AI Workflows - ForgeFlow Feature | Mehtab Rosul | ECX | EncryptArx"
-        description="AI Workflows feature in ForgeFlow - Advanced machine learning workflow automation by Mehtab Rosul."
+        title="AI Workflows - Fynix Flux Feature | Mehtab Rosul | ECX | EncryptArx"
+        description="AI Workflows feature in Fynix Flux - Advanced machine learning workflow automation by Mehtab Rosul."
         url="/features/ai-workflows"
         keywords={['AI Workflows', 'ML Workflows', 'AI Automation']}
       />
@@ -225,7 +225,7 @@ export default function CustomPage() {
   return (
     <>
       <PageSEO
-        title="Custom Page - ForgeFlow | Mehtab Rosul | ECX | EncryptArx"
+        title="Custom Page - Fynix Flux | Mehtab Rosul | ECX | EncryptArx"
         description="Custom page with advanced SEO features."
         url="/custom"
         keywords={['custom', 'page', 'seo']}
@@ -235,8 +235,8 @@ export default function CustomPage() {
           website: true,
           breadcrumb: {
             breadcrumbs: [
-              { name: 'Home', url: 'https://forgeflow.com' },
-              { name: 'Custom', url: 'https://forgeflow.com/custom' },
+              { name: 'Home', url: 'https://fynixflux.com' },
+              { name: 'Custom', url: 'https://fynixflux.com/custom' },
             ]
           }
         }}
@@ -252,7 +252,7 @@ export default function CustomPage() {
 ### 1. Title Tags
 - Include primary keywords
 - Keep under 60 characters
-- Use template: "Page Title | ForgeFlow - MLOps Excellence"
+- Use template: "Page Title | Fynix Flux - MLOps Excellence"
 
 ### 2. Meta Descriptions
 - Include target keywords naturally
@@ -292,9 +292,9 @@ export default function CustomPage() {
 
 ## 🎉 Expected Results
 
-With this SEO implementation, ForgeFlow will:
+With this SEO implementation, Fynix Flux will:
 
-1. **Rank #1** for brand searches (ForgeFlow, Mehtab Rosul)
+1. **Rank #1** for brand searches (Fynix Flux, Mehtab Rosul)
 2. **Top 3** for MLOps platform searches
 3. **Top 5** for AI platform searches
 4. **Top 10** for machine learning operations searches
@@ -312,6 +312,6 @@ With this SEO implementation, ForgeFlow will:
 
 **Created by**: AI Assistant  
 **Date**: 2024  
-**Platform**: ForgeFlow MLOps Platform  
+**Platform**: Fynix Flux MLOps Platform  
 **Founder**: Mehtab Rosul  
 **Partners**: ECX, EncryptArx

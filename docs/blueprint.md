@@ -1,8 +1,8 @@
-# **App Name**: ForgeFlow Pilot
+# **App Name**: Fynix Flux Pilot
 
 ## Core Features:
 
-- Parallax Landing Page: A visually engaging, single-page website with smooth parallax scrolling and subtle layered motion to showcase ForgeFlow Pilot’s value. The landing page is long-form and narrative-driven, contains strategic image/GIF placeholders, and is optimized for a cinematic, professional first impression.
+- Parallax Landing Page: A visually engaging, single-page website with smooth parallax scrolling and subtle layered motion to showcase Fynix Flux Pilot's value. The landing page is long-form and narrative-driven, contains strategic image/GIF placeholders, and is optimized for a cinematic, professional first impression.
 - Dataset Profiling Display: After upload, display a profiling summary that includes inferred schema, data types, row count, null rates, cardinalities, histograms or top-value summaries, and PII detection flags. Also show a preview of the first N rows and a compact suggestions panel (data quality warnings and quick-fix tips).
 - Live Training Dashboard: Real-time streaming dashboard that displays training metrics (loss, accuracy, AUC, custom metrics), realtime charts, epoch/batch updates, a progress/timeline bar for pipeline stages, and structured streaming logs. The feed is resilient, supports reconnect replay, and plugs into worker-published events.
 - AI Narrative Tool (AI Insights): An automated narrative builder that reads training metrics and logs and produces short, human-readable insights. Examples: “Validation AUC improved steadily after epoch 3; possible overfitting signs at epoch 12.” These summaries are shown inline with the dashboard and included in exported run reports.

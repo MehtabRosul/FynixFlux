@@ -3,7 +3,7 @@
 ---
 
 ## 1️⃣ Document Metadata
-- **Project Name:** ForgeFlow
+- **Project Name:** Fynix Flux
 - **Version:** 0.1.0
 - **Date:** 2025-01-30
 - **Prepared by:** TestSprite AI Team

@@ -7,7 +7,7 @@ const steps = [
   {
     title: '1. Upload & Profile',
     description:
-      'Securely upload your dataset. ForgeFlow Pilot automatically profiles it, flagging quality issues and sensitive data so you can start with a clean slate.',
+      'Securely upload your dataset. Fynix Flux Pilot automatically profiles it, flagging quality issues and sensitive data so you can start with a clean slate.',
     image: 'https://picsum.photos/600/400',
     aiHint: 'data upload',
   },

@@ -64,7 +64,7 @@ export function NavigationLoader({ children }: NavigationLoaderProps) {
               className="text-center"
             >
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                ForgeFlow
+                Fynix Flux
               </h1>
               <p className="text-sm text-muted-foreground mt-2">
                 Advanced MLOps Platform

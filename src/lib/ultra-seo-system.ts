@@ -1,17 +1,17 @@
 // ULTRA-POWERFUL SEO SYSTEM - MAXIMUM DOMINATION
-// This system will make ForgeFlow ABSOLUTELY DOMINATE search results
+// This system will make Fynix Flux ABSOLUTELY DOMINATE search results
 
 import { allUltraSEOKeywords } from './ultra-seo-keywords';
 
 // ULTRA SEO CONFIGURATION
 export const ultraSEOConfig = {
-  siteName: 'ForgeFlow',
-  siteUrl: 'https://forgeflow.com',
-  defaultTitle: 'ForgeFlow - Advanced MLOps Platform | Mehtab Rosul | ECX | EncryptArx',
-  defaultDescription: 'ForgeFlow by Mehtab Rosul - Premier MLOps platform for enterprise AI. Advanced machine learning operations, data science automation, model deployment, and AI infrastructure. Trusted by ECX, EncryptArx, and leading organizations worldwide.',
+  siteName: 'Fynix Flux',
+  siteUrl: 'https://fynixflux.com',
+  defaultTitle: 'Fynix Flux - Advanced MLOps Platform | Mehtab Rosul | ECX | EncryptArx',
+  defaultDescription: 'Fynix Flux by Mehtab Rosul - Premier MLOps platform for enterprise AI. Advanced machine learning operations, data science automation, model deployment, and AI infrastructure. Trusted by ECX, EncryptArx, and leading organizations worldwide.',
   author: 'Mehtab Rosul',
   creator: 'Mehtab Rosul',
-  publisher: 'ForgeFlow',
+  publisher: 'Fynix Flux',
   keywords: allUltraSEOKeywords,
   
   // ADVANCED SEO SETTINGS
@@ -51,7 +51,7 @@ export const ultraSEOConfig = {
   metaTags: {
     // Primary meta tags
     title: {
-      template: '%s | ForgeFlow - MLOps Excellence',
+      template: '%s | Fynix Flux - MLOps Excellence',
       maxLength: 60,
       includeBrand: true,
       includeKeywords: true
@@ -74,13 +74,13 @@ export const ultraSEOConfig = {
     openGraph: {
       type: 'website',
       locale: 'en_US',
-      siteName: 'ForgeFlow - Advanced MLOps Platform',
+      siteName: 'Fynix Flux - Advanced MLOps Platform',
       images: [
         {
           url: '/favicon_io/android-chrome-512x512.png',
           width: 1200,
           height: 630,
-          alt: 'ForgeFlow - Advanced MLOps Platform by Mehtab Rosul',
+          alt: 'Fynix Flux - Advanced MLOps Platform by Mehtab Rosul',
         },
       ],
       optimized: true
@@ -89,7 +89,7 @@ export const ultraSEOConfig = {
     // Twitter Card optimization
     twitter: {
       card: 'summary_large_image',
-      site: '@forgeflow',
+      site: '@fynixflux',
       creator: '@mehtabrosul',
       images: ['/favicon_io/android-chrome-512x512.png'],
       optimized: true
@@ -383,12 +383,12 @@ export const ultraSEOConfig = {
       longitude: -122.4194
     },
     business: {
-      name: 'ForgeFlow',
+      name: 'Fynix Flux',
       address: 'San Francisco, CA, USA',
       phone: '+1-555-0123',
-      email: 'contact@forgeflow.com',
+      email: 'contact@fynixflux.com',
       hours: '24/7',
-      website: 'https://forgeflow.com'
+      website: 'https://fynixflux.com'
     },
     services: [
       'MLOps Platform',
@@ -412,8 +412,8 @@ export const ultraSEOConfig = {
   voiceSearch: {
     enabled: true,
     targetQuestions: [
-      'What is ForgeFlow?',
-      'How does ForgeFlow work?',
+      'What is Fynix Flux?',
+      'How does Fynix Flux work?',
       'What is MLOps?',
       'How to implement MLOps?',
       'Best MLOps platform?',
@@ -436,7 +436,7 @@ export const ultraSEOConfig = {
       'is it worth'
     ],
     longTailPhrases: [
-      'ForgeFlow MLOps platform',
+      'Fynix Flux MLOps platform',
       'Mehtab Rosul AI platform',
       'ECX MLOps solutions',
       'EncryptArx AI infrastructure',
@@ -515,7 +515,7 @@ export const ultraSEOConfig = {
   semanticSEO: {
     enabled: true,
     entities: [
-      'ForgeFlow',
+      'Fynix Flux',
       'Mehtab Rosul',
       'ECX',
       'EncryptArx',
@@ -586,7 +586,7 @@ export const ultraSEOConfig = {
 export const ultraSEOUtils = {
   // Generate optimized title
   generateTitle: (pageTitle: string, includeBrand: boolean = true): string => {
-    const brand = includeBrand ? ' | ForgeFlow - MLOps Excellence' : '';
+    const brand = includeBrand ? ' | Fynix Flux - MLOps Excellence' : '';
     const maxLength = 60;
     const title = pageTitle + brand;
     return title.length > maxLength ? title.substring(0, maxLength - 3) + '...' : title;

@@ -36,32 +36,81 @@ const HeroSection = () => {
     // Handle video loading and error states
     const [videoLoaded, setVideoLoaded] = React.useState(false);
     const [videoError, setVideoError] = React.useState(false);
+    const [videoCanPlay, setVideoCanPlay] = React.useState(false);
 
-    // Pause video on reduced motion preference and optimize for 4K
+    // Optimize video playback for smooth performance
     React.useEffect(() => {
         const video = document.querySelector('video') as HTMLVideoElement;
         if (video) {
             if (isReducedMotion) {
                 video.pause();
             } else {
-                // Optimize video playback for 4K content
+                // Optimize video settings for smooth playback
                 video.playbackRate = 1.0;
                 video.volume = 0; // Ensure muted
+                video.defaultPlaybackRate = 1.0;
+                
+                // Set video quality and performance optimizations
+                video.setAttribute('playsinline', 'true');
+                video.setAttribute('webkit-playsinline', 'true');
+                
+                // Optimize for performance
+                video.style.willChange = 'transform';
+                video.style.transform = 'translateZ(0)'; // Hardware acceleration
                 
                 // Add intersection observer for performance
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            video.play().catch(console.log);
+                            video.play().catch((error) => {
+                                console.warn('Video play failed:', error);
+                            });
                         } else {
                             video.pause();
                         }
                     });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '50px'
                 });
                 
                 observer.observe(video);
                 
-                return () => observer.disconnect();
+                // Handle video load events for better performance
+                const handleLoadedData = () => {
+                    setVideoLoaded(true);
+                    if (videoCanPlay) {
+                        video.play().catch((error) => {
+                            console.warn('Video play failed on loadeddata:', error);
+                        });
+                    }
+                };
+                
+                const handleCanPlay = () => {
+                    setVideoCanPlay(true);
+                    if (videoLoaded) {
+                        video.play().catch((error) => {
+                            console.warn('Video play failed on canplay:', error);
+                        });
+                    }
+                };
+                
+                const handleCanPlayThrough = () => {
+                    video.play().catch((error) => {
+                        console.warn('Video play failed on canplaythrough:', error);
+                    });
+                };
+                
+                video.addEventListener('loadeddata', handleLoadedData);
+                video.addEventListener('canplay', handleCanPlay);
+                video.addEventListener('canplaythrough', handleCanPlayThrough);
+                
+                return () => {
+                    observer.disconnect();
+                    video.removeEventListener('loadeddata', handleLoadedData);
+                    video.removeEventListener('canplay', handleCanPlay);
+                    video.removeEventListener('canplaythrough', handleCanPlayThrough);
+                };
             }
         }
     }, [isReducedMotion]);
@@ -75,16 +124,20 @@ const HeroSection = () => {
                     muted 
                     loop 
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     className="w-full h-full object-cover opacity-40 pointer-events-none"
                     style={{ 
                         filter: 'blur(0.5px) brightness(0.7)',
-                        transform: 'scale(1.05)',
+                        transform: 'scale(1.05) translateZ(0)',
                         userSelect: 'none',
                         WebkitUserSelect: 'none',
                         MozUserSelect: 'none',
                         msUserSelect: 'none',
-                        pointerEvents: 'none'
+                        pointerEvents: 'none',
+                        willChange: 'transform',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        perspective: '1000px'
                     }}
                     controlsList="nodownload nofullscreen noremoteplayback"
                     disablePictureInPicture
@@ -95,9 +148,15 @@ const HeroSection = () => {
                         video.controls = false;
                         video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
                         video.setAttribute('disablePictureInPicture', 'true');
+                        // Optimize video settings
+                        video.setAttribute('playsinline', 'true');
+                        video.setAttribute('webkit-playsinline', 'true');
                     }}
+                    onLoadedData={() => setVideoLoaded(true)}
+                    onCanPlay={() => setVideoCanPlay(true)}
+                    onError={() => setVideoError(true)}
                 >
-                    <source src="/videos/14209120-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+                    <source src="videos\14209120-uhd_3840_2160_30fps.mp4" type="video/mp4" />
                 </video>
                 
                 {/* Fallback Image - Only show if video fails */}
@@ -106,6 +165,7 @@ const HeroSection = () => {
                         src="https://placehold.co/1920x1080.png" 
                         alt="Abstract background grid" 
                         fill 
+                        sizes="100vw"
                         className="object-cover opacity-20" 
                         data-ai-hint="abstract grid" 
                     />
@@ -117,9 +177,9 @@ const HeroSection = () => {
             <div className="relative z-20 container mx-auto px-4 md:px-6" style={{ transform: `translate3d(0, ${fgY}px, 0)`}}>
                 <div className="grid gap-12 items-center">
                     <div className="space-y-6 text-left">
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground font-headline">About ForgeFlow</h1>
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground font-headline">About Fynix Flux</h1>
                         <p className="text-xl md:text-2xl text-muted-foreground">
-                           Advanced MLOps Platform by Mehtab Rosul - From dataset to deployable model with enterprise-grade AI infrastructure.
+                           Advanced MLOps Platform - From dataset to deployable model with enterprise-grade AI infrastructure.
                         </p>
                         <p className="text-lg text-muted-foreground">
                            Streamline your ML pipeline with intelligent automation, real-time monitoring, and seamless deployment capabilities.
@@ -311,9 +371,10 @@ const CreatorSection = () => {
                               >
                                 <Image
                                   src="https://i.postimg.cc/F15sDGKp/IMG-20250130-014317.jpg"
-                                  alt="Mehtab Rosul - Creator of ForgeFlow Pilot"
+                                  alt="Mehtab Rosul - Creator of Fynix Flux Pilot"
                                   data-ai-hint="Mehtab Rosul portrait"
                                   fill
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                   className={`object-cover transition-all duration-500 cursor-pointer ${
                                       eggStage === 3 ? 'brightness-110 saturate-110' : ''
                                   }`}
@@ -425,9 +486,9 @@ const CreatorSection = () => {
                                   <strong>Keep building with love, keep shipping with pride, 
                                   and never forget that your code touches lives you'll never meet.</strong>"
                                 </blockquote>
-                                <div className="text-xs text-primary/80 font-semibold">
-                                  — Mehtab Rosul, Creator of ForgeFlow Pilot
-                                </div>
+                                    <div className="text-xs text-primary/80 font-semibold">
+                                      — Mehtab Rosul, Creator of Fynix Flux Pilot
+                                    </div>
                               </div>
                             </div>
                           </div>
@@ -439,9 +500,9 @@ const CreatorSection = () => {
                             <div className="text-xs text-muted-foreground italic leading-relaxed">
                               "Craft with care, measure twice, ship once. Every pixel, every interaction, every line of code matters in the pursuit of excellence."
                             </div>
-                            <div className="text-xs text-muted-foreground">
-                              You've discovered the hidden philosophy behind ForgeFlow Pilot.
-                            </div>
+                                <div className="text-xs text-muted-foreground">
+                                  You've discovered the hidden philosophy behind Fynix Flux Pilot.
+                                </div>
                           </div>
                         )}
 
@@ -450,7 +511,7 @@ const CreatorSection = () => {
                         <h2 className={`text-3xl font-bold tracking-tight ${display.className}`}>Principal Maker — Mehtab Rosul</h2>
                         <p className="text-xl text-muted-foreground font-semibold">Engineering the bridge from raw data to reliable production models.</p>
                         <p className="text-lg text-muted-foreground">
-                           Mehtab Rosul is an experienced machine learning engineer and MLOps practitioner focused on building tooling that removes friction between data and production. With a background in large-scale model deployment and developer tooling, Mehtab created ForgeFlow Pilot to give creators a single, safe, and flexible platform to iterate and ship models.
+                           Mehtab Rosul is an experienced machine learning engineer and MLOps practitioner focused on building tooling that removes friction between data and production. With a background in large-scale model deployment and developer tooling, Mehtab created Fynix Flux Pilot to give creators a single, safe, and flexible platform to iterate and ship models.
                         </p>
                         <p className="font-semibold text-foreground">Focus areas: model reproducibility • explainability • developer DX • production artifacts.</p>
                         
@@ -472,7 +533,7 @@ const CtaFooter = () => {
     return (
         <ParallaxSection className="bg-primary text-primary-foreground">
             <div className="container mx-auto px-4 md:px-6 text-center">
-                 <h2 className="text-3xl font-bold tracking-tighter font-headline">Start building smarter, faster, and safer models with ForgeFlow Pilot</h2>
+                 <h2 className="text-3xl font-bold tracking-tighter font-headline">Start building smarter, faster, and safer models with Fynix Flux Pilot</h2>
                  <div className="mt-8 flex gap-4 justify-center">
                      <Button size="lg" variant="secondary" asChild>
                         <Link href="/dashboard">Get Started</Link>

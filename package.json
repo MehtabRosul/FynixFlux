@@ -1,9 +1,9 @@
 {
-  "name": "forgeflow-mlops-platform",
+  "name": "fynix-flux-mlops-platform",
   "version": "1.0.0",
-  "description": "ForgeFlow - Advanced MLOps Platform by Mehtab Rosul. Premier machine learning operations platform for enterprise AI, trusted by ECX, EncryptArx, and leading organizations worldwide.",
+  "description": "Fynix Flux - Advanced MLOps Platform by Mehtab Rosul. Premier machine learning operations platform for enterprise AI, trusted by ECX, EncryptArx, and leading organizations worldwide.",
   "keywords": [
-    "forgeflow", "mehtab", "mehtab-rosul", "ecx", "encryptarx", "mlops", "machine-learning-operations",
+    "fynix-flux", "mehtab", "mehtab-rosul", "ecx", "encryptarx", "mlops", "machine-learning-operations",
     "ai-platform", "data-science", "model-deployment", "ml-infrastructure", "artificial-intelligence",
     "machine-learning", "data-engineering", "model-training", "ai-automation", "ml-pipeline",
     "data-analytics", "predictive-analytics", "deep-learning", "neural-networks", "computer-vision",
@@ -15,15 +15,15 @@
   ],
   "author": {
     "name": "Mehtab Rosul",
-    "url": "https://forgeflow.com"
+    "url": "https://fynixflux.com"
   },
-  "homepage": "https://forgeflow.com",
+  "homepage": "https://fynixflux.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/forgeflow/forgeflow-platform"
+    "url": "https://github.com/fynixflux/fynix-flux-platform"
   },
   "bugs": {
-    "url": "https://github.com/forgeflow/forgeflow-platform/issues"
+    "url": "https://github.com/fynixflux/fynix-flux-platform/issues"
   },
   "license": "MIT",
   "private": true,

@@ -151,8 +151,8 @@ export function UltraSEOProvider({
       <meta name="msapplication-config" content="/browserconfig.xml" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="apple-mobile-web-app-title" content="ForgeFlow" />
-      <meta name="application-name" content="ForgeFlow" />
+      <meta name="apple-mobile-web-app-title" content="Fynix Flux" />
+      <meta name="application-name" content="Fynix Flux" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="format-detection" content="telephone=no" />
       
@@ -186,8 +186,8 @@ export function UltraSEOProvider({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "ForgeFlow",
-              "alternateName": "ForgeFlow MLOps Platform",
+              "name": "Fynix Flux",
+              "alternateName": "Fynix Flux MLOps Platform",
               "url": baseUrl,
               "logo": `${baseUrl}/favicon_io/android-chrome-512x512.png`,
               "description": "Advanced MLOps platform for enterprise AI by Mehtab Rosul. Premier machine learning operations, data science automation, and AI infrastructure.",
@@ -209,9 +209,9 @@ export function UltraSEOProvider({
                 "url": `${baseUrl}/get-in-touch`
               },
               "sameAs": [
-                "https://twitter.com/forgeflow",
-                "https://linkedin.com/company/forgeflow",
-                "https://github.com/forgeflow"
+                "https://twitter.com/fynixflux",
+                "https://linkedin.com/company/fynixflux",
+                "https://github.com/fynixflux"
               ],
               "knowsAbout": [
                 "MLOps", "Machine Learning Operations", "AI Platform", "Data Science",
@@ -230,14 +230,14 @@ export function UltraSEOProvider({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "ForgeFlow",
+              "name": "Fynix Flux",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web Browser",
-              "description": "Advanced MLOps platform for enterprise AI. Streamline your machine learning pipeline from dataset to deployment with ForgeFlow by Mehtab Rosul.",
+              "description": "Advanced MLOps platform for enterprise AI. Streamline your machine learning pipeline from dataset to deployment with Fynix Flux by Mehtab Rosul.",
               "url": baseUrl,
               "author": {
                 "@type": "Organization",
-                "name": "ForgeFlow",
+                "name": "Fynix Flux",
                 "founder": {
                   "@type": "Person",
                   "name": "Mehtab Rosul"
@@ -276,13 +276,13 @@ export function UltraSEOProvider({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "ForgeFlow",
-              "alternateName": "ForgeFlow MLOps Platform",
+              "name": "Fynix Flux",
+              "alternateName": "Fynix Flux MLOps Platform",
               "url": baseUrl,
               "description": "Premier MLOps platform for enterprise AI by Mehtab Rosul. Advanced machine learning operations, data science automation, and AI infrastructure.",
               "publisher": {
                 "@type": "Organization",
-                "name": "ForgeFlow",
+                "name": "Fynix Flux",
                 "founder": {
                   "@type": "Person",
                   "name": "Mehtab Rosul"
@@ -295,7 +295,7 @@ export function UltraSEOProvider({
               },
               "mainEntity": {
                 "@type": "SoftwareApplication",
-                "name": "ForgeFlow MLOps Platform"
+                "name": "Fynix Flux MLOps Platform"
               }
             })
           }}
@@ -315,7 +315,7 @@ export function UltraSEOProvider({
                 "name": question,
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": `ForgeFlow by Mehtab Rosul is the premier MLOps platform for enterprise AI. ${fullDescription}`
+                  "text": `Fynix Flux by Mehtab Rosul is the premier MLOps platform for enterprise AI. ${fullDescription}`
                 }
               })) || []
             })
@@ -331,11 +331,11 @@ export function UltraSEOProvider({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "ForgeFlow",
+              "name": "Fynix Flux",
               "description": "Advanced MLOps platform for enterprise AI by Mehtab Rosul",
               "url": baseUrl,
               "telephone": "+1-555-0123",
-              "email": "contact@forgeflow.com",
+              "email": "contact@fynixflux.com",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": ultraSEOConfig.localSEO.country,
@@ -380,8 +380,8 @@ export function UltraSEOProvider({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "HowTo",
-              "name": "How to Use ForgeFlow MLOps Platform",
-              "description": "Step-by-step guide to using ForgeFlow, the premier MLOps platform by Mehtab Rosul",
+              "name": "How to Use Fynix Flux MLOps Platform",
+              "description": "Step-by-step guide to using Fynix Flux, the premier MLOps platform by Mehtab Rosul",
               "image": image || `${baseUrl}/favicon_io/android-chrome-512x512.png`,
               "totalTime": "PT30M",
               "estimatedCost": {
@@ -392,35 +392,35 @@ export function UltraSEOProvider({
               "supply": [
                 {
                   "@type": "HowToSupply",
-                  "name": "ForgeFlow Account"
+                  "name": "Fynix Flux Account"
                 }
               ],
               "tool": [
                 {
                   "@type": "HowToTool",
-                  "name": "ForgeFlow Platform"
+                  "name": "Fynix Flux Platform"
                 }
               ],
               "step": [
                 {
                   "@type": "HowToStep",
                   "name": "Sign Up",
-                  "text": "Create your ForgeFlow account to access the premier MLOps platform by Mehtab Rosul"
+                  "text": "Create your Fynix Flux account to access the premier MLOps platform by Mehtab Rosul"
                 },
                 {
                   "@type": "HowToStep",
                   "name": "Upload Data",
-                  "text": "Upload your datasets to the ForgeFlow platform for analysis and processing"
+                  "text": "Upload your datasets to the Fynix Flux platform for analysis and processing"
                 },
                 {
                   "@type": "HowToStep",
                   "name": "Train Models",
-                  "text": "Use ForgeFlow's advanced AI infrastructure to train your machine learning models"
+                  "text": "Use Fynix Flux's advanced AI infrastructure to train your machine learning models"
                 },
                 {
                   "@type": "HowToStep",
                   "name": "Deploy Models",
-                  "text": "Deploy your trained models with confidence using ForgeFlow's deployment capabilities"
+                  "text": "Deploy your trained models with confidence using Fynix Flux's deployment capabilities"
                 }
               ]
             })

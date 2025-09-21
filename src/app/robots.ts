@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/', '/admin/', '/api/'],
     },
-    sitemap: 'https://forgeflow.com/sitemap.xml',
+    sitemap: 'https://fynixflux.com/sitemap.xml',
   }
 }

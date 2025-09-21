@@ -80,7 +80,7 @@ export function Header() {
             <div className="grid gap-4 p-4">
               <Link href="/" className="flex items-center gap-2" prefetch={false}>
                 <Logo />
-                 <span className="font-bold text-lg">ForgeFlow</span>
+                 <span className="font-bold text-lg">Fynix Flux</span>
               </Link>
               <nav className="grid gap-2 text-base font-medium">
                 {navLinks.map((link) => (

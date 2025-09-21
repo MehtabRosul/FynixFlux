@@ -212,7 +212,7 @@
   perspective: 1000px;
 }
 
-/* Video Download Protection */
+/* Video Download Protection & Performance Optimization */
 video {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
@@ -221,6 +221,35 @@ video {
   -webkit-touch-callout: none !important;
   -webkit-tap-highlight-color: transparent !important;
   pointer-events: none !important;
+  
+  /* Performance optimizations for smooth playback */
+  -webkit-transform: translateZ(0) !important;
+  -moz-transform: translateZ(0) !important;
+  -ms-transform: translateZ(0) !important;
+  -o-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+  
+  -webkit-backface-visibility: hidden !important;
+  -moz-backface-visibility: hidden !important;
+  -ms-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  
+  -webkit-perspective: 1000px !important;
+  -moz-perspective: 1000px !important;
+  -ms-perspective: 1000px !important;
+  perspective: 1000px !important;
+  
+  will-change: transform !important;
+  
+  /* Smooth video rendering */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  
+  /* Hardware acceleration */
+  -webkit-transform-style: preserve-3d !important;
+  -moz-transform-style: preserve-3d !important;
+  -ms-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
 }
 
 video::-webkit-media-controls {

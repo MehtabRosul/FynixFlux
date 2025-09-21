@@ -32,7 +32,7 @@ export function HomePageFooter() {
       <div className="container mx-auto px-4 py-8 md:px-6">
         <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground animate-in fade-in-0 slide-in-from-bottom-2">
           <Logo />
-          <p>&copy; 2025 ForgeFlow all copyrights are preserved.</p>
+          <p>&copy; 2025 Fynix Flux all copyrights are preserved.</p>
         </div>
       </div>
     </footer>

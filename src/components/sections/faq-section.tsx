@@ -9,7 +9,7 @@ export function FaqSection() {
   // using requestAnimationFrame via CSS animation utilities (animate-in used already)
   const faqs = [
     {
-      q: 'What is ForgeFlow Pilot?',
+      q: 'What is Fynix Flux Pilot?',
       a: 'A focused MLOps experience: upload a dataset, configure a run, monitor live metrics, test models, and export artifacts — with optional AI assistance.'
     },
     {
@@ -96,7 +96,7 @@ export function FaqSection() {
       <div className="mx-auto w-full max-w-3xl px-3 md:px-4">
         <div className="text-center mb-4 md:mb-6 animate-in fade-in-0 slide-in-from-bottom-2">
           <h2 className="text-lg md:text-xl font-bold font-headline">Frequently Asked Questions</h2>
-          <p className="mt-1 text-muted-foreground max-w-sm mx-auto text-[11px] md:text-xs">Quick answers about the ForgeFlow Pilot experience and how to make the most of it.</p>
+          <p className="mt-1 text-muted-foreground max-w-sm mx-auto text-[11px] md:text-xs">Quick answers about the Fynix Flux Pilot experience and how to make the most of it.</p>
         </div>
 
         <div className="grid gap-2.5 md:grid-cols-2">

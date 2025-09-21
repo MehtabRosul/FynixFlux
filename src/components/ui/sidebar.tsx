@@ -26,7 +26,7 @@ function DashboardHeader() {
         <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
                 <Logo />
-                <span>ForgeFlow</span>
+                <span>Fynix Flux</span>
             </Link>
 
             <nav className="hidden md:flex md:items-center md:gap-5 text-sm font-medium ml-6">
@@ -65,7 +65,7 @@ function DashboardHeader() {
                     <nav className="grid gap-6 text-lg font-medium">
                         <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4">
                             <Logo />
-                            <span>ForgeFlow</span>
+                            <span>Fynix Flux</span>
                         </Link>
                         {navLinks.map(link => (
                             <Link

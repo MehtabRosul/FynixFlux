@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Loader } from './loader';
 
@@ -15,8 +15,16 @@ export function PageLoader({
   showProgress = false, 
   progress = 0 
 }: PageLoaderProps) {
+  // Prevent body scroll during loading
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 z-50 bg-background flex flex-col items-center justify-center space-y-6">
+    <div className="absolute inset-0 z-50 bg-background flex flex-col items-center justify-center space-y-6" style={{ position: 'fixed' }}>
       <Loader />
       
       <motion.div

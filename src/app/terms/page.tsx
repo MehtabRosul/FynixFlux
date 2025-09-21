@@ -30,7 +30,7 @@ export default function TermsPage() {
         <>
           <p>For purposes of these Terms, the following capitalized terms have the meanings set forth below:</p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
-            <li><strong>“Service” or “Platform”</strong> means the ForgeFlow Pilot web application, APIs, user interfaces, and related services provided by the Company that enable dataset upload, model training, testing, artifact export, and other project management features described on the Site.</li>
+            <li><strong>“Service” or “Platform”</strong> means the Fynix Flux Pilot web application, APIs, user interfaces, and related services provided by the Company that enable dataset upload, model training, testing, artifact export, and other project management features described on the Site.</li>
             <li><strong>“Company”, “We”, “Us”, “Our”</strong> means the operator of the Platform.</li>
             <li><strong>“You”</strong> means any visitor who accesses or uses the Service. This demo does not provide Accounts.</li>
             <li><strong>“Project”</strong> means a workspace or logical container within the Service where a User stores datasets, configurations, runs, and artifacts.</li>

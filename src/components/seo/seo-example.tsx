@@ -29,11 +29,11 @@ export function CustomPageWithSEO() {
   return (
     <>
       <PageSEO
-        title="Custom Page - ForgeFlow | Mehtab Rosul | ECX | EncryptArx"
+        title="Custom Page - Fynix Flux | Mehtab Rosul | ECX | EncryptArx"
         description="Custom page description with Mehtab Rosul, ECX, EncryptArx keywords for maximum SEO impact."
         url="/custom-page"
         keywords={[
-          'Custom Page', 'ForgeFlow Custom', 'Mehtab Rosul Custom', 'ECX Custom',
+          'Custom Page', 'Fynix Flux Custom', 'Mehtab Rosul Custom', 'ECX Custom',
           'EncryptArx Custom', 'MLOps Custom', 'AI Custom'
         ]}
         structuredData={{
@@ -52,12 +52,12 @@ export function FeaturePageWithSEO() {
   return (
     <>
       <PageSEO
-        title="AI Workflows - ForgeFlow Feature | Mehtab Rosul | ECX | EncryptArx"
-        description="AI Workflows feature in ForgeFlow - Advanced machine learning workflow automation by Mehtab Rosul. Streamline your AI development process with intelligent workflow management."
+        title="AI Workflows - Fynix Flux Feature | Mehtab Rosul | ECX | EncryptArx"
+        description="AI Workflows feature in Fynix Flux - Advanced machine learning workflow automation by Mehtab Rosul. Streamline your AI development process with intelligent workflow management."
         url="/features/ai-workflows"
         keywords={[
           'AI Workflows', 'ML Workflows', 'AI Automation', 'ML Pipeline Automation',
-          'ForgeFlow AI Workflows', 'Mehtab Rosul AI', 'ECX AI', 'EncryptArx AI'
+          'Fynix Flux AI Workflows', 'Mehtab Rosul AI', 'ECX AI', 'EncryptArx AI'
         ]}
         structuredData={{
           organization: true,
@@ -74,17 +74,17 @@ export function FeaturePageWithSEO() {
 export function PageWithBreadcrumbSEO() {
   const breadcrumbData = {
     breadcrumbs: [
-      { name: 'Home', url: 'https://forgeflow.com' },
-      { name: 'Features', url: 'https://forgeflow.com/features' },
-      { name: 'AI Workflows', url: 'https://forgeflow.com/features/ai-workflows' },
+      { name: 'Home', url: 'https://fynixflux.com' },
+      { name: 'Features', url: 'https://fynixflux.com/features' },
+      { name: 'AI Workflows', url: 'https://fynixflux.com/features/ai-workflows' },
     ]
   };
 
   return (
     <>
       <PageSEO
-        title="AI Workflows - ForgeFlow Feature | Mehtab Rosul | ECX | EncryptArx"
-        description="AI Workflows feature in ForgeFlow - Advanced machine learning workflow automation by Mehtab Rosul."
+        title="AI Workflows - Fynix Flux Feature | Mehtab Rosul | ECX | EncryptArx"
+        description="AI Workflows feature in Fynix Flux - Advanced machine learning workflow automation by Mehtab Rosul."
         url="/features/ai-workflows"
         keywords={['AI Workflows', 'ML Workflows', 'AI Automation']}
         structuredData={{
@@ -104,16 +104,16 @@ export function FAQPageWithSEO() {
   const faqData = {
     faqs: [
       {
-        question: 'What is ForgeFlow?',
-        answer: 'ForgeFlow is an advanced MLOps platform by Mehtab Rosul, trusted by ECX and EncryptArx, providing enterprise-grade machine learning operations capabilities.'
+        question: 'What is Fynix Flux?',
+        answer: 'Fynix Flux is an advanced MLOps platform by Mehtab Rosul, trusted by ECX and EncryptArx, providing enterprise-grade machine learning operations capabilities.'
       },
       {
-        question: 'Who created ForgeFlow?',
-        answer: 'ForgeFlow was created by Mehtab Rosul, a recognized expert in machine learning operations and AI infrastructure.'
+        question: 'Who created Fynix Flux?',
+        answer: 'Fynix Flux was created by Mehtab Rosul, a recognized expert in machine learning operations and AI infrastructure.'
       },
       {
-        question: 'What companies use ForgeFlow?',
-        answer: 'ForgeFlow is trusted by leading organizations including ECX, EncryptArx, and many other enterprise companies worldwide.'
+        question: 'What companies use Fynix Flux?',
+        answer: 'Fynix Flux is trusted by leading organizations including ECX, EncryptArx, and many other enterprise companies worldwide.'
       }
     ]
   };
@@ -121,11 +121,11 @@ export function FAQPageWithSEO() {
   return (
     <>
       <PageSEO
-        title="ForgeFlow FAQ - Frequently Asked Questions | Mehtab Rosul | ECX | EncryptArx"
-        description="Frequently asked questions about ForgeFlow, the premier MLOps platform by Mehtab Rosul. Get answers about features, pricing, and implementation."
+        title="Fynix Flux FAQ - Frequently Asked Questions | Mehtab Rosul | ECX | EncryptArx"
+        description="Frequently asked questions about Fynix Flux, the premier MLOps platform by Mehtab Rosul. Get answers about features, pricing, and implementation."
         url="/faq"
         keywords={[
-          'ForgeFlow FAQ', 'MLOps FAQ', 'AI Platform FAQ', 'Mehtab Rosul FAQ',
+          'Fynix Flux FAQ', 'MLOps FAQ', 'AI Platform FAQ', 'Mehtab Rosul FAQ',
           'ECX FAQ', 'EncryptArx FAQ', 'Machine Learning FAQ'
         ]}
         structuredData={{

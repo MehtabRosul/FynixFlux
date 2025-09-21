@@ -30,11 +30,11 @@ export default function SecurityPage() {
           <div className="mb-10 rounded-lg border bg-card/60 p-6">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-md bg-primary/15"><ShieldCheck className="w-6 h-6 text-primary" /></div>
-              <h1 className="text-3xl font-bold font-headline">Security at ForgeFlow Pilot</h1>
+              <h1 className="text-3xl font-bold font-headline">Security at Fynix Flux Pilot</h1>
             </div>
             <p className="mt-3 text-muted-foreground">
               We care about the confidentiality, integrity, and availability of your data and artifacts. Below is an
-              overview of the controls used in this demo and the recommended practices when you deploy ForgeFlow Pilot
+              overview of the controls used in this demo and the recommended practices when you deploy Fynix Flux Pilot
               in production.
             </p>
           </div>

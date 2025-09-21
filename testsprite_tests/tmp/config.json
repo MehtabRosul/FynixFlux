@@ -4,12 +4,12 @@
   "scope": "codebase",
   "localEndpoint": "http://localhost:9002",
   "loginUser": "Mehtab A. Rosul",
-  "loginPassword": "Testforgeflow@01",
+  "loginPassword": "Testfynixflux@01",
   "executionArgs": {
-    "projectName": "ForgeFlow",
+    "projectName": "Fynix Flux",
     "projectPath": "E:\\Personal Projects\\ForgeFlow",
     "testIds": [],
-    "additionalInstruction": "Run comprehensive testing of the entire ForgeFlow application including all UI components, user flows, data processing, AI features, and edge cases. Test all major functionality including landing page, dashboard, data upload, model training simulation, AI insights, export functionality, and all navigation flows. Ensure thorough coverage of responsive design, accessibility, and error handling.",
+    "additionalInstruction": "Run comprehensive testing of the entire Fynix Flux application including all UI components, user flows, data processing, AI features, and edge cases. Test all major functionality including landing page, dashboard, data upload, model training simulation, AI insights, export functionality, and all navigation flows. Ensure thorough coverage of responsive design, accessibility, and error handling.",
     "envs": {
       "API_KEY": "sk-user-RiXWC2vwJK48NEtdpqUY7Ff3PoTxvumNgXZBabnEtH5BXvhQQPirenbNeXvzjs0AhoGBQqY3Vk0EhdJuIBq1pHl69fLEQIJ6uTsnZOZMkjVS4Oc0j_k7A63cbYDZpfCXA-U"
     }

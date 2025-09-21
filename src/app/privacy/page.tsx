@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       id: "scope",
       title: "1. Scope & Applicability",
       summary: "No accounts. No personal data collection.",
-      content: "ForgeFlow Pilot (demo) does not provide user accounts and does not collect or store personal data such as names, emails, or profile information.",
+      content: "Fynix Flux Pilot (demo) does not provide user accounts and does not collect or store personal data such as names, emails, or profile information.",
       icon: <Book size={20} />
     },
     {

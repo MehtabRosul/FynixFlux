@@ -79,7 +79,7 @@ export function DeployableWorkSection() {
                         Your Work, Preserved and Deployable
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        ForgeFlow ML saves every artifact of your workflow. Datasets remain available for
+                        Fynix Flux ML saves every artifact of your workflow. Datasets remain available for
                         reproducibility, model binaries are neatly stored, and you can export in multiple formats.
                         Everything you build stays organized, accessible, and ready for deployment.
                     </p>
@@ -105,7 +105,7 @@ export function DeployableWorkSection() {
                             Built by Developers, for Developers
                         </h2>
                         <p className="text-lg text-muted-foreground">
-                            ForgeFlow ML is a powerful tool built for collaboration. Integrate with your favorite tools,
+                            Fynix Flux ML is a powerful tool built for collaboration. Integrate with your favorite tools,
                             share insights with your team, and build on a platform designed for the entire machine
                             learning community.
                         </p>

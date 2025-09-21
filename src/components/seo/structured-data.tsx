@@ -7,15 +7,15 @@ interface StructuredDataProps {
 
 export function StructuredData({ type, data }: StructuredDataProps) {
   const getStructuredData = () => {
-    const baseUrl = 'https://forgeflow.com';
+    const baseUrl = 'https://fynixflux.com';
     
     switch (type) {
       case 'organization':
         return {
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "ForgeFlow",
-          "alternateName": "ForgeFlow MLOps Platform",
+          "name": "Fynix Flux",
+          "alternateName": "Fynix Flux MLOps Platform",
           "url": baseUrl,
           "logo": `${baseUrl}/favicon_io/android-chrome-512x512.png`,
           "description": "Advanced MLOps platform for enterprise AI by Mehtab Rosul. Premier machine learning operations, data science automation, and AI infrastructure.",
@@ -37,9 +37,9 @@ export function StructuredData({ type, data }: StructuredDataProps) {
             "url": `${baseUrl}/get-in-touch`
           },
           "sameAs": [
-            "https://twitter.com/forgeflow",
-            "https://linkedin.com/company/forgeflow",
-            "https://github.com/forgeflow"
+            "https://twitter.com/fynixflux",
+            "https://linkedin.com/company/fynixflux",
+            "https://github.com/fynixflux"
           ],
           "knowsAbout": [
             "MLOps", "Machine Learning Operations", "AI Platform", "Data Science",
@@ -52,14 +52,14 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         return {
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
-          "name": "ForgeFlow",
+          "name": "Fynix Flux",
           "applicationCategory": "BusinessApplication",
           "operatingSystem": "Web Browser",
-          "description": "Advanced MLOps platform for enterprise AI. Streamline your machine learning pipeline from dataset to deployment with ForgeFlow by Mehtab Rosul.",
+          "description": "Advanced MLOps platform for enterprise AI. Streamline your machine learning pipeline from dataset to deployment with Fynix Flux by Mehtab Rosul.",
           "url": baseUrl,
           "author": {
             "@type": "Organization",
-            "name": "ForgeFlow",
+            "name": "Fynix Flux",
             "founder": {
               "@type": "Person",
               "name": "Mehtab Rosul"
@@ -92,13 +92,13 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         return {
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "name": "ForgeFlow",
-          "alternateName": "ForgeFlow MLOps Platform",
+          "name": "Fynix Flux",
+          "alternateName": "Fynix Flux MLOps Platform",
           "url": baseUrl,
           "description": "Premier MLOps platform for enterprise AI by Mehtab Rosul. Advanced machine learning operations, data science automation, and AI infrastructure.",
           "publisher": {
             "@type": "Organization",
-            "name": "ForgeFlow",
+            "name": "Fynix Flux",
             "founder": {
               "@type": "Person",
               "name": "Mehtab Rosul"
@@ -111,7 +111,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           },
           "mainEntity": {
             "@type": "SoftwareApplication",
-            "name": "ForgeFlow MLOps Platform"
+            "name": "Fynix Flux MLOps Platform"
           }
         };
 

@@ -16,7 +16,7 @@ export function Footer() {
         <div className="flex flex-col items-center justify-center gap-4 text-sm text-muted-foreground md:flex-row md:gap-6">
           <div className="flex items-center gap-2">
             <Logo />
-            <p className="text-center md:text-left">© 2025 ForgeFlow. All rights reserved.</p>
+            <p className="text-center md:text-left">© 2025 Fynix Flux. All rights reserved.</p>
           </div>
           <div className="flex gap-4">
             <Link href="/terms" className="hover:text-primary transition-colors">

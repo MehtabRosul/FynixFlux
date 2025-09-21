@@ -63,7 +63,7 @@ export function FeaturesSection() {
             <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">Key Features</div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Everything You Need to Ship with Confidence</h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              ForgeFlow Pilot is packed with powerful features designed to accelerate your MLOps workflow from start to finish.
+              Fynix Flux Pilot is packed with powerful features designed to accelerate your MLOps workflow from start to finish.
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 // ULTRA-POWERFUL CONTENT OPTIMIZATION SYSTEM
-// This will make ForgeFlow content ABSOLUTELY DOMINATE search results
+// This will make Fynix Flux content ABSOLUTELY DOMINATE search results
 
 import { allUltraSEOKeywords } from './ultra-seo-keywords';
 
@@ -187,8 +187,8 @@ export const ultraContentOptimization = {
     // Generate H1
     headings.push({
       level: 1,
-      text: `${keywords[0]} - ForgeFlow by Mehtab Rosul | ECX | EncryptArx`,
-      keywords: [keywords[0], 'ForgeFlow', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
+      text: `${keywords[0]} - Fynix Flux by Mehtab Rosul | ECX | EncryptArx`,
+      keywords: [keywords[0], 'Fynix Flux', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
     });
     
     // Generate H2s
@@ -322,22 +322,22 @@ export const ultraContentOptimization = {
   generateOptimizedStructure: (keywords: string[], content: string): any => {
     return {
       introduction: {
-        content: `ForgeFlow by Mehtab Rosul is the premier MLOps platform for enterprise AI. ${keywords[0]} is essential for modern machine learning operations.`,
-        keywords: [keywords[0], 'ForgeFlow', 'Mehtab Rosul', 'MLOps Platform'],
+        content: `Fynix Flux by Mehtab Rosul is the premier MLOps platform for enterprise AI. ${keywords[0]} is essential for modern machine learning operations.`,
+        keywords: [keywords[0], 'Fynix Flux', 'Mehtab Rosul', 'MLOps Platform'],
         length: 200,
       },
       body: {
         sections: keywords.slice(1, 6).map((keyword, index) => ({
           heading: `${keyword} - Advanced Features by Mehtab Rosul`,
-          content: `ForgeFlow provides advanced ${keyword} capabilities for enterprise AI. Trusted by ECX, EncryptArx, and leading organizations worldwide.`,
-          keywords: [keyword, 'ForgeFlow', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
+          content: `Fynix Flux provides advanced ${keyword} capabilities for enterprise AI. Trusted by ECX, EncryptArx, and leading organizations worldwide.`,
+          keywords: [keyword, 'Fynix Flux', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
           length: 300,
         })),
         totalLength: 1500,
       },
       conclusion: {
-        content: `ForgeFlow by Mehtab Rosul is the ultimate solution for ${keywords[0]}. Start your MLOps journey today with the premier platform trusted by ECX and EncryptArx.`,
-        keywords: [keywords[0], 'ForgeFlow', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
+        content: `Fynix Flux by Mehtab Rosul is the ultimate solution for ${keywords[0]}. Start your MLOps journey today with the premier platform trusted by ECX and EncryptArx.`,
+        keywords: [keywords[0], 'Fynix Flux', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
         length: 150,
       },
     };
@@ -360,8 +360,8 @@ export const ultraContentOptimization = {
     
     const answers = questions.map((question, index) => ({
       question,
-      answer: `ForgeFlow by Mehtab Rosul is the premier ${keywords[0]} platform for enterprise AI. Advanced machine learning operations, data science automation, and AI infrastructure. Trusted by ECX, EncryptArx, and leading organizations worldwide.`,
-      keywords: [keywords[0], 'ForgeFlow', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
+      answer: `Fynix Flux by Mehtab Rosul is the premier ${keywords[0]} platform for enterprise AI. Advanced machine learning operations, data science automation, and AI infrastructure. Trusted by ECX, EncryptArx, and leading organizations worldwide.`,
+      keywords: [keywords[0], 'Fynix Flux', 'Mehtab Rosul', 'ECX', 'EncryptArx'],
     }));
     
     return {
@@ -388,8 +388,8 @@ export const ultraContentOptimization = {
       definitions: [
         {
           term: keywords[0],
-          definition: `ForgeFlow by Mehtab Rosul is the premier ${keywords[0]} platform for enterprise AI. Advanced machine learning operations, data science automation, and AI infrastructure.`,
-          keywords: [keywords[0], 'ForgeFlow', 'Mehtab Rosul'],
+          definition: `Fynix Flux by Mehtab Rosul is the premier ${keywords[0]} platform for enterprise AI. Advanced machine learning operations, data science automation, and AI infrastructure.`,
+          keywords: [keywords[0], 'Fynix Flux', 'Mehtab Rosul'],
         },
       ],
       lists: [
@@ -408,7 +408,7 @@ export const ultraContentOptimization = {
       tables: [
         {
           title: `${keywords[0]} Comparison`,
-          headers: ['Feature', 'ForgeFlow', 'Competitor'],
+          headers: ['Feature', 'Fynix Flux', 'Competitor'],
           rows: [
             ['MLOps Platform', 'Yes', 'Yes'],
             ['AI Infrastructure', 'Yes', 'Limited'],
@@ -423,7 +423,7 @@ export const ultraContentOptimization = {
         {
           title: `How to Use ${keywords[0]}`,
           steps: [
-            'Sign up for ForgeFlow',
+            'Sign up for Fynix Flux',
             'Upload your datasets',
             'Train your models',
             'Deploy with confidence',
@@ -438,12 +438,12 @@ export const ultraContentOptimization = {
   generateLocalSEOContent: (keywords: string[]): any => {
     return {
       business: {
-        name: 'ForgeFlow',
+        name: 'Fynix Flux',
         address: 'San Francisco, CA, USA',
         phone: '+1-555-0123',
-        email: 'contact@forgeflow.com',
+        email: 'contact@fynixflux.com',
         hours: '24/7',
-        website: 'https://forgeflow.com',
+        website: 'https://fynixflux.com',
       },
       services: [
         'MLOps Platform',
@@ -461,8 +461,8 @@ export const ultraContentOptimization = {
         'Cloud',
         'On-Premise',
       ],
-      content: `ForgeFlow by Mehtab Rosul provides ${keywords[0]} services in the United States and globally. Premier MLOps platform for enterprise AI.`,
-      keywords: [keywords[0], 'ForgeFlow', 'Mehtab Rosul', 'United States', 'Global'],
+      content: `Fynix Flux by Mehtab Rosul provides ${keywords[0]} services in the United States and globally. Premier MLOps platform for enterprise AI.`,
+      keywords: [keywords[0], 'Fynix Flux', 'Mehtab Rosul', 'United States', 'Global'],
     };
   },
 };
