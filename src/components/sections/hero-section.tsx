@@ -21,14 +21,35 @@ export function HeroSection() {
           transform: `translate3d(0, ${bgY}px, 0)`,
         }}
       >
-        <Image
-          src="https://placehold.co/1920x1080.png"
-          alt="Abstract background"
-          data-ai-hint="abstract network"
-          fill
-          className="object-cover"
-          priority
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover pointer-events-none"
+          width="1920"
+          height="1080"
+          controlsList="nodownload nofullscreen noremoteplayback"
+          disablePictureInPicture
+          onContextMenu={(e) => e.preventDefault()}
+          onDragStart={(e) => e.preventDefault()}
+          onLoadStart={(e) => {
+            const video = e.target as HTMLVideoElement;
+            video.controls = false;
+            video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
+            video.setAttribute('disablePictureInPicture', 'true');
+          }}
+          style={{ 
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: 'none',
+            pointerEvents: 'none'
+          }}
+        >
+          <source src="/videos/3141211-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
       </div>
       
@@ -39,7 +60,7 @@ export function HeroSection() {
         }}
       >
         <h1 className="text-4xl font-headline font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-8xl">
-          <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-subtle-gradient bg-[200%_auto]">ForgeFlow Pilot</span>
+          <span className="block bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent animate-gentle-shift bg-[200%_auto]">ForgeFlow</span>
         </h1>
         <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
             Streamline Your MLOps Pipeline

@@ -1,27 +1,14 @@
 import type {Metadata} from 'next';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://forgeflow.com'),
-  title: 'ForgeFlow Pilot',
-  description: 'Streamline your MLOps pipeline from dataset to deployment.',
-  openGraph: {
-    title: 'ForgeFlow Pilot',
-    description: 'Streamline your MLOps pipeline from dataset to deployment.',
-    url: '/',
-    siteName: 'ForgeFlow Pilot',
-    images: [
-      { url: '/favicon_io/android-chrome-512x512.png', width: 512, height: 512, alt: 'ForgeFlow Logo' },
-    ],
-    type: 'website',
+  title: {
+    default: 'ForgeFlow - Advanced MLOps Platform | Mehtab Rosul | ECX | EncryptArx',
+    template: '%s | ForgeFlow - MLOps Excellence'
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ForgeFlow Pilot',
-    description: 'Streamline your MLOps pipeline from dataset to deployment.',
-    images: ['/favicon_io/android-chrome-512x512.png'],
-  },
+  description: 'ForgeFlow by Mehtab Rosul - Premier MLOps platform for enterprise AI. Advanced machine learning operations, data science automation, model deployment, and AI infrastructure. Trusted by ECX, EncryptArx, and leading organizations worldwide.',
   icons: {
     icon: [
       { url: '/favicon.ico' },

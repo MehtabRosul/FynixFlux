@@ -1,0 +1,405 @@
+[
+  {
+    "id": "TC001",
+    "title": "Landing Page Parallax Effect and Animation Rendering",
+    "description": "Verify that the landing page loads with engaging parallax scrolling effects and animated components functioning smoothly.",
+    "category": "ui",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the landing page."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm parallax scrolling effects trigger appropriately during page scroll."
+      },
+      {
+        "type": "assertion",
+        "description": "Validate all animated components render correctly and animate without performance degradation."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Dashboard User Login and Access",
+    "description": "Ensure users can log in successfully and access the dashboard area where they can manage ML projects without full page navigation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the login page."
+      },
+      {
+        "type": "action",
+        "description": "Input valid user credentials."
+      },
+      {
+        "type": "action",
+        "description": "Submit login form."
+      },
+      {
+        "type": "assertion",
+        "description": "Check login is successful."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify dashboard area loads without page navigation."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Data Upload for All Supported Formats with Type Inference and Preview",
+    "description": "Verify that the user can upload datasets in supported formats (CSV, Excel, Parquet, Avro, XML, YAML), preview the data, and system correctly infers data types.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to data upload panel on the dashboard."
+      },
+      {
+        "type": "action",
+        "description": "Upload a CSV file."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify dataset preview renders with correct data."
+      },
+      {
+        "type": "assertion",
+        "description": "Check data types inferred correctly for all columns."
+      },
+      {
+        "type": "action",
+        "description": "Repeat upload, preview and type inference validation for Excel, Parquet, Avro, XML, and YAML files."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "PII Detection and Consent Enforcement on Dataset Upload",
+    "description": "Check that datasets containing PII trigger warning messages and system enforces user consent before allowing further actions.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Upload a dataset containing PII fields."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the system detects PII in the dataset."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that warning messages about PII are displayed prominently."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to proceed without providing consent."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the system prevents further actions without user consent."
+      },
+      {
+        "type": "action",
+        "description": "Provide consent and retry the action."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the system allows continuation after obtaining consent."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Prompt Validation in Insight Hub",
+    "description": "Verify that prompt inputs in Insight Hub enforce a minimum length and block forbidden patterns before submission.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the Insight Hub panel."
+      },
+      {
+        "type": "action",
+        "description": "Input a prompt shorter than minimum allowed length."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an inline validation error prevents submission."
+      },
+      {
+        "type": "action",
+        "description": "Input a prompt containing forbidden patterns."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the prompt is blocked and a validation message is shown."
+      },
+      {
+        "type": "action",
+        "description": "Input a valid prompt meeting all criteria."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the prompt is accepted and submission proceeds."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Model Training Job Submission and WebSocket Connection Establishment",
+    "description": "Validate successful submission of model training jobs returning valid task IDs and establishing WebSocket connections for real-time streaming.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger model training job submission with valid parameters."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the response contains a valid task ID."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that a WebSocket connection is established for this task."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Real-time Streaming of Training Metrics, Logs, and Checkpoints",
+    "description": "Verify live WebSocket streaming updates training metrics charts, logs feed, and checkpoints dynamically on the dashboard.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Start a model training session with an active WebSocket connection."
+      },
+      {
+        "type": "assertion",
+        "description": "Validate that training metrics charts update live during training."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm real-time logs feed shows training event logs continuously."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that checkpoint events appear in the UI as training progresses."
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Training Completion Event Handling and UI Updates",
+    "description": "Verify that upon training completion event, UI updates accordingly to reflect job completion and enables user next steps.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Complete a model training job triggering training completion event."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm UI reflects training completion status and stops live updates."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that artifact metadata becomes available for user access."
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Artifact Export with Payment Gating and Checksum Verification",
+    "description": "Test the secure artifact export workflow including payment gating, checksum verification on artifact download, and audit log update.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Select a completed model artifact for export."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify payment gating prompts the user for payment before export."
+      },
+      {
+        "type": "action",
+        "description": "Complete payment confirmation."
+      },
+      {
+        "type": "action",
+        "description": "Trigger artifact download."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that downloaded artifact’s SHA256 checksum is verified against expected value."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify audit logs record the export action with user and timestamp."
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Automated QA Testing Trigger and Report Generation",
+    "description": "Check that users can trigger automated QA testing for robustness, calibration, and fairness on trained models and that reports are generated correctly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger automated QA testing on a selected trained model."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify job submission for QA testing is accepted."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm generation of robustness, calibration, and fairness reports upon test completion."
+      },
+      {
+        "type": "assertion",
+        "description": "Check reports are accessible from the model test panel."
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Audit Log Comprehensive State Mutation Capture",
+    "description": "Ensure audit logs capture all state changes in the application, including user identity and timestamps for traceability.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Perform various operations: dataset upload, training job submission, model export."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify corresponding audit log entries are created with accurate user information."
+      },
+      {
+        "type": "assertion",
+        "description": "Check timestamps on audit logs correspond to real operation times."
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "State Recovery via Replay API on Page Reload and Worker Failures",
+    "description": "Validate that after a page reload or worker failure, the UI state and data are restored correctly via event replay API providing seamless user experience.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Initiate a training session with live metric streaming."
+      },
+      {
+        "type": "action",
+        "description": "Reload the dashboard page or simulate a worker failure."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the UI state is restored accurately using the event replay API."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm live metrics and logs resume streaming without data loss."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Security Compliance Checks on Prompt and Exported Data Handling",
+    "description": "Ensure raw prompts are not stored in logs, audit logs are encrypted, and consent enforcement for PII exports is strictly applied.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Submit prompts via Insight Hub for model testing and explanation."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify raw prompt texts do not appear in any audit or training logs."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that audit logs are stored encrypted."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to export data containing detected PII without consent."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm export is blocked and consent is enforced."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Insight Hub UI Behavior and Prompt Bar Focus",
+    "description": "Check that the Insight Hub opens in-place without navigation, with the prompt bar auto-focused and top controls hiding smoothly on scroll.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the Insight Hub panel from Dashboard."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the page does not navigate or reload."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that the prompt input bar is auto-focused for immediate text entry."
+      },
+      {
+        "type": "action",
+        "description": "Scroll within the Insight Hub panel."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the top control row hides with smooth animation while scrolling down."
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "UI Component Library Consistency and Accessibility Checks",
+    "description": "Validate key UI components built with shadcn/ui and Radix UI for consistent styling, functionality, and accessibility compliance.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Render components including buttons, dialogs, inputs, selects, tables, toasts, and tooltips."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify styling is consistent across components with correct themes applied."
+      },
+      {
+        "type": "assertion",
+        "description": "Test keyboard navigation and screen reader accessibility for each component."
+      }
+    ]
+  }
+]

@@ -3,9 +3,23 @@
 import { LegalLayout } from '@/components/layout/legal-layout';
 import { Book, CheckCircle, UserCheck, ShieldOff, Server, BrainCircuit, ShieldCheck, AlertTriangle, FileText, Globe, Handshake, Info, Mail, Bot } from 'lucide-react';
 import Link from 'next/link';
+import { PageLoader } from '@/components/ui/page-loader';
+import { useState, useEffect } from 'react';
 
 
 export default function TermsPage() {
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isPageLoading) {
+    return <PageLoader message="Loading Terms of Service..." showProgress={true} progress={70} />;
+  }
     
   const sections = [
     { 

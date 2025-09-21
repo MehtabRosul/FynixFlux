@@ -1,0 +1,183 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "Next.js 15.5.2",
+    "React 18.3.1",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Framer Motion",
+    "Radix UI",
+    "Genkit AI",
+    "Google AI (Gemini)",
+    "Firebase",
+    "Recharts",
+    "Lucide React"
+  ],
+  "features": [
+    {
+      "name": "Landing Page with Parallax Effects",
+      "description": "Main landing page with parallax scrolling effects, hero section, and animated components",
+      "files": [
+        "src/app/page.tsx",
+        "src/components/sections/hero-section.tsx",
+        "src/components/sections/cta-section.tsx",
+        "src/components/sections/deployable-work-section.tsx",
+        "src/components/sections/insight-hub-section.tsx",
+        "src/components/sections/faq-section.tsx",
+        "src/components/providers/parallax-provider.tsx"
+      ]
+    },
+    {
+      "name": "Dashboard System",
+      "description": "Main dashboard for ML model training, monitoring, and management",
+      "files": [
+        "src/app/dashboard/page.tsx",
+        "src/app/dashboard/layout.tsx",
+        "src/components/dashboard/live-metrics-chart.tsx",
+        "src/components/dashboard/live-insights-feed.tsx",
+        "src/components/dashboard/top-control-row.tsx",
+        "src/components/dashboard/training-controls-panel.tsx"
+      ]
+    },
+    {
+      "name": "Data Upload and Processing",
+      "description": "File upload system supporting multiple formats (CSV, Excel, Parquet, Avro, XML, YAML)",
+      "files": [
+        "src/components/dashboard/data-upload-panel.tsx",
+        "src/components/dashboard/dataset-preview-panel.tsx",
+        "src/app/actions/ingest.ts"
+      ]
+    },
+    {
+      "name": "Model Management",
+      "description": "Model training, testing, and artifact management system",
+      "files": [
+        "src/components/dashboard/model-details-panel.tsx",
+        "src/components/dashboard/model-test-panel.tsx",
+        "src/app/export/page.tsx",
+        "src/app/export/use-case/page.tsx"
+      ]
+    },
+    {
+      "name": "AI Integration (Insight Hub)",
+      "description": "AI-powered workflow automation and model explanation system using Genkit and Google AI",
+      "files": [
+        "src/components/dashboard/insight-hub-panel.tsx",
+        "src/components/dashboard/insight-hub-button.tsx",
+        "src/components/dashboard/ai-explanation-panel.tsx",
+        "src/ai/genkit.ts",
+        "src/ai/flows/ai-narrative-tool.ts",
+        "src/ai/flows/model-test-explanation.ts",
+        "src/app/actions/ai.ts"
+      ]
+    },
+    {
+      "name": "UI Component Library",
+      "description": "Comprehensive UI component library built on shadcn/ui and Radix UI",
+      "files": [
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/dialog.tsx",
+        "src/components/ui/input.tsx",
+        "src/components/ui/select.tsx",
+        "src/components/ui/table.tsx",
+        "src/components/ui/chart.tsx",
+        "src/components/ui/accordion.tsx",
+        "src/components/ui/alert.tsx",
+        "src/components/ui/avatar.tsx",
+        "src/components/ui/badge.tsx",
+        "src/components/ui/calendar.tsx",
+        "src/components/ui/carousel.tsx",
+        "src/components/ui/checkbox.tsx",
+        "src/components/ui/collapsible.tsx",
+        "src/components/ui/dropdown-menu.tsx",
+        "src/components/ui/form.tsx",
+        "src/components/ui/label.tsx",
+        "src/components/ui/loader.tsx",
+        "src/components/ui/menubar.tsx",
+        "src/components/ui/popover.tsx",
+        "src/components/ui/progress.tsx",
+        "src/components/ui/radio-group.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/components/ui/separator.tsx",
+        "src/components/ui/sheet.tsx",
+        "src/components/ui/sidebar.tsx",
+        "src/components/ui/skeleton.tsx",
+        "src/components/ui/slider.tsx",
+        "src/components/ui/switch.tsx",
+        "src/components/ui/tabs.tsx",
+        "src/components/ui/textarea.tsx",
+        "src/components/ui/toast.tsx",
+        "src/components/ui/toaster.tsx",
+        "src/components/ui/tooltip.tsx"
+      ]
+    },
+    {
+      "name": "Layout Components",
+      "description": "Layout and navigation components for different page types",
+      "files": [
+        "src/components/layout/header.tsx",
+        "src/components/layout/footer.tsx",
+        "src/components/layout/home-page-footer.tsx",
+        "src/components/layout/dashboard-layout.tsx",
+        "src/components/layout/docs-layout.tsx",
+        "src/components/layout/legal-layout.tsx"
+      ]
+    },
+    {
+      "name": "Feature Pages",
+      "description": "Individual feature showcase pages",
+      "files": [
+        "src/app/features/page.tsx",
+        "src/app/features/ai-workflows/page.tsx",
+        "src/app/features/artifact-export/page.tsx",
+        "src/app/features/dataset-profiling/page.tsx",
+        "src/app/features/live-dashboard/page.tsx",
+        "src/app/features/model-registry/page.tsx",
+        "src/app/features/model-sandbox/page.tsx",
+        "src/app/features/resumable-uploads/page.tsx",
+        "src/app/features/secure-infrastructure/page.tsx"
+      ]
+    },
+    {
+      "name": "Documentation System",
+      "description": "Comprehensive documentation with navigation and search",
+      "files": [
+        "src/app/docs/page.tsx",
+        "src/app/how-it-works/page.tsx",
+        "src/app/about/page.tsx"
+      ]
+    },
+    {
+      "name": "Legal and Contact Pages",
+      "description": "Legal pages and contact information",
+      "files": [
+        "src/app/privacy/page.tsx",
+        "src/app/terms/page.tsx",
+        "src/app/security/page.tsx",
+        "src/app/get-in-touch/page.tsx"
+      ]
+    },
+    {
+      "name": "Utility Hooks and Functions",
+      "description": "Custom React hooks and utility functions",
+      "files": [
+        "src/hooks/use-mobile.tsx",
+        "src/hooks/use-toast.ts",
+        "src/lib/utils.ts"
+      ]
+    },
+    {
+      "name": "Configuration and Styling",
+      "description": "App configuration, styling, and theming",
+      "files": [
+        "src/app/globals.css",
+        "src/app/layout.tsx",
+        "tailwind.config.ts",
+        "next.config.ts",
+        "components.json",
+        "postcss.config.mjs"
+      ]
+    }
+  ]
+}

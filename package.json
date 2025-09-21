@@ -1,6 +1,31 @@
 {
-  "name": "nextn",
-  "version": "0.1.0",
+  "name": "forgeflow-mlops-platform",
+  "version": "1.0.0",
+  "description": "ForgeFlow - Advanced MLOps Platform by Mehtab Rosul. Premier machine learning operations platform for enterprise AI, trusted by ECX, EncryptArx, and leading organizations worldwide.",
+  "keywords": [
+    "forgeflow", "mehtab", "mehtab-rosul", "ecx", "encryptarx", "mlops", "machine-learning-operations",
+    "ai-platform", "data-science", "model-deployment", "ml-infrastructure", "artificial-intelligence",
+    "machine-learning", "data-engineering", "model-training", "ai-automation", "ml-pipeline",
+    "data-analytics", "predictive-analytics", "deep-learning", "neural-networks", "computer-vision",
+    "natural-language-processing", "nlp", "ml-model-management", "ai-development", "data-pipeline",
+    "model-versioning", "ml-monitoring", "ai-governance", "ml-security", "data-privacy",
+    "enterprise-ai", "cloud-ml", "mlops-tools", "ai-solutions", "data-science-platform",
+    "ml-workflow", "ai-infrastructure", "model-lifecycle", "data-processing", "feature-engineering",
+    "model-optimization", "ai-research", "ml-engineering", "data-intelligence", "ai-innovation"
+  ],
+  "author": {
+    "name": "Mehtab Rosul",
+    "url": "https://forgeflow.com"
+  },
+  "homepage": "https://forgeflow.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forgeflow/forgeflow-platform"
+  },
+  "bugs": {
+    "url": "https://github.com/forgeflow/forgeflow-platform/issues"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev -p 9002",

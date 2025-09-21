@@ -18,6 +18,7 @@ const Logo = () => (
 export function Header() {
   const pathname = usePathname();
   const isDashboardPage = pathname.startsWith('/dashboard');
+  const isGetInTouchPage = pathname === '/get-in-touch';
 
   const navLinks = [
     { href: "/features", label: "Features" },
@@ -55,9 +56,11 @@ export function Header() {
         </div>
 
         <div className="hidden lg:flex items-center gap-4 ml-auto lg:ml-6">
-             <Button asChild>
-                  <Link href="/get-in-touch">Contact Us</Link>
-              </Button>
+             {!isGetInTouchPage && (
+               <Button asChild>
+                    <Link href="/get-in-touch">Contact Us</Link>
+                </Button>
+             )}
         </div>
 
 
@@ -100,9 +103,11 @@ export function Header() {
                           <Link href="/dashboard">Go to Dashboard</Link>
                       </Button>
                  )}
-                 <Button asChild>
-                    <Link href="/get-in-touch">Contact Us</Link>
-                 </Button>
+                 {!isGetInTouchPage && (
+                   <Button asChild>
+                      <Link href="/get-in-touch">Contact Us</Link>
+                   </Button>
+                 )}
                 </div>
             </div>
           </SheetContent>

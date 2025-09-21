@@ -1,9 +1,26 @@
+'use client';
+
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShieldCheck, Lock, Server, FileCheck2, AlertTriangle } from 'lucide-react';
+import { PageLoader } from '@/components/ui/page-loader';
+import { useState, useEffect } from 'react';
 
 export default function SecurityPage() {
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isPageLoading) {
+    return <PageLoader message="Loading Security..." showProgress={true} progress={70} />;
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />

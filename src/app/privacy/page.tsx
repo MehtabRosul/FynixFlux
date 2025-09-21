@@ -2,9 +2,24 @@
 'use client';
 import { LegalLayout } from '@/components/layout/legal-layout';
 import { Book, User, Database, Globe, Archive, Shield, Cookie, UserX, UserCheck, Bell, Info, Mail, Users, Server, Bot } from 'lucide-react';
+import { PageLoader } from '@/components/ui/page-loader';
+import { useState, useEffect } from 'react';
 
 
 export default function PrivacyPage() {
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isPageLoading) {
+    return <PageLoader message="Loading Privacy Policy..." showProgress={true} progress={70} />;
+  }
+
   const sections = [
     {
       id: "scope",

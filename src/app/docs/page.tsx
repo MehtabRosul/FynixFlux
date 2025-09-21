@@ -1,6 +1,10 @@
 
+'use client';
+
 import { DocsLayout } from '@/components/layout/docs-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { PageLoader } from '@/components/ui/page-loader';
+import { useState, useEffect } from 'react';
 
 const CodeBlock = ({ children }: { children: React.ReactNode }) => (
   <pre className="bg-muted rounded-md p-4 text-sm font-mono overflow-x-auto">
@@ -9,6 +13,19 @@ const CodeBlock = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function DocsPage() {
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isPageLoading) {
+    return <PageLoader message="Loading Documentation..." showProgress={true} progress={85} />;
+  }
+
   const sections = [
     { id: 'introduction', title: 'Introduction' },
     { id: 'quickstart', title: 'Quickstart' },

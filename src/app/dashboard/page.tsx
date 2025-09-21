@@ -14,6 +14,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { InsightHubPanel } from '@/components/dashboard/insight-hub-panel';
 import { InsightHubButton } from '@/components/dashboard/insight-hub-button';
 import { AiExplanationPanel } from '@/components/dashboard/ai-explanation-panel';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export interface TrainingConfig {
   problemCategorization: string | null;
@@ -26,6 +27,7 @@ export interface TrainingConfig {
 export type Dataset = Record<string, string | number>[];
 
 export default function DashboardPage() {
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const [isTraining, setIsTraining] = useState(false);
   const [isInsightHubMode, setIsInsightHubMode] = useState(false);
   const [trainingConfig, setTrainingConfig] = useState<TrainingConfig>({
@@ -156,6 +158,18 @@ export default function DashboardPage() {
       animate: { opacity: 1, y: 0, height: 'auto', transition: { duration: 0.3, ease: "easeInOut" } },
       exit: { opacity: 0, y: -20, height: 0, transition: { duration: 0.2, ease: "easeInOut" } },
   };
+
+  // Page loading effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isPageLoading) {
+    return <PageLoader message="Loading Dashboard..." showProgress={true} progress={85} />;
+  }
 
   return (
     <div className="space-y-6">

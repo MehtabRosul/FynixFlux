@@ -12,6 +12,7 @@ import { Card } from '@/components/ui/card';
 import { ShieldCheck, GitCommit, Eye, Zap, Bot, Sparkles, Star, Code, Palette, Wrench, Heart, Trophy, Gift, Lock, Unlock } from 'lucide-react';
 import { ParallaxProvider, useParallax } from '@/components/providers/parallax-provider';
 import { Playfair_Display } from 'next/font/google';
+import { PageLoader } from '@/components/ui/page-loader';
 
 const display = Playfair_Display({ subsets: ['latin'], weight: ['600','700'] });
 
@@ -32,10 +33,83 @@ const HeroSection = () => {
     const midY = isReducedMotion ? 0 : scrollY * 0.55;
     const fgY = isReducedMotion ? 0 : scrollY * 0.8;
 
+    // Handle video loading and error states
+    const [videoLoaded, setVideoLoaded] = React.useState(false);
+    const [videoError, setVideoError] = React.useState(false);
+
+    // Pause video on reduced motion preference and optimize for 4K
+    React.useEffect(() => {
+        const video = document.querySelector('video') as HTMLVideoElement;
+        if (video) {
+            if (isReducedMotion) {
+                video.pause();
+            } else {
+                // Optimize video playback for 4K content
+                video.playbackRate = 1.0;
+                video.volume = 0; // Ensure muted
+                
+                // Add intersection observer for performance
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            video.play().catch(console.log);
+                        } else {
+                            video.pause();
+                        }
+                    });
+                });
+                
+                observer.observe(video);
+                
+                return () => observer.disconnect();
+            }
+        }
+    }, [isReducedMotion]);
+
     return (
         <ParallaxSection className="min-h-screen flex items-center justify-center text-center bg-background">
-            <div className="absolute inset-0 z-0 opacity-20" style={{ transform: `translate3d(0, ${bgY}px, 0)` }}>
-                 <Image src="https://placehold.co/1920x1080.png" alt="Abstract background grid" fill className="object-cover" data-ai-hint="abstract grid" />
+            <div className="absolute inset-0 z-0" style={{ transform: `translate3d(0, ${bgY}px, 0)` }}>
+                {/* Video Background */}
+                <video 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-cover opacity-40 pointer-events-none"
+                    style={{ 
+                        filter: 'blur(0.5px) brightness(0.7)',
+                        transform: 'scale(1.05)',
+                        userSelect: 'none',
+                        WebkitUserSelect: 'none',
+                        MozUserSelect: 'none',
+                        msUserSelect: 'none',
+                        pointerEvents: 'none'
+                    }}
+                    controlsList="nodownload nofullscreen noremoteplayback"
+                    disablePictureInPicture
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
+                    onLoadStart={(e) => {
+                        const video = e.target as HTMLVideoElement;
+                        video.controls = false;
+                        video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
+                        video.setAttribute('disablePictureInPicture', 'true');
+                    }}
+                >
+                    <source src="/videos/14209120-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+                </video>
+                
+                {/* Fallback Image - Only show if video fails */}
+                {videoError && (
+                    <Image 
+                        src="https://placehold.co/1920x1080.png" 
+                        alt="Abstract background grid" 
+                        fill 
+                        className="object-cover opacity-20" 
+                        data-ai-hint="abstract grid" 
+                    />
+                )}
             </div>
             <div className="absolute inset-0 z-10 opacity-10" style={{ transform: `translate3d(0, ${midY}px, 0)` }}>
                 {/* Midground floating shapes can go here */}
@@ -43,12 +117,12 @@ const HeroSection = () => {
             <div className="relative z-20 container mx-auto px-4 md:px-6" style={{ transform: `translate3d(0, ${fgY}px, 0)`}}>
                 <div className="grid gap-12 items-center">
                     <div className="space-y-6 text-left">
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground font-headline">ForgeFlow Pilot</h1>
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground font-headline">About ForgeFlow</h1>
                         <p className="text-xl md:text-2xl text-muted-foreground">
-                           From dataset to deployable model — control every step with clarity and speed.
+                           Advanced MLOps Platform by Mehtab Rosul - From dataset to deployable model with enterprise-grade AI infrastructure.
                         </p>
                         <p className="text-lg text-muted-foreground">
-                           Upload any dataset, train exactly how you want, monitor live, and export production-ready artifacts.
+                           Streamline your ML pipeline with intelligent automation, real-time monitoring, and seamless deployment capabilities.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Button asChild size="lg">
@@ -414,6 +488,19 @@ const CtaFooter = () => {
 
 
 export default function AboutPage() {
+  const [isPageLoading, setIsPageLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isPageLoading) {
+    return <PageLoader message="Loading About Us..." showProgress={true} progress={90} />;
+  }
+
   return (
     <ParallaxProvider>
         <div className="flex flex-col min-h-screen bg-background">
